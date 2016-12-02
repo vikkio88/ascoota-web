@@ -15,4 +15,4 @@ npm run build
 ```
 
 ### Credits
-the player logic is managed reusing some code from the project [vueaudio](https://github.com/hilongjw/vue-audio)
+the player logic is managed reusing some code from the project [vue-audio](https://github.com/hilongjw/vue-audio)

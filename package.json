@@ -1,8 +1,8 @@
 {
-  "name": "test",
+  "name": "ascoota-web",
   "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "Vincenzo Ciaccio <vincenzo.ciaccio@sykescottages.co.uk>",
+  "description": "Front End SPA of aScoota",
+  "author": "Vincenzo Ciaccio <vincenzo.ciaccio@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
