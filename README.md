@@ -13,3 +13,6 @@ npm run dev
 # build for production with minification
 npm run build
 ```
+
+### Credits
+the player logic is managed reusing some code from the project [vueaudio](https://github.com/hilongjw/vue-audio)
