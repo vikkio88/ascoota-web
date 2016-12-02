@@ -12,11 +12,12 @@ export default {
   data () {
         return {
             audio: {
-                title: 'ninelie-Aimer',
-                src: 'http://covteam.u.qiniudn.com/test2.mp3',
-                poster: 'http://covteam.u.qiniudn.com/ka2.jpg',
+                title: 'Daft Punk - Too Long',
+                src: 'http://cdn.mp3mad.com/48-351081/Too%20Long.mp3',
+                poster: 'https://upload.wikimedia.org/wikipedia/en/a/ae/Daft_Punk_-_Discovery.jpg',
+                description : 'the coolest song ever',
                 options: {
-                    preload: false,
+                    preload: true,
                     autoplay: false,
                     rate: 1,
                     loop: false,
