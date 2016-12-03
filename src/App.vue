@@ -1,11 +1,13 @@
 <template>
-  <div id="app">
+  <div id="app" class="container is-fluid">
+    <main-nav />
     <audio-player :audio="audio" />
   </div>
 </template>
 
 <script>
 import AudioPlayer from './components/AudioPlayer'
+import MainNav from './components/MainNav'
 
 export default {
   name: 'app',
@@ -26,7 +28,8 @@ export default {
         }
     },
   components: {
-    AudioPlayer
+    AudioPlayer,
+    MainNav
   }
 }
 </script>
