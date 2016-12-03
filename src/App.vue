@@ -12,10 +12,10 @@ export default {
   data () {
         return {
             audio: {
-                title: 'Daft Punk - Too Long',
-                src: 'http://cdn.mp3mad.com/48-351081/Too%20Long.mp3',
-                poster: 'https://upload.wikimedia.org/wikipedia/en/a/ae/Daft_Punk_-_Discovery.jpg',
-                description : 'the coolest song ever',
+                title: 'La Zanzara del giorno 01\/12\/2016: Fighe bianke',
+                src: 'http:\/\/audio.radio24.ilsole24ore.com\/radio24_audio\/2016\/161202-lazanzara-s.mp3',
+                poster: 'https://i.ytimg.com/vi/hFlQc_0Zzt0/hqdefault.jpg',
+                description : 'Lui \u00e8 Paul Yeboah, ma tutti lo conoscono come Bello Figo...',
                 options: {
                     preload: true,
                     autoplay: false,
