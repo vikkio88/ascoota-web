@@ -9,7 +9,6 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "bulma": "^0.2.3",
     "vue": "^2.1.0"
   },
   "devDependencies": {
@@ -30,9 +29,11 @@
     "function-bind": "^1.0.2",
     "html-webpack-plugin": "^2.8.1",
     "http-proxy-middleware": "^0.17.2",
+    "jquery": "^3.1.1",
     "json-loader": "^0.5.4",
     "opn": "^4.0.2",
     "ora": "^0.3.0",
+    "semantic-ui-css": "^2.2.4",
     "semver": "^5.3.0",
     "shelljs": "^0.7.4",
     "url-loader": "^0.5.7",
