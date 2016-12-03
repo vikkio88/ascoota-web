@@ -12,7 +12,10 @@ var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './src/main.js',
+    vendors : [
+        'webpack-material-design-icons'
+    ]
   },
   output: {
     path: config.build.assetsRoot,

@@ -2,17 +2,19 @@
 </style>
 
 <template>
-    <div class="player-container">
-        <div class="player-wrapper">
-            <div class="logo">
+    <div class="box player-container">
+        <article class="player-wrapper media">
+            <div class="logo media-left">
                 <img :src="audio.poster"/>
             </div>
-            <div class="controls-wrapper">
-                <div class="podcast-title">
-                    <span>{{audio.title}}</span>
-                </div>
-                <div class="podcast-description">
-                    <span>{{audio.description}}</span>
+            <div class="controls-wrapper media-content">
+                <div class="content">
+                    <div class="podcast-title">
+                        <h1 class="title is-2"><strong>{{audio.title}}</strong></h1>
+                    </div>
+                    <div class="podcast-description">
+                        <h2 class="subtitle is-3">{{audio.description}}</h2>
+                    </div>
                 </div>
                 <div class="audio-slider">
                     <!--
@@ -21,22 +23,24 @@
                              :style="{ 'left': mu.state.progress + '%' }"></div>
                     </div>
                     -->
-                    <div class="audio-time" @click="toggleTimeFormat">{{mu.state.lastTimeFormat}} /
+                    <div class="audio-time subtitle is-4" @click="toggleTimeFormat">{{mu.state.lastTimeFormat}} /
                         {{mu.state.durationParsed}}
                     </div>
                 </div>
-                <button v-show="state.playing" @click="skip(-10)" class="rd-audio-play-btn">
-                    <p>Back 10s</p>
+                <button :disabled="!state.playing" @click="skip(-10)" class="button is-large"
+                        :class="{'is-disabled': !state.playing}">
+                    <i class="material-icons">fast_rewind</i>
                 </button>
-                <button @click="togglePlay" class="rd-audio-play-btn">
-                    <p v-show="!state.playing">Play</p>
-                    <p v-show="state.playing">Pause</p>
+                <button @click="togglePlay" class="button is-large">
+                    <p v-show="!state.playing"><i class="material-icons">play_arrow</i></p>
+                    <p v-show="state.playing"><i class="material-icons">pause</i></p>
                 </button>
-                <button v-show="state.playing" @click="skip(10)" class="rd-audio-play-btn">
-                    <p>Skip 10s</p>
+                <button :disabled="!state.playing" @click="skip(10)" class="button is-large"
+                        :class="{'is-disabled': !state.playing}">
+                    <i class="material-icons">fast_forward</i>
                 </button>
             </div>
-        </div>
+        </article>
     </div>
 </template>
 
@@ -118,6 +122,13 @@
             }
         }
     }
+
+
+
+
+
+
+
 
 
 
