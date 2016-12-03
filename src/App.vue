@@ -14,7 +14,6 @@ export default {
             audio: {
                 title: 'La Zanzara del giorno 01\/12\/2016: Fighe bianke',
                 src: 'http:\/\/audio.radio24.ilsole24ore.com\/radio24_audio\/2016\/161202-lazanzara-s.mp3',
-                poster: 'https://i.ytimg.com/vi/hFlQc_0Zzt0/hqdefault.jpg',
                 description : 'Lui \u00e8 Paul Yeboah, ma tutti lo conoscono come Bello Figo...',
                 options: {
                     preload: true,
