@@ -21,11 +21,19 @@
                              :style="{ 'left': mu.state.progress + '%' }"></div>
                     </div>
                     -->
-                    <div class="audio-time" @click="toggleTimeFormat">{{mu.state.lastTimeFormat}}</div>
+                    <div class="audio-time" @click="toggleTimeFormat">{{mu.state.lastTimeFormat}} /
+                        {{mu.state.durationParsed}}
+                    </div>
                 </div>
+                <button v-show="state.playing" @click="skip(-10)" class="rd-audio-play-btn">
+                    <p>Back 10s</p>
+                </button>
                 <button @click="togglePlay" class="rd-audio-play-btn">
                     <p v-show="!state.playing">Play</p>
                     <p v-show="state.playing">Pause</p>
+                </button>
+                <button v-show="state.playing" @click="skip(10)" class="rd-audio-play-btn">
+                    <p>Skip 10s</p>
                 </button>
             </div>
         </div>
@@ -64,6 +72,9 @@
                 }
             }
         },
+        computed : {
+
+        },
         mounted () {
             this.init()
         },
@@ -72,19 +83,16 @@
         },
         methods: {
             init () {
-                this.mu = new VueAudio(this.audio.src, this.audio.options)
-                this.mu.progress(this.progress)
+                this.mu = new VueAudio(this.audio.src, this.audio.options);
             },
             progress (count) {
-                if (!this.state.moving) {
-                    this.slider.progress = count
-                }
+
             },
             togglePlay () {
                 if (this.state.playing) {
-                    this.pause()
+                    this.pause();
                 } else {
-                    this.play()
+                    this.play();
                 }
             },
             play () {
@@ -104,8 +112,13 @@
             },
             toggleTimeFormat (){
                 this.mu.state.timeFormatRemaining = !this.mu.state.timeFormatRemaining;
+            },
+            skip(sec){
+                this.mu.setTime(this.mu.state.currentTime + sec)
             }
         }
     }
+
+
 
 </script>

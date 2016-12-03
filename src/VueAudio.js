@@ -37,6 +37,7 @@ class VueAudio {
             progress: 0,
             currentTime: 0,
             duration: 0,
+            durationParsed: '00:00',
             volume: 0.5,
             loaded: '0',
             durationTimerFormat: '00:00',
@@ -103,6 +104,7 @@ class VueAudio {
     updatePlayState(e) {
         this.state.currentTime = Math.round(this.$Audio.currentTime * 100) / 100;
         this.state.duration = Math.round(this.$Audio.duration * 100) / 100;
+        this.state.durationParsed = this.timeParse(this.state.duration);
         this.state.progress = Math.round(10000 * this.state.currentTime / this.state.duration) / 100;
 
         this.state.durationTimerFormat = this.timeParse(this.state.duration);
@@ -110,7 +112,7 @@ class VueAudio {
         if (this.state.timeFormatRemaining) {
             this.state.lastTimeFormat = '- ' + this.timeParse(this.state.duration - this.state.currentTime);
         } else {
-            this.state.lastTimeFormat = this.timeParse(this.state.currentTime) + ' / ' + this.timeParse(this.state.duration);
+            this.state.lastTimeFormat = this.timeParse(this.state.currentTime);
         }
 
         this.hook.playState.forEach(func => {
