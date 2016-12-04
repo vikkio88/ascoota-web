@@ -1,7 +1,8 @@
 <template>
-  <div id="app" class="container is-fluid">
+  <div id="app" class="container">
     <main-nav />
     <audio-player :audio="audio" />
+    
   </div>
 </template>
 

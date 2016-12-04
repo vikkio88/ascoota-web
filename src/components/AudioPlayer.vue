@@ -1,7 +1,9 @@
 <style>
-    div.player-container {
-        position: relative;
+    .player-wrapper {
+        margin: 5px 5px 10px 10px;
+        padding-top: 5px;
     }
+    
     div.controls-wrapper {
         margin-top: 10px;
     }
@@ -9,39 +11,68 @@
     .clickable {
         cursor: pointer;
     }
+    
+    input[type=range] {
+        -webkit-appearance: none;
+        background-color: silver;
+        width: 200px;
+        height: 20px;
+    }
+    
+    ul.navbar {
+        min-height: 50px;
+    }
+    
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        background-color: #666;
+        opacity: 0.5;
+        width: 10px;
+        height: 26px;
+    }
 </style>
 
 <template>
-    <div class="box player-container">
-        <article class="player-wrapper media is-flex-mobile">
-
-            <div class="info-wrapper media-content has-text-centered">
-                <div class="content has-text-centered">
+    <div class="podcast panel panel-inverse">
+        <div class="clearfix" :class="{'panel-heading':showInfo}">
+            <div class="panel-title pull-right">
+                <a @click="toggleInfo">
+                    <i v-show="showInfo" class="material-icons" title="Hide info">expand_less</i>
+                    <i v-show="!showInfo" class="material-icons" title="Show info">expand_more</i>
+                </a>
+            </div>
+        </div>
+        <article class="player-wrapper">
+            <div class="info-wrapper">
+                <div class="content">
                     <div v-show="showInfo" class="podcast-title">
-                        <h1 class="title is-2"><strong>{{audio.title}}</strong></h1>
+                        <h2><strong>{{audio.title}}</strong></h1>
                     </div>
                     <div v-show="showInfo" class="podcast-description">
-                        <h2 class="subtitle is-3">{{audio.description}}</h2>
+                        <h3>{{audio.description}}</h3>
                     </div>
+
                     <div class="audio-slider">
-                        <progress @click="seek" class="progress is-success" :value="mu.state.progress" max="100">60%</progress>
-                        <div v-show="showInfo" class="audio-time subtitle is-2" :class="{'clickable': state.playing}" @click="toggleTimeFormat">
-                            {{mu.state.lastTimeFormat}} / {{mu.state.durationParsed}}
+                        <input class="form-control slider" type="range" :value="mu.state.progress" min="0" max="100" step="0.01" v-model="mu.state.progress"
+                            @click="seek">
+                        <div v-show="showInfo" class="audio-time" :class="{'clickable': state.playing}" @click="toggleTimeFormat">
+                            <h2>{{mu.state.lastTimeFormat}} / {{mu.state.durationParsed}}</h1>
                         </div>
                     </div>
                 </div>
-                <div class="controls-wrapper has-text-centered">
-                    <button :disabled="!state.playing" @click="skip(-10)" class="button is-large" :class="{'is-disabled': !state.playing}">
+                <div class="controls-wrapper">
+                    <button :disabled="!state.playing" @click="skip(-10)" class="btn btn-lg btn-raised" :class="{'disabled': !state.playing}">
                         <i class="material-icons">fast_rewind</i>
                     </button>
-                    <button @click="togglePlay" class="button is-large">
-                        <p v-show="!state.playing"><i class="material-icons">play_arrow</i></p>
-                        <p v-show="state.playing"><i class="material-icons">pause</i></p>
+                    <button @click="togglePlay" class="btn btn-lg btn-raised btn-primary">
+                        <i v-show="!state.playing" class="material-icons">play_arrow</i>
+                        <i v-show="state.playing" class="material-icons">pause</i>
                     </button>
-                    <button :disabled="!state.playing" @click="skip(10)" class="button is-large" :class="{'is-disabled': !state.playing}">
+                    <button :disabled="!state.playing" @click="skip(10)" class="btn btn-lg btn-raised" :class="{'disabled': !state.playing}">
                         <i class="material-icons">fast_forward</i>
                     </button>
                 </div>
+                <!--
                 <nav class="level">
                     <div class="level-left">
                         <a class="level-item" title="add to the Library">
@@ -61,6 +92,7 @@
                         </a>
                     </div>
                 </nav>
+                -->
             </div>
         </article>
     </div>

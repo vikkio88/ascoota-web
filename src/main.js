@@ -1,15 +1,12 @@
 import Vue from 'vue'
 import App from './App'
 import JQuery from 'jquery/src/jquery'
-import 'semantic-ui-css/semantic.css';
-import 'semantic-ui-css/components/dimmer';
-import 'semantic-ui-css/components/transition';
-import 'semantic-ui-css/components/dropdown';
-import 'semantic-ui-css/components/modal';
-import 'semantic-ui-css/components/rating';
-import 'semantic-ui-css/components/tab';
-import 'semantic-ui-css/components/popup';
-import 'semantic-ui-css/components/sticky';
+import bootstrapjs from 'bootstrap/dist/js/bootstrap.js' 
+import bootstrap from 'bootstrap/dist/css/bootstrap.css'
+import bootstrapMaterial from 'bootstrap-material-design/dist/css/bootstrap-material-design.css'
+import bootstrapMaterialJs from 'bootstrap-material-design/dist/js/material.js'
+
+$.material.init();
 
 new Vue({
     el: '#app',
