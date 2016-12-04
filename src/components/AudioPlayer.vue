@@ -11,25 +11,6 @@
     .clickable {
         cursor: pointer;
     }
-    
-    input[type=range] {
-        -webkit-appearance: none;
-        background-color: silver;
-        width: 200px;
-        height: 20px;
-    }
-    
-    ul.navbar {
-        min-height: 50px;
-    }
-    
-    input[type="range"]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        background-color: #666;
-        opacity: 0.5;
-        width: 10px;
-        height: 26px;
-    }
 </style>
 
 <template>
@@ -51,13 +32,17 @@
                     <div v-show="showInfo" class="podcast-description">
                         <h3>{{audio.description}}</h3>
                     </div>
-
+                    <!--
                     <div class="audio-slider">
                         <input class="form-control slider" type="range" :value="mu.state.progress" min="0" max="100" step="0.01" v-model="mu.state.progress"
                             @click="seek">
-                        <div v-show="showInfo" class="audio-time" :class="{'clickable': state.playing}" @click="toggleTimeFormat">
-                            <h2>{{mu.state.lastTimeFormat}} / {{mu.state.durationParsed}}</h1>
-                        </div>
+                    </div>
+                    -->
+                    <div @click="seek" class="progress clickable" :class="{'progress-striped':state.playing, 'active': state.playing}">
+                        <div class="progress-bar" :style="{width: mu.state.progress+'%'}"></div>
+                    </div>
+                    <div v-show="showInfo" class="audio-time" :class="{'clickable': state.playing}" @click="toggleTimeFormat">
+                        <h2>{{mu.state.lastTimeFormat}} / {{mu.state.durationParsed}}</h1>
                     </div>
                 </div>
                 <div class="controls-wrapper">
@@ -72,27 +57,6 @@
                         <i class="material-icons">fast_forward</i>
                     </button>
                 </div>
-                <!--
-                <nav class="level">
-                    <div class="level-left">
-                        <a class="level-item" title="add to the Library">
-                            <i class="material-icons">library_add</i>
-                        </a>
-                        <a class="level-item" title="copy link">
-                            <i class="material-icons">link</i>
-                        </a>
-                        <a class="level-item" title="share">
-                            <i class="material-icons">forward</i>
-                        </a>
-                    </div>
-                    <div class="level-right">
-                        <a @click="toggleInfo" class="level-item">
-                            <i v-show="showInfo" class="material-icons" title="Hide info">expand_less</i>
-                            <i v-show="!showInfo" class="material-icons" title="Show info">expand_more</i>
-                        </a>
-                    </div>
-                </nav>
-                -->
             </div>
         </article>
     </div>
@@ -182,6 +146,7 @@
                 let offset = event.offsetX;
                 let maxOffset = event.toElement.offsetWidth;
                 let percent = offset / maxOffset;
+                //console.log(offset,maxOffset,percent);
                 this.mu.setTime(percent * this.mu.state.duration);
             }
 
