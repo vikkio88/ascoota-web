@@ -17,7 +17,7 @@
     <div class="podcast panel panel-inverse">
         <div class="clearfix" :class="{'panel-heading':showInfo}">
             <div class="panel-title pull-right">
-                <a @click="toggleInfo">
+                <a @click="toggleInfo" class="clickable">
                     <i v-show="showInfo" class="material-icons" title="Hide info">expand_less</i>
                     <i v-show="!showInfo" class="material-icons" title="Show info">expand_more</i>
                 </a>
@@ -38,11 +38,13 @@
                             @click="seek">
                     </div>
                     -->
-                    <div @click="seek" class="progress clickable" :class="{'progress-striped':state.playing, 'active': state.playing}">
+                    <div id="slider-control" @click="seek" class="progress clickable" :class="{'progress-striped':state.playing, 'active': state.playing}"
+                        :style="{ height: showInfo? '10px':'30px'}">
+                        <!--<div v-if="!showInfo" style="width: 100%; z-index:1"><strong>{{audio.title}}</strong> {{mu.state.lastTimeFormat}} / {{mu.state.durationParsed}}</div>-->
                         <div class="progress-bar" :style="{width: mu.state.progress+'%'}"></div>
                     </div>
                     <div v-show="showInfo" class="audio-time" :class="{'clickable': state.playing}" @click="toggleTimeFormat">
-                        <h2>{{mu.state.lastTimeFormat}} / {{mu.state.durationParsed}}</h1>
+                        <h2>{{mu.state.lastTimeFormat}} / {{mu.state.durationParsed}}</h2>
                     </div>
                 </div>
                 <div class="controls-wrapper">
@@ -144,9 +146,8 @@
             },
             seek(event){
                 let offset = event.offsetX;
-                let maxOffset = event.toElement.offsetWidth;
+                let maxOffset = document.getElementById('slider-control').offsetWidth;
                 let percent = offset / maxOffset;
-                //console.log(offset,maxOffset,percent);
                 this.mu.setTime(percent * this.mu.state.duration);
             }
 
