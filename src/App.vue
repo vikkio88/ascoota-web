@@ -3,8 +3,9 @@
     <main-nav />
     <div class="container container-fluid">
       <audio-player :audio="audio" />
-      <button @click=test(1)>Test 1</button>
-      <button @click=test(2)>Test 2</button>
+      <button class="btn btn-raised btn-xs" @click=test(1)>2024 02/12/2016</button>
+      <button class="btn btn-raised btn-xs" @click=test(2)>La Zanzara 29/11/2016</button>
+      <button class="btn btn-raised btn-xs" @click=test(3)>Too Long - Daft Punk</button>
     </div>
   </div>
 </template>
@@ -39,7 +40,7 @@ export default {
                     volume: 0.5
                 }
             } 
-      }else{
+      }else if (number == 2){
         this.audio ={
                 title: 'La Zanzara del giorno 29\/11\/2016: Quei bravi ragazzi',
                 src: 'http:\/\/audio.radio24.ilsole24ore.com\/radio24_audio\/2016\/161129-lazanzara-s.mp3',
@@ -52,7 +53,21 @@ export default {
                     volume: 0.5
                 }
             }
+      } else {
+        this.audio ={
+                title: 'Daft Punk - Too Long',
+                src: 'http://cdn.mp3mad.com/48-351081/Too%20Long.mp3',
+                description : 'A song, quite a long one',
+                options: {
+                    preload: true,
+                    autoplay: false,
+                    rate: 1,
+                    loop: false,
+                    volume: 0.5
+                }
+            }
       }
+
     }
   }
 }
