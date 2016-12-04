@@ -14,7 +14,7 @@
 </style>
 
 <template>
-    <div class="podcast panel panel-inverse">
+    <div class="podcast panel panel-inverse" v-if="audio != undefined">
         <div class="clearfix" :class="{'panel-heading':showInfo}">
             <div class="panel-title pull-right">
                 <a @click="toggleInfo" class="clickable">
@@ -71,6 +71,12 @@
         props: {
             audio: Object
         },
+        watch: {
+            audio (){
+                this.destroy();
+                this.init();
+            }
+        },
         data () {
             return {
                 mu: {
@@ -102,7 +108,7 @@
 
         },
         mounted () {
-            this.init()
+
         },
         beforeDestroy () {
 
@@ -110,6 +116,13 @@
         methods: {
             init () {
                 this.mu = new VueAudio(this.audio.src, this.audio.options);
+            },
+            destroy () { 
+                if(this.mu.destroyed !== undefined){
+                    this.state.playing = false;
+                    this.mu.destroyed();
+                    this.mu = null;
+                }
             },
             toggleInfo () {
                 this.showInfo = ! this.showInfo;
