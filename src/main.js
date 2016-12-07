@@ -1,15 +1,14 @@
 import Vue from 'vue'
 import App from './App'
+import VueRouter from 'vue-router'
 
 // Vendors
-import JQuery from 'jquery/src/jquery'
-import bootstrapjs from 'bootstrap/dist/js/bootstrap.js' 
-import bootstrap from 'bootstrap/dist/css/bootstrap.css'
-import bootstrapMaterial from 'bootstrap-material-design/dist/css/bootstrap-material-design.css'
-import bootstrapMaterialJs from 'bootstrap-material-design/dist/js/material.js'
-import flagIconCss from 'flag-icon-css/css/flag-icon.css'
+import vendors from './vendors'
 
 $.material.init();
+
+
+Vue.use(VueRouter);
 
 new Vue({
     el: '#app',
