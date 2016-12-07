@@ -7,10 +7,10 @@ const pad = (val) => {
 };
 
 const Cov = {
-    on (el, type, func) {
+    on(el, type, func) {
         el.addEventListener(type, func);
     },
-    off (el, type, func) {
+    off(el, type, func) {
         el.removeEventListener(type, func)
     }
 };
@@ -37,12 +37,12 @@ class VueAudio {
             progress: 0,
             currentTime: 0,
             duration: 0,
-            durationParsed: '00:00',
+            durationParsed: '00:00:00',
             volume: 0.5,
             loaded: '0',
-            durationTimerFormat: '00:00',
-            currentTimeFormat: '00:00',
-            lastTimeFormat: '00:00',
+            durationTimerFormat: '00:00:00',
+            currentTimeFormat: '00:00:00',
+            lastTimeFormat: '00:00:00',
             timeFormatRemaining: true
         };
         this.hook = {
@@ -173,8 +173,13 @@ class VueAudio {
 
     timeParse(sec) {
         let min = Math.floor(sec / 60);
-        sec = sec - min * 60;
-        return pad(min) + ':' + pad(sec);
+        let hours = 0;
+        if (min / 60 > 0) {
+            hours = Math.floor(min / 60);
+        }
+        min = min - hours * 60;
+        sec = sec - (min + (hours * 60)) * 60;
+        return pad(hours) + ':' + pad(min) + ':' + pad(sec);
     }
 
 }
