@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import App from './App'
+
+// Vendors
 import JQuery from 'jquery/src/jquery'
 import bootstrapjs from 'bootstrap/dist/js/bootstrap.js' 
 import bootstrap from 'bootstrap/dist/css/bootstrap.css'

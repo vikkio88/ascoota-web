@@ -45,17 +45,17 @@
                             </div>
                         <!--
                     <div class="audio-slider">
-                        <input class="form-control slider" type="range" :value="mu.state.progress" min="0" max="100" step="0.01" v-model="mu.state.progress"
+                        <input class="form-control slider" type="range" :value="podcast.state.progress" min="0" max="100" step="0.01" v-model="podcast.state.progress"
                             @click="seek">
                     </div>
                     -->
                         <div id="slider-control" @click="seek" class="progress clickable" :class="{'progress-striped':state.playing, 'active': state.playing}"
                             :style="{ height: showInfo? '10px':'30px'}">
-                            <!--<div v-if="!showInfo" style="width: 100%; z-index:1"><strong>{{audio.title}}</strong> {{mu.state.lastTimeFormat}} / {{mu.state.durationParsed}}</div>-->
-                            <div class="progress-bar" :style="{width: mu.state.progress+'%'}"></div>
+                            <!--<div v-if="!showInfo" style="width: 100%; z-index:1"><strong>{{audio.title}}</strong> {{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</div>-->
+                            <div class="progress-bar" :style="{width: podcast.state.progress+'%'}"></div>
                         </div>
                         <div v-show="showInfo" class="audio-time" :class="{'clickable': state.playing}" @click="toggleTimeFormat">
-                            <h2>{{mu.state.lastTimeFormat}} / {{mu.state.durationParsed}}</h2>
+                            <h2>{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</h2>
                         </div>
                     </div>
                     <div class="controls-wrapper">
@@ -91,7 +91,7 @@
         },
         data () {
             return {
-                mu: {
+                podcast: {
                     state: {
                         startLoad: false,
                         failed: false,
@@ -127,13 +127,13 @@
         },
         methods: {
             init () {
-                this.mu = new VueAudio(this.audio.src, this.audio.options);
+                this.podcast = new VueAudio(this.audio.src, this.audio.options);
             },
             destroy () { 
-                if(this.mu.destroyed !== undefined){
+                if(this.podcast.destroyed !== undefined){
                     this.state.playing = false;
-                    this.mu.destroyed();
-                    this.mu = null;
+                    this.podcast.destroyed();
+                    this.podcast = null;
                 }
             },
             toggleInfo () {
@@ -147,33 +147,33 @@
                 }
             },
             play () {
-                if(this.mu)
+                if(this.podcast)
                 this.state.playing = true
-                this.mu.play()
+                this.podcast.play()
             },
             pause () {
                 this.state.playing = false
-                this.mu.pause()
+                this.podcast.pause()
             },
             volumePlus () {
-                this.mu.setVolume(this.mu.state.volume + 0.1)
+                this.podcast.setVolume(this.podcast.state.volume + 0.1)
             },
             volumeMinus () {
-                this.mu.setVolume(this.mu.state.volume - 0.1)
+                this.podcast.setVolume(this.podcast.state.volume - 0.1)
             },
             toggleTimeFormat (){
                 if(this.state.playing){
-                    this.mu.state.timeFormatRemaining = !this.mu.state.timeFormatRemaining;
+                    this.podcast.state.timeFormatRemaining = !this.podcast.state.timeFormatRemaining;
                 }
             },
             skip(sec){
-                this.mu.setTime(this.mu.state.currentTime + sec)
+                this.podcast.setTime(this.podcast.state.currentTime + sec)
             },
             seek(event){
                 let offset = event.offsetX;
                 let maxOffset = document.getElementById('slider-control').offsetWidth;
                 let percent = offset / maxOffset;
-                this.mu.setTime(percent * this.mu.state.duration);
+                this.podcast.setTime(percent * this.podcast.state.duration);
             }
 
         }
