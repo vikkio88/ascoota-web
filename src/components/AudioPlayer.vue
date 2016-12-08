@@ -80,6 +80,7 @@
     import VueAudio from '../VueAudio.js'
 
     export default {
+        name: 'audio-player',
         props: {
             audio: Object
         },
