@@ -6,7 +6,7 @@
     </div>
 </template>
 <script>
-    import Radios from './Radios'
+    import Radios from './podcast/Radios'
 
     export default {
         name: "dashboard",

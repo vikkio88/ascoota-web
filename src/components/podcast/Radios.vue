@@ -7,14 +7,14 @@
         <div class="container container-fluid">
             <div class="row">
                 <div v-for="radio in radios" class="col-sm-4">
-                    <radio :radio="radio" />
+                    <radio-card :radio="radio" />
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-    import Radio from './Radio'
+    import RadioCard from './RadioCard'
 
     var radiosMock = [
         {
@@ -92,7 +92,7 @@
             };
         },
         components:{
-            Radio
+            RadioCard
         }
     }
 </script>
