@@ -12,7 +12,7 @@
             <div class="card-block">
                 <h4 class="card-title"><span class="flag-icon flag-icon-squared" :class="[radio.language !== undefined ? flagIconClass:'']"></span>{{radio.name}}</h4>
                 <p class="card-text">{{radio.description}}</p>
-                <router-link to="/radio" class="btn btn-primary">
+                <router-link :to="{ name: 'singleRadioView', params: { radioId: radio.id }}" class="btn btn-primary">
                     <i class="material-icons">zoom_in</i>
                 </router-link>
             </div>
