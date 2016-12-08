@@ -15,7 +15,7 @@
       <button class="btn btn-raised btn-xs" @click=test(2)>La Zanzara 29/11/2016</button>
       <button class="btn btn-raised btn-xs" @click=test(3)>Too Long - Daft Punk</button>
       <audio-player :audio="audio" />
-      <dashboard />
+      <router-view></router-view>
     </div>
   </div>
 </template>
