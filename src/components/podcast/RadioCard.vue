@@ -10,7 +10,7 @@
         <div class="card">
             <img class="img card-img-top" alt="Card image cap" :src="radio.logo_url" />
             <div class="card-block">
-                <h4 class="card-title"><span class="flag-icon flag-icon-squared" :class="[radio.language !== undefined ? flagIconClass:'']"></span>{{radio.name}}</h4>
+                <h4 class="card-title"> <flag-icon :language="radio.language.iso"> {{radio.name}}</h4>
                 <p class="card-text">{{radio.description}}</p>
                 <router-link :to="{ name: 'singleRadioView', params: { radioId: radio.id }}" class="btn btn-primary">
                     <i class="material-icons">zoom_in</i>
@@ -20,15 +20,15 @@
     </div>
 </template>
 <script>
+    import FlagIcon from '../common/FlagIcon';
+
     export default {
         name: "radio",
+        components: {
+            FlagIcon
+        },
         props : {
             radio: Object
-        },
-        computed : {
-            flagIconClass () {
-                return 'flag-icon-'+this.radio.language.iso;
-            }
         }
     }
 </script>
