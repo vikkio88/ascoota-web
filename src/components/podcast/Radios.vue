@@ -15,14 +15,24 @@
 </template>
 <script>
     import RadioCard from './RadioCard'
-    //mock data
-    import radiosMock from '../../mocks/radiosMock'
+    import RadioService from '../../services/RadioService'
 
     export default {
         name: "radios",
+        mounted () {
+            RadioService.getAll().then(
+                (data) => {
+                    this.radios = data.body.payload
+                }
+            ).catch( 
+                (errors) => {
+                    console.log(errors)
+                }
+            );
+        },
         data () {
             return {
-                radios : radiosMock
+                radios : []
             };
         },
         components:{
