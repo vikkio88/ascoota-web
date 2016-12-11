@@ -15,12 +15,14 @@
 </template>
 <script>
     import RadioCard from './RadioCard'
-    import RadioService from '../../services/RadioService'
+    import RadioService from '../../services/ascoota/RadioService'
+
+    var radioService = new RadioService();
 
     export default {
         name: "radios",
         mounted () {
-            RadioService.getAll().then(
+            radioService.getAll().then(
                 (data) => {
                     this.radios = data.body.payload
                 }

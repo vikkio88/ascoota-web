@@ -17,7 +17,9 @@
 </template>
 <script>
     import FlagIcon from '../common/FlagIcon';
-    import RadioService from '../../services/RadioService'
+    import RadioService from '../../services/ascoota/RadioService'
+
+    var radioService = new RadioService();
 
     export default {
         name: 'single-radio',
@@ -25,7 +27,7 @@
             FlagIcon
         },
         mounted () {
-            RadioService.getOne(this.$route.params.radioId).then(
+            radioService.getOne(this.$route.params.radioId).then(
                 (data) => {
                     this.radio = data.body.payload;
                     this.language = data.body.payload.language.iso;
