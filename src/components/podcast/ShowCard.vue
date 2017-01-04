@@ -12,12 +12,6 @@
             <div class="card-block">
                 <h3>{{show.name}}</h3>
                 <h4>{{show.description}}</h4>
-                <button class="btn btn-primary">
-                    <i class="material-icons">link</i>
-                </button>                
-                <button class="btn btn-primary">
-                    <i class="material-icons">rss_feed</i>
-                </button>
                 <router-link :to="{ name: 'singleShowView', params: { radioId: show.radio_id , showId: show.id }}" class="btn btn-primary">
                     <i class="material-icons">zoom_in</i>
                 </router-link>
