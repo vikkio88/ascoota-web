@@ -1,16 +1,25 @@
 <style></style>
 <template>
     <div class="jumbotron">
-        <h2>{{radio.name}}
-            <flag-icon :language="language" />
-        </h2>
-        <h3>{{radio.description}}</h3>
         <router-link :to="{name:'dashboard'}" class="btn btn-primary">
             <i class="material-icons">dashboard</i>
         </router-link>
-        <div class="row">
-            <div v-for="show in radio.shows" class="col-sm-4">
-                <show-card :show="show" />
+        <h2>{{radio.name}}
+            <flag-icon :language="language" />
+        </h2>
+
+        <button class="btn btn-primary">
+            <i class="material-icons">link</i>
+        </button>
+
+        <img class="img" :alt="radio.name" :title="radio.name" :src="radio.logo_url" />
+        <h3>{{radio.description}}</h3>
+        <div class="jumbotron">
+            <h2>Shows</h2>
+            <div class="row">
+                <div v-for="show in radio.shows" class="col-sm-4">
+                    <show-card :show="show" />
+                </div>
             </div>
         </div>
     </div>
