@@ -14,7 +14,10 @@
         </p>
         <div v-for="podcast in podcasts" class="panel panel-default">
             <div class="panel-body">
-                Basic panel example
+                <h4>{{podcast.date}}</h4>
+                <h3>{{podcast.name}}</h3>
+                <h4>{{podcast.description}}</h4>
+                <h3>{{podcast.duration}}</h3>
             </div>
         </div>
     </div>
