@@ -8,9 +8,9 @@
             <flag-icon :language="language" />
         </h2>
 
-        <button class="btn btn-primary">
+        <a class="btn btn-primary" :href="radio.website" target="_blank">
             <i class="material-icons">link</i>
-        </button>
+        </a>
 
         <img class="img" :alt="radio.name" :title="radio.name" :src="radio.logo_url" />
         <h3>{{radio.description}}</h3>
