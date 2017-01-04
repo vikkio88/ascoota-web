@@ -4,20 +4,24 @@
         <img class="img" :alt="show.name" :title="show.name" :src="show.logo_url" />
         <h2>{{show.name}}</h2>
         <p>
+            <h3 v-if="show.author">{{show.author}}</h3>
             <h3>{{show.description}}</h3>
-            <button class="btn btn-primary">
-                    <i class="material-icons">link</i>
-                </button>
-            <button class="btn btn-primary">
-                    <i class="material-icons">rss_feed</i>
-                </button>
+            <a class="btn btn-primary" :href="show.website" target="_blank">
+                <i class="material-icons">link</i>
+            </a>
+            <a class="btn btn-primary" :href="show.feed_url" target="_blank">
+                <i class="material-icons">rss_feed</i>
+            </a>
         </p>
-        <div v-for="podcast in podcasts" class="panel panel-default">
-            <div class="panel-body">
-                <h4>{{podcast.date}}</h4>
-                <h3>{{podcast.name}}</h3>
-                <h4>{{podcast.description}}</h4>
-                <h3>{{podcast.duration}}</h3>
+        <div class="jumbotron">
+            <h2>Podcasts</h2>
+            <div v-for="podcast in podcasts" class="panel panel-default">
+                <div class="panel-body">
+                    <h4>{{podcast.date}}</h4>
+                    <h3>{{podcast.name}}</h3>
+                    <h4>{{podcast.description}}</h4>
+                    <h3>{{podcast.duration}}</h3>
+                </div>
             </div>
         </div>
     </div>
