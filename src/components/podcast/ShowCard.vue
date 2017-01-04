@@ -7,22 +7,28 @@
 </style>
 <template>
     <div class="radio">
+        <img class="img card-img-top" :alt="show.name" :title="show.name" :src="show.logo_url" />
         <div class="card">
-            <h3>{{show.name}}</h3>
-            <router-link :to="{ name: 'singleShowView', params: { radioId: show.radio_id , showId: show.id }}" class="btn btn-primary">
+            <div class="card-block">
+                <h3>{{show.name}}</h3>
+                <h4>{{show.description}}</h4>
+                <button class="btn btn-primary">
+                    <i class="material-icons">link</i>
+                </button>                
+                <button class="btn btn-primary">
+                    <i class="material-icons">rss_feed</i>
+                </button>
+                <router-link :to="{ name: 'singleShowView', params: { radioId: show.radio_id , showId: show.id }}" class="btn btn-primary">
                     <i class="material-icons">zoom_in</i>
-            </router-link>
+                </router-link>
+
+            </div>
         </div>
     </div>
 </template>
 <script>
-    import FlagIcon from '../common/FlagIcon';
-
     export default {
-        name: "radio",
-        components: {
-            FlagIcon
-        },
+        name: "show-card",
         props: {
             show: Object
         }
