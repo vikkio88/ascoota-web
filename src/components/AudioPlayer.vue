@@ -37,12 +37,12 @@
             <article class="player-wrapper">
                 <div class="info-wrapper">
                     <div class="content">
-                            <div v-show="showInfo" class="podcast-title">
-                                <h2><strong>{{audio.title}}</strong></h1>
-                            </div>
-                            <div v-show="showInfo" class="podcast-description">
-                                <h3>{{audio.description}}</h3>
-                            </div>
+                        <div v-show="showInfo" class="podcast-title">
+                            <h2><strong>{{audio.name}}</strong></h1>
+                        </div>
+                        <div v-show="showInfo" class="podcast-description">
+                            <h3>{{audio.description}}</h3>
+                        </div>
                         <!--
                     <div class="audio-slider">
                         <input class="form-control slider" type="range" :value="podcast.state.progress" min="0" max="100" step="0.01" v-model="podcast.state.progress"
@@ -85,13 +85,20 @@
             audio: Object
         },
         watch: {
-            audio (){
+            audio() {
                 this.destroy();
                 this.init();
             }
         },
-        data () {
+        data() {
             return {
+                defaultOptions: {
+                    preload: true,
+                    autoplay: false,
+                    rate: 1,
+                    loop: false,
+                    volume: 0.5
+                },
                 podcast: {
                     state: {
                         startLoad: false,
@@ -114,63 +121,64 @@
                 state: {
                     playing: false
                 },
-                showInfo : true
+                showInfo: true
             }
         },
-        computed : {
+        computed: {
 
         },
-        mounted () {
+        mounted() {
 
         },
-        beforeDestroy () {
+        beforeDestroy() {
 
         },
         methods: {
-            init () {
-                this.podcast = new VueAudio(this.audio.src, this.audio.options);
+            init() {
+                let options = this.audio.options === undefined ? this.defaultOptions : this.audio.options;
+                this.podcast = new VueAudio(this.audio.file_url, options);
             },
-            destroy () { 
-                if(this.podcast.destroyed !== undefined){
+            destroy() {
+                if (this.podcast.destroyed !== undefined) {
                     this.state.playing = false;
                     this.podcast.destroyed();
                     this.podcast = null;
                 }
             },
-            toggleInfo () {
-                this.showInfo = ! this.showInfo;
+            toggleInfo() {
+                this.showInfo = !this.showInfo;
             },
-            togglePlay () {
+            togglePlay() {
                 if (this.state.playing) {
                     this.pause();
                 } else {
                     this.play();
                 }
             },
-            play () {
-                if(this.podcast)
-                this.state.playing = true
+            play() {
+                if (this.podcast)
+                    this.state.playing = true
                 this.podcast.play()
             },
-            pause () {
+            pause() {
                 this.state.playing = false
                 this.podcast.pause()
             },
-            volumePlus () {
+            volumePlus() {
                 this.podcast.setVolume(this.podcast.state.volume + 0.1)
             },
-            volumeMinus () {
+            volumeMinus() {
                 this.podcast.setVolume(this.podcast.state.volume - 0.1)
             },
-            toggleTimeFormat (){
-                if(this.state.playing){
+            toggleTimeFormat() {
+                if (this.state.playing) {
                     this.podcast.state.timeFormatRemaining = !this.podcast.state.timeFormatRemaining;
                 }
             },
-            skip(sec){
+            skip(sec) {
                 this.podcast.setTime(this.podcast.state.currentTime + sec)
             },
-            seek(event){
+            seek(event) {
                 let offset = event.offsetX;
                 let maxOffset = document.getElementById('slider-control').offsetWidth;
                 let percent = offset / maxOffset;
