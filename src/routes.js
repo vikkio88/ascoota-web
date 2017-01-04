@@ -19,14 +19,12 @@ var router = new VueRouter({
         {
             path: '/radio/:radioId',
             name: 'singleRadioView',
-            component: SingleRadio,
-            children: [
-                {
-                    path: 'shows/:showId',
-                    name: 'radiosShowOne',
-                    component: Show
-                }
-            ]
+            component: SingleRadio
+        },
+        {
+            path: '/radio/:radioId/show/:showId',
+            name: 'singleShowView',
+            component: Show
         },
         {
             path: '*',
