@@ -1,9 +1,22 @@
 <style></style>
 <template>
-    <div class="card">
-        <h3>Show title</h3>
-
-        <button class="btn btn-raised" @click="stuff">Emit <strong> {{$route.params.showId}} </strong></button>
+    <div class="jumbotron">
+        <img class="img" :alt="show.name" :title="show.name" :src="show.logo_url" />
+        <h2>{{show.name}}</h2>
+        <p>
+            <h3>{{show.description}}</h3>
+            <button class="btn btn-primary">
+                    <i class="material-icons">link</i>
+                </button>
+            <button class="btn btn-primary">
+                    <i class="material-icons">rss_feed</i>
+                </button>
+        </p>
+        <div v-for="podcast in podcasts" class="panel panel-default">
+            <div class="panel-body">
+                Basic panel example
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -13,7 +26,9 @@ export default {
     name: 'show',
     data () {
         return {
-            params : this.$route.params
+            params : this.$route.params,
+            show: {},
+            podcasts: []
         };
     },
     watch : {
@@ -33,7 +48,8 @@ export default {
             let service = new ShowService(params.radioId)
             service.getOne(params.showId).then(
                 (data) => {
-                    console.log(data);
+                    this.show = data.body.payload;
+                    this.podcasts = this.show.podcasts;
                 }
             ).catch(
                 (error) => {
