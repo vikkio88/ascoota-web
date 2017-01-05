@@ -2,7 +2,10 @@
 <template>
     <div class="jumbotron">
         <img class="img" :alt="show.name" :title="show.name" :src="show.logo_url" />
-        <h2>{{show.name}}</h2>
+        <h2>
+            {{show.name}}
+            <flag-icon :language="language" />
+        </h2>
         <p>
             <h3 v-if="show.author">{{show.author}}</h3>
             <h3>{{show.description}}</h3>
@@ -28,13 +31,18 @@
 </template>
 <script>
 import ShowService from '../../services/ascoota/ShowService.js'
+import FlagIcon from '../common/FlagIcon'
 
 export default {
     name: 'show',
+    components: {
+        FlagIcon
+    },
     data () {
         return {
             params : this.$route.params,
             show: {},
+            language: 'it',
             podcasts: []
         };
     },
@@ -47,15 +55,13 @@ export default {
         this.init();
     },
     methods : {
-        stuff () {
-            console.log("stuff");
-        },
         init(){
             let params = this.$route.params;
             let service = new ShowService(params.radioId)
             service.getOne(params.showId).then(
                 (data) => {
                     this.show = data.body.payload;
+                    this.language = this.show.language.iso;
                     this.podcasts = this.show.podcasts;
                 }
             ).catch(
