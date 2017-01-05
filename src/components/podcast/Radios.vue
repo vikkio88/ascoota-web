@@ -2,9 +2,11 @@
 
 </style>
 <template>
-    <div class="radios-list">
-        <h2>Radios list</h2>
-        <div class="container container-fluid">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h2>Radios list</h2>
+        </div>
+        <div class="panel-body">
             <div class="row">
                 <div v-for="radio in radios" class="col-sm-4">
                     <radio-card :radio="radio" />
@@ -21,23 +23,23 @@
 
     export default {
         name: "radios",
-        mounted () {
+        mounted() {
             radioService.getAll().then(
                 (data) => {
                     this.radios = data.body.payload
                 }
-            ).catch( 
+            ).catch(
                 (errors) => {
                     console.log(errors)
                 }
-            );
+                );
         },
-        data () {
+        data() {
             return {
-                radios : []
+                radios: []
             };
         },
-        components:{
+        components: {
             RadioCard
         }
     }
