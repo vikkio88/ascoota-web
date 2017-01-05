@@ -11,10 +11,11 @@
   <div id="app">
     <main-nav />
     <div class="container container-fluid">
+      <audio-player :audio="audio" />
       <button class="btn btn-raised btn-xs" @click=test(1)>2024 02/12/2016</button>
       <button class="btn btn-raised btn-xs" @click=test(2)>La Zanzara 29/11/2016</button>
       <button class="btn btn-raised btn-xs" @click=test(3)>Too Long - Daft Punk</button>
-      <audio-player :audio="audio" />
+      <button class="btn btn-raised btn-xs" @click=test(4)>Bazinga! 01/06/2012</button>
       <router-view></router-view>
     </div>
   </div>
