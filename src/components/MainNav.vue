@@ -2,7 +2,7 @@
 
 </style>
 <template>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
@@ -16,10 +16,10 @@
             </div>
             <div class="navbar-collapse collapse navbar-inverse-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="javascript:void(0)" class="btn btn-sm btn-primary">Login
+                    <li><a href="javascript:void(0)" class="btn btn-sm btn-raised btn-success">Login
                     <div class="ripple-container"></div>
                 </a></li>
-                    <li><a href="javascript:void(0)" class="btn btn-sm btn-info">SignUp
+                    <li><a href="javascript:void(0)" class="btn btn-sm btn-raised btn-info">SignUp
                     <div class="ripple-container"></div>
                 </a></li>
                 </ul>

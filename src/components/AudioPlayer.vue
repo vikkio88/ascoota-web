@@ -25,7 +25,7 @@
 
 <template>
     <transition name="fade">
-        <div class="podcast panel panel-inverse" v-if="audio != undefined">
+        <div class="podcast panel panel-primary" v-if="audio != undefined">
             <div class="clearfix" :class="{'panel-heading':showInfo}">
                 <div class="panel-title pull-right">
                     <a @click="toggleInfo" class="clickable">

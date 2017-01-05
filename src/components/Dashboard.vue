@@ -1,8 +1,9 @@
 <style></style>
 <template>
     <div id="dashboard">
-        <h1>Dashboard</h1>
-        <radios />
+        <div class="panel-group">
+            <radios />
+        </div>
     </div>
 </template>
 <script>
@@ -10,7 +11,7 @@
 
     export default {
         name: "dashboard",
-        components : {
+        components: {
             Radios
         }
     }
