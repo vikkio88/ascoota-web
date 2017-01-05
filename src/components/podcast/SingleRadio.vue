@@ -14,7 +14,7 @@
 
         <img class="img" :alt="radio.name" :title="radio.name" :src="radio.logo_url" />
         <h3>{{radio.description}}</h3>
-        <div class="jumbotron" v-if="radio.shows">
+        <div class="jumbotron" v-if="radio.shows !== []">
             <h2>Shows</h2>
             <div class="row">
                 <div v-for="show in radio.shows" class="col-sm-4">
