@@ -4,7 +4,7 @@
 <template>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h2>Radios list</h2>
+            <h3>Trending Radios</h3>
         </div>
         <div class="panel-body">
             <div class="row">
@@ -16,7 +16,7 @@
     </div>
 </template>
 <script>
-    import RadioCard from './RadioCard'
+    import RadioCard from '../podcast/RadioCard'
     import RadioService from '../../services/ascoota/RadioService'
 
     var radioService = new RadioService();
