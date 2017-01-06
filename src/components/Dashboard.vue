@@ -1,4 +1,8 @@
-<style></style>
+<style>
+    .card {
+        margin-top: 5px;
+    }
+</style>
 <template>
     <div id="dashboard">
         <div class="panel-group">
