@@ -2,17 +2,20 @@
 <template>
     <div id="dashboard">
         <div class="panel-group">
+            <podcasts />
             <radios />
         </div>
     </div>
 </template>
 <script>
-    import Radios from './podcast/Radios'
+    import Radios from './dashboard/Radios'
+    import Podcasts from './dashboard/Podcasts'
 
     export default {
         name: "dashboard",
         components: {
-            Radios
+            Radios,
+            Podcasts
         }
     }
 </script>
