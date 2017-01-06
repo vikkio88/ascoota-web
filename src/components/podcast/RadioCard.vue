@@ -6,16 +6,15 @@
     }
 </style>
 <template>
-    <div class="radio">
-        <div class="card">
-            <img class="img card-img-top" alt="Card image cap" :src="radio.logo_url" />
-            <div class="card-block">
-                <h4 class="card-title"> <flag-icon :language="radio.language.iso"> {{radio.name}}</h4>
-                <p class="card-text">{{radio.description}}</p>
-                <router-link :to="{ name: 'singleRadioView', params: { radioId: radio.id }}" class="btn btn-primary">
-                    <i class="material-icons">zoom_in</i>
-                </router-link>
-            </div>
+    <div class="card">
+        <img class="img card-img-top" alt="Card image cap" :src="radio.logo_url" />
+        <div class="card-block">
+            <h4 class="card-title">
+                <flag-icon :language="radio.language.iso"> {{radio.name}}</h4>
+            <p class="card-text">{{radio.description}}</p>
+            <router-link :to="{ name: 'singleRadioView', params: { radioId: radio.id }}" class="btn btn-primary">
+                <i class="material-icons">zoom_in</i>
+            </router-link>
         </div>
     </div>
 </template>
@@ -27,7 +26,7 @@
         components: {
             FlagIcon
         },
-        props : {
+        props: {
             radio: Object
         }
     }
