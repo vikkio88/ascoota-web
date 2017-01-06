@@ -14,10 +14,10 @@
 
         <img class="img" :alt="radio.name" :title="radio.name" :src="radio.logo_url" />
         <h3>{{radio.description}}</h3>
-        <div class="jumbotron" v-if="radio.shows !== []">
+        <div class="jumbotron" v-if="shows.length">
             <h2>Shows</h2>
             <div class="row">
-                <div v-for="show in radio.shows" class="col-sm-4">
+                <div v-for="show in shows" class="col-sm-4">
                     <show-card :show="show" />
                 </div>
             </div>
@@ -41,6 +41,7 @@
             radioService.getOne(this.$route.params.radioId).then(
                 (data) => {
                     this.radio = data.body.payload;
+                    this.shows = this.radio.shows;
                     this.language = data.body.payload.language.iso;
                 }
             ).catch(
@@ -52,6 +53,7 @@
         data() {
             return {
                 radio: {},
+                shows : [],
                 language: 'it'
             }
         }
