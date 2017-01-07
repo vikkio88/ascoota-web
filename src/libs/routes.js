@@ -2,9 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 //components
-import Dashboard from './components/Dashboard'
-import SingleRadio from './components/podcast/SingleRadio'
-import Show from './components/podcast/Show'
+import Dashboard from '../components/Dashboard'
+import SingleRadio from '../components/podcast/SingleRadio'
+import Show from '../components/podcast/Show'
 
 Vue.use(VueRouter);
 
