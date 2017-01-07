@@ -81,9 +81,6 @@
 
     export default {
         name: 'audio-player',
-        props: {
-            audio: Object
-        },
         watch: {
             audio() {
                 this.destroy();
@@ -125,7 +122,9 @@
             }
         },
         computed: {
-
+            audio () {
+                return this.$store.state.selectedAudio;
+            }
         },
         mounted() {
 
