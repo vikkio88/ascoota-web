@@ -1,7 +1,7 @@
 <style></style>
 <template>
     <div class="card">
-        <img alt="Card image cap" src="http://lorempixel.com/200/200/?32212" class="img card-img-top">
+        <img alt="Card image cap" src="http://www.vikkio.it/ascootaweb/bazinga/bazinga.jpg" class="img card-img-top">
         <div class="card-block">
             <h4 class="card-title">
                 <h3>{{podcast.name}}</h3>
@@ -9,8 +9,9 @@
             <p class="card-text">
                 {{podcast.date}} {{podcast.description}}
             </p>
-            <a class="btn btn-raised btn-primary">
-                <i class="material-icons">play_arrow</i>
+            <a class="btn btn-primary btn-raised" :disabled="isSelected" @click="playMe">
+                <i v-if="!isSelected" class="material-icons">play_arrow</i>
+                <i v-if="isSelected" class="material-icons">play_circle_outline</i>
             </a>
         </div>
     </div>
@@ -20,6 +21,17 @@
         name: "singlePodcast",
         props: {
             podcast: Object
+        },
+        computed: {
+            isSelected() {
+                let playingAudio = this.$store.state.selectedAudio !== undefined ? this.$store.state.selectedAudio : { id: -1 };
+                return playingAudio.id === this.podcast.id;
+            }
+        },
+        methods: {
+            playMe() {
+                this.$store.state.selectedAudio = this.podcast;
+            }
         }
     }
 </script>
