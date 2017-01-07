@@ -11,17 +11,34 @@
                 <span class="icon-bar"></span>
             </button>
                 <a class="navbar-brand" href="./"><i class="material-icons">hearing</i>scoota
-                <div class="ripple-container"></div>
-            </a>
+                    <div class="ripple-container"></div>
+                </a>
+                <a title="about" class="btn btn-sm btn-raised btn-info" @click="showInfo">
+                    <i class="material-icons">info_outline</i>
+                </a>
+                <a title="code on Github" target="_blank" href="https://github.com/vikkio88/ascoota-web" class="btn btn-sm btn-raised btn-warning">
+                    <img src="../assets/github-circle.png" alt="github">
+                    <div class="ripple-container"></div>
+                </a>
+                <a title="report an Issue" target="_blank" href="https://github.com/vikkio88/ascoota-web/issues/new" class="btn btn-sm btn-raised btn-danger">
+                    <i class="material-icons">bug_report</i>
+                    <div class="ripple-container"></div>
+                </a>
             </div>
             <div class="navbar-collapse collapse navbar-inverse-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="javascript:void(0)" class="btn btn-sm btn-raised btn-success">Login
-                    <div class="ripple-container"></div>
-                </a></li>
-                    <li><a href="javascript:void(0)" class="btn btn-sm btn-raised btn-info">SignUp
-                    <div class="ripple-container"></div>
-                </a></li>
+                    <li>
+                        <a href="javascript:void(0)" class="btn btn-sm btn-raised btn-success">
+                            Login
+                            <div class="ripple-container"></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="btn btn-sm btn-raised btn-info">
+                            SignUp
+                            <div class="ripple-container"></div>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -29,7 +46,13 @@
     </nav>
 </template>
 <script>
-export default {
-    name: "mainNavBar"
-}
+    export default {
+        name: "mainNavBar",
+        methods:{
+            showInfo(){
+                console.log("clicked");
+                this.$store.state.showMainDialog = true;
+            }
+        }
+    }
 </script>

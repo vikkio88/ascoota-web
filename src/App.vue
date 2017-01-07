@@ -9,6 +9,7 @@
 </style>
 <template>
   <div id="app">
+    <main-dialog />
     <main-nav />
     <div class="container container-fluid">
       <audio-player :audio="audio" />
@@ -21,6 +22,7 @@
 import AudioPlayer from './components/AudioPlayer'
 import MainNav from './components/MainNav'
 import Dashboard from './components/Dashboard'
+import MainDialog from './components/MainDialog'
 
 export default {
   name: 'app',
@@ -32,7 +34,8 @@ export default {
   components: {
     AudioPlayer,
     MainNav,
-    Dashboard
+    Dashboard,
+    MainDialog
   }
 }
 </script>

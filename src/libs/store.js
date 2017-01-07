@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state:{
-        selectedAudio: undefined
+        selectedAudio: undefined,
+        showMainDialog: false
     }
 });
 
