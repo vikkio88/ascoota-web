@@ -16,6 +16,7 @@ $.material.init();
 var app = new Vue({
     el: '#app',
     router: Router,
+    store: Store,
     template: '<App/>',
     components: { App }
 })
