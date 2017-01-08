@@ -13,11 +13,11 @@
             <h4>Made with ♥ by <a href="http://www.vikkio.it" target="_blank">vikkio</a></h4>
         </div>
         <div class="modal-body">
-            <p><strong>Ascoota</strong> is a small sideproject of mine, it will be a customizable podcast manager.</p>
-            <p>At the moment I am planning just to show some random free podcast between my favourites, some of my old radio
+            <p><strong>Ascoota</strong> is a small side project of mine, it will be a podcast player/manager.</p>
+            <p>At the moment I am planning just to show some free random podcasts. Some of them are from my old radio
                 show <a href="https://www.facebook.com/BazingaRadioSISMA" title="Bazinga!" target="_blank">Bazinga!</a> and
-                some from italians Radios.</p>
-            <p>Soon I will add the possibility to create a personalized library by adding your personal RSS feeds.</p>
+                some from italian Radio.</p>
+            <p>Soon I will add the option to create a custom library by adding your personal RSS feeds.</p>
             <p>I will always keep everything open-source, and if you are a computer geek and you want to collaborate with this project just check
                 out those links:
                 <table class="table table-striped table-hover">
