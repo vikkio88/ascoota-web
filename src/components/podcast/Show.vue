@@ -3,6 +3,11 @@
     <div class="panel panel-primary">
         <img class="img" :alt="show.name" :title="show.name" :src="show.logo_url" />
         <div class="panel-heading">
+            <div class="panel-title pull-left">
+                <router-link :to="{ name: 'singleRadioView', params: { radioId: show.radio_id }}" class="btn btn-primary">
+                    <i class="material-icons" style="color: white">arrow_back</i>
+                </router-link>
+            </div>
             <h2>
                 {{show.name}}
                 <flag-icon :language="language" />
