@@ -19,23 +19,29 @@
 </template>
 
 <script>
-import AudioPlayer from './components/AudioPlayer'
-import MainNav from './components/MainNav'
-import Dashboard from './components/Dashboard'
-import MainDialog from './components/MainDialog'
+  import AudioPlayer from './components/AudioPlayer'
+  import MainNav from './components/MainNav'
+  import Dashboard from './components/Dashboard'
+  import MainDialog from './components/MainDialog'
 
-export default {
-  name: 'app',
-  data () {
-        return {
-            audio: null
-        }
+  import StatsPush from './services/stats/StatsPush'
+  var stats = new StatsPush();
+
+  export default {
+    name: 'app',
+    data() {
+      return {
+        audio: null
+      }
     },
-  components: {
-    AudioPlayer,
-    MainNav,
-    Dashboard,
-    MainDialog
+    components: {
+      AudioPlayer,
+      MainNav,
+      Dashboard,
+      MainDialog
+    },
+    mounted() {
+      stats.push('render_home');
+    }
   }
-}
 </script>
