@@ -46,11 +46,14 @@
     </nav>
 </template>
 <script>
+    import StatsPush from '../services/stats/StatsPush'
+    var stats = new StatsPush();
+
     export default {
         name: "mainNavBar",
         methods:{
             showInfo(){
-                console.log("clicked");
+                stats.push('clicked_info');
                 this.$store.state.showMainDialog = true;
             }
         }
