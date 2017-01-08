@@ -2,7 +2,7 @@
 
 </style>
 <template>
-    <div class="panel panel-primary">
+    <div v-if="radios.length > 0" class="panel panel-primary">
         <div class="panel-heading">
             <h3><i class="material-icons">trending_up</i> <i class="material-icons">radio</i></h3>
         </div>
