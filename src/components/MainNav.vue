@@ -13,14 +13,14 @@
                 <a class="navbar-brand" href="./"><i class="material-icons">hearing</i>scoota
                     <div class="ripple-container"></div>
                 </a>
-                <a title="about" class="btn btn-sm btn-raised btn-info" @click="showInfo">
+                <a title="about" class="btn btn-xs btn-raised btn-info" @click="showInfo">
                     <i class="material-icons">info_outline</i>
                 </a>
-                <a title="code on Github" target="_blank" href="https://github.com/vikkio88/ascoota-web" class="btn btn-sm btn-raised btn-warning">
+                <a title="code on Github" target="_blank" href="https://github.com/vikkio88/ascoota-web" class="btn btn-xs btn-raised btn-warning">
                     <img src="../assets/github-circle.png" alt="github">
                     <div class="ripple-container"></div>
                 </a>
-                <a title="report an Issue" target="_blank" href="https://github.com/vikkio88/ascoota-web/issues/new" class="btn btn-sm btn-raised btn-danger">
+                <a title="report an Issue" target="_blank" href="https://github.com/vikkio88/ascoota-web/issues/new" class="btn btn-xs btn-raised btn-danger">
                     <i class="material-icons">bug_report</i>
                     <div class="ripple-container"></div>
                 </a>
