@@ -78,7 +78,7 @@
 
 <script>
     import VueAudio from '../VueAudio.js'
-    
+
     import StatsPush from '../services/stats/StatsPush'
     var stats = new StatsPush();
 
@@ -125,7 +125,7 @@
             }
         },
         computed: {
-            audio () {
+            audio() {
                 return this.$store.state.selectedAudio;
             }
         },
@@ -137,11 +137,13 @@
         },
         methods: {
             init() {
-                let options = this.audio.options === undefined ? this.defaultOptions : this.audio.options;
-                this.podcast = new VueAudio(this.audio.file_url, options);
+                if (this.audio !== undefined) {
+                    let options = this.audio.options === undefined ? this.defaultOptions : this.audio.options;
+                    this.podcast = new VueAudio(this.audio.file_url, options);
+                }
             },
             destroy() {
-                if (this.podcast.destroyed !== undefined) {
+                if (this.podcast !== null && this.podcast.destroyed !== undefined) {
                     this.state.playing = false;
                     this.podcast.destroyed();
                     this.podcast = null;
@@ -158,9 +160,9 @@
                 }
             },
             play() {
-                if (this.podcast){
+                if (this.podcast) {
                     this.state.playing = true
-                    stats.push('play_'+this.audio.id);
+                    stats.push('play_' + this.audio.id);
                 }
                 this.podcast.play()
             },
