@@ -61,12 +61,14 @@ export default {
             service.getOne(params.showId).then(
                 (data) => {
                     this.show = data.body.payload;
-                    this.language = this.show.language.iso;
+                    if(this.show.language !== undefined){
+                        this.language = this.show.language.iso;
+                    }
                     this.podcasts = this.show.podcasts;
                 }
             ).catch(
                 (error) => {
-                    console.log("error");
+                    console.log(error);
                 }
             );
         }
