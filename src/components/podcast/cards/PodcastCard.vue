@@ -3,9 +3,9 @@
     <div class="card">
         <img v-if="showimg" alt="Card image cap" src="http://www.vikkio.it/ascootaweb/bazinga/bazinga.jpg" class="img card-img-top">
         <div class="card-block">
-            <h4 class="card-title">
-                <h3>{{podcast.name}}</h3>
-            </h4>
+            <h3 class="card-title">
+                {{podcast.name}}
+            </h3>
             <p class="card-text">
                 {{podcast.date}} {{podcast.description}}
             </p>
