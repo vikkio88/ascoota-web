@@ -13,29 +13,29 @@
                 <a class="navbar-brand" href="./"><i class="material-icons">hearing</i>scoota
                     <div class="ripple-container"></div>
                 </a>
-                <a title="about" class="btn btn-xs btn-raised btn-info" @click="showInfo">
-                    <i class="material-icons">info_outline</i>
-                </a>
-                <a title="code on Github" target="_blank" href="https://github.com/vikkio88/ascoota-web" class="btn btn-xs btn-raised btn-warning">
-                    <img src="../assets/github-circle.png" alt="github">
-                    <div class="ripple-container"></div>
-                </a>
-                <a title="report an Issue" target="_blank" href="https://github.com/vikkio88/ascoota-web/issues/new" class="btn btn-xs btn-raised btn-danger">
-                    <i class="material-icons">bug_report</i>
-                    <div class="ripple-container"></div>
-                </a>
             </div>
             <div class="navbar-collapse collapse navbar-inverse-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="javascript:void(0)" class="btn btn-sm btn-raised btn-success">
-                            Login
+                        <a title="about" class="btn btn-xs" @click="showInfo">
+                            <i class="material-icons">info_outline</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="code on Github" target="_blank" href="https://github.com/vikkio88/ascoota-web" class="btn btn-xs">
+                            <img src="../assets/github-circle.png" alt="github">
                             <div class="ripple-container"></div>
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" class="btn btn-sm btn-raised btn-info">
-                            SignUp
+                        <a title="report an Issue" target="_blank" href="https://github.com/vikkio88/ascoota-web/issues/new" class="btn btn-xs">
+                            <i class="material-icons">bug_report</i>
+                            <div class="ripple-container"></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Login/SignUp" href="javascript:void(0)" class="btn btn-xs btn-raised btn-success">
+                            <i class="material-icons">account_circle</i>
                             <div class="ripple-container"></div>
                         </a>
                     </li>
@@ -51,8 +51,8 @@
 
     export default {
         name: "mainNavBar",
-        methods:{
-            showInfo(){
+        methods: {
+            showInfo() {
                 stats.push('clicked_info');
                 this.$store.state.showMainDialog = true;
             }
