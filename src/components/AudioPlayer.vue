@@ -27,8 +27,11 @@
     <transition name="fade">
         <div class="podcast panel panel-primary" v-if="audio != undefined">
             <div class="clearfix" :class="{'panel-heading':showInfo}">
-                <div class="panel-title pull-right">
-                    <a @click="toggleInfo" class="clickable">
+                <div class="panel-title">
+                    <a class="close" @click="close" aria-hidden="true">
+                        <i class="material-icons">close</i>
+                    </a>
+                    <a @click="toggleInfo" class="close">
                         <i v-show="showInfo" class="material-icons" title="Hide info">expand_less</i>
                         <i v-show="!showInfo" class="material-icons" title="Show info">expand_more</i>
                     </a>
@@ -189,8 +192,11 @@
                 let maxOffset = document.getElementById('slider-control').offsetWidth;
                 let percent = offset / maxOffset;
                 this.podcast.setTime(percent * this.podcast.state.duration);
+            },
+            close () {
+                this.pause();
+                this.$store.state.selectedAudio = undefined;
             }
-
         }
     }
 </script>
