@@ -18,7 +18,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on topLogin/SignUp" href="javascript:void(0)"
-                            class="btn btn-xs btn-success">
+                            class="btn btn-xs btn-success btn-raised">
                             <i class="material-icons">account_circle</i>
                             <div class="ripple-container"></div>
                         </a>
