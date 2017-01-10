@@ -20,7 +20,7 @@
 
 <script>
   import AudioPlayer from './components/AudioPlayer'
-  import MainNav from './components/MainNav'
+  import MainNav from './components/navbars/MainNav'
   import Dashboard from './components/Dashboard'
   import MainDialog from './components/MainDialog'
 
