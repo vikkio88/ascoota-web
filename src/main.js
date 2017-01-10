@@ -11,8 +11,6 @@ import vendors from './libs/vendors'
 
 Vue.use(Resource);
 
-$.material.init();
-
 var app = new Vue({
     el: '#app',
     router: Router,
@@ -20,3 +18,5 @@ var app = new Vue({
     template: '<App/>',
     components: { App }
 })
+
+$.material.init();
