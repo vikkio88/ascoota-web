@@ -4,7 +4,7 @@
         <img class="img" :alt="show.name" :title="show.name" :src="show.logo_url" />
         <div class="panel-heading">
             <div class="panel-title pull-left">
-                <router-link :to="{ name: 'singleRadioView', params: { radioId: show.radio_id }}" class="btn btn-primary">
+                <router-link :to="{ name: 'singleRadioView', params: { radioId: radioId }}" class="btn btn-primary">
                     <i class="material-icons" style="color: white">arrow_back</i>
                 </router-link>
             </div>
@@ -53,6 +53,7 @@
         data() {
             return {
                 params: this.$route.params,
+                radioId: this.$route.params.radioId,
                 show: {},
                 language: 'it',
                 podcasts: []
