@@ -34,7 +34,7 @@
                         </a>
                     </li>
                     <li>
-                        <a title="Login/SignUp" href="javascript:void(0)" class="btn btn-xs btn-raised btn-success">
+                        <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on topLogin/SignUp" href="javascript:void(0)" class="btn btn-xs btn-raised btn-success">
                             <i class="material-icons">account_circle</i>
                             <div class="ripple-container"></div>
                         </a>

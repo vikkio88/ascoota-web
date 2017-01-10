@@ -68,9 +68,11 @@
                         <button @click="togglePlay" class="btn btn-lg btn-raised btn-primary">
                         <i v-show="!state.playing" class="material-icons">play_arrow</i>
                         <i v-show="state.playing" class="material-icons">pause</i>
+                        <div class="ripple-container"></div>
                     </button>
                         <button :disabled="!state.playing" @click="skip(10)" class="btn btn-lg btn-raised" :class="{'disabled': !state.playing}">
                         <i class="material-icons">fast_forward</i>
+                        <div class="ripple-container"></div>
                     </button>
                     </div>
                 </div>
