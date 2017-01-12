@@ -23,7 +23,7 @@
     </div>
 </template>
 <script>
-    import FlagIcon from '../common/FlagIcon';
+    import FlagIcon from '../../common/FlagIcon';
 
     export default {
         name: "radio",

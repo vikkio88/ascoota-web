@@ -19,9 +19,9 @@
 </template>
 
 <script>
-  import AudioPlayer from './components/AudioPlayer'
+  import AudioPlayer from './components/main/AudioPlayer'
   import MainNav from './components/navbars/MainNav'
-  import Dashboard from './components/Dashboard'
+  import Dashboard from './components/main/Dashboard'
   import MainDialog from './components/MainDialog'
 
   import StatsPush from './services/stats/StatsPush'

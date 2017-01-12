@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 //components
-import Dashboard from '../components/Dashboard'
+import Dashboard from '../components/main/Dashboard'
 import SingleRadio from '../components/podcast/SingleRadio'
 import Show from '../components/podcast/Show'
 

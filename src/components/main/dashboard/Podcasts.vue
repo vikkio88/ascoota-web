@@ -16,8 +16,8 @@
     </div>
 </template>
 <script>
-    import PodcastCard from '../podcast/cards/PodcastCard'
-    import bazingas from '../../mocks/bazingas'
+    import PodcastCard from '../../podcast/cards/PodcastCard'
+    import bazingas from '../../../mocks/bazingas'
 
     export default {
         name: "podcasts",

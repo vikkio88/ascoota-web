@@ -16,8 +16,8 @@
     </div>
 </template>
 <script>
-    import RadioCard from '../podcast/RadioCard'
-    import RadioService from '../../services/ascoota/RadioService'
+    import RadioCard from '../../podcast/cards/RadioCard'
+    import RadioService from '../../../services/ascoota/RadioService'
 
     var radioService = new RadioService();
 

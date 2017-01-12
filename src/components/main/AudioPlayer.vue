@@ -82,9 +82,9 @@
 </template>
 
 <script>
-    import VueAudio from '../VueAudio.js'
+    import VueAudio from '../../VueAudio.js'
 
-    import StatsPush from '../services/stats/StatsPush'
+    import StatsPush from '../../services/stats/StatsPush'
     var stats = new StatsPush();
 
     export default {
