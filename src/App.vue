@@ -22,7 +22,7 @@
   import AudioPlayer from './components/main/AudioPlayer'
   import MainNav from './components/navbars/MainNav'
   import Dashboard from './components/main/Dashboard'
-  import MainDialog from './components/MainDialog'
+  import MainDialog from './components/main/MainDialog'
 
   import StatsPush from './services/stats/StatsPush'
   var stats = new StatsPush();
