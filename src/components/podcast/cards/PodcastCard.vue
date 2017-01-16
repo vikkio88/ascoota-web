@@ -1,7 +1,8 @@
 <style></style>
 <template>
     <div class="card">
-        <img v-if="showimg" alt="Card image cap" src="http://www.vikkio.it/ascootaweb/bazinga/bazinga.jpg" class="img card-img-top">
+        <img v-if="showimg" alt="Card image cap" src="http://www.vikkio.it/ascootaweb/bazinga/bazinga.jpg"
+             class="img card-img-top clickable" @click="toggleMe">
         <div class="card-block">
             <h3 class="card-title">
                 {{podcast.name}}
@@ -39,4 +40,5 @@
             }
         }
     }
+
 </script>
