@@ -22,14 +22,11 @@
 
 </template>
 <script>
-    import StatsPush from '../../../services/stats/StatsPush'
-    var stats = new StatsPush();
-
     export default {
         name: 'dev-links',
         methods: {
             showInfo() {
-                stats.push('clicked_info');
+                this.$stats.push('clicked_info');
                 this.$store.state.showMainDialog = true;
             }
         }

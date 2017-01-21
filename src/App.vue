@@ -41,7 +41,7 @@
       MainDialog
     },
     mounted() {
-      stats.push('render_home');
+      this.$stats.push('render_home');
     }
   }
 </script>

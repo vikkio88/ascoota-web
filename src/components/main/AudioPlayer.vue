@@ -84,9 +84,6 @@
 <script>
     import VueAudio from '../../VueAudio.js'
 
-    import StatsPush from '../../services/stats/StatsPush'
-    var stats = new StatsPush();
-
     export default {
         name: 'audio-player',
         watch: {
@@ -167,7 +164,7 @@
             play() {
                 if (this.podcast) {
                     this.state.playing = true
-                    stats.push('play_' + this.audio.id);
+                    this.$stats.push('play_' + this.audio.id);
                 }
                 this.podcast.play()
             },
