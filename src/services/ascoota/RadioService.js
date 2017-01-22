@@ -1,8 +1,8 @@
-import Service from '../Service';
+import AscootaService from '../AscootaService';
 
 const ENDPOINT = 'radios';
 
-var radioService = class RadioService extends Service {
+var radioService = class RadioService extends AscootaService {
   getAll() {
     return this.get(ENDPOINT + '?l=5');
   }

@@ -1,5 +1,6 @@
-import Service from '../Service';
-var radioService = class RadioService extends Service {
+import AscootaService from '../AscootaService';
+
+var showService = class ShowService extends AscootaService {
   constructor(radioId) {
     super();
     this.endpoint = `radios/${radioId}/shows`;
@@ -12,4 +13,4 @@ var radioService = class RadioService extends Service {
   }
 
 };
-export default radioService;
+export default showService;
