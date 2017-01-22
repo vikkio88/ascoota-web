@@ -24,9 +24,6 @@
   import Dashboard from './components/main/Dashboard'
   import MainDialog from './components/main/MainDialog'
 
-  import StatsPush from './services/stats/StatsPush'
-  var stats = new StatsPush();
-
   export default {
     name: 'app',
     data() {
