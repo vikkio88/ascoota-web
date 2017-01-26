@@ -1,35 +1,39 @@
 <style>
+
     .player-wrapper {
-        margin: 5px 5px 10px 10px;
+        margin: 5px 5px 0 0;
         padding-top: 5px;
     }
     .clickable {
         cursor: pointer;
     }
-    
+
     .fade-enter-active,
     .fade-leave-active {
         transition: opacity .3s
     }
-    
+
     .fade-enter,
     .fade-leave-active {
         opacity: 0
     }
 
-    .stick {
+    .minimized {
         width: 100%;
         margin: auto;
         position: fixed;
-        top: 0px;
+        bottom: 0;
         z-index: 10000;
     }
 
+    #podcast-player {
+        margin-bottom: 0;
+    }
 </style>
 <template>
     <transition name="fade">
-        <div id="podcast-player" class="podcast panel panel-primary" v-if="audio != undefined" :class="{'stick':stick}">
-            <div v-show="!stick" class="clearfix panel-heading">
+        <div id="podcast-player" class="podcast panel panel-primary" v-if="audio != undefined" :class="{'minimized':minimized}">
+            <div v-show="!minimized" class="clearfix panel-heading">
                 <div class="panel-title">
                     <a class="close" @click="close" aria-hidden="true">
                         <i class="material-icons">close</i>
@@ -39,18 +43,18 @@
             <article class="player-wrapper">
                 <div class="info-wrapper">
                     <div class="content">
-                        <div  v-show="!stick" class="podcast-title">
+                        <div  v-show="!minimized" class="podcast-title">
                             <h2><strong>{{audio.name}}</strong></h2>
                         </div>
-                        <div  v-show="!stick" class="podcast-description">
+                        <div  v-show="!minimized" class="podcast-description">
                             <h3>{{audio.description}}</h3>
                         </div>
-                        <div v-show="!stick" id="slider-control" @click="seek" class="progress clickable"
+                        <div v-show="!minimized" id="slider-control" @click="seek" class="progress clickable"
                              :class="{'progress-striped':state.playing, 'active': state.playing}"
                              style="height: 15px">
                             <div class="progress-bar" :style="{width: podcast.state.progress+'%'}"></div>
                         </div>
-                        <div  v-show="!stick" class="audio-time" :class="{'clickable': state.playing}"
+                        <div  v-show="!minimized" class="audio-time" :class="{'clickable': state.playing}"
                              @click="toggleTimeFormat">
                             <h2>{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</h2>
                         </div>
@@ -130,7 +134,7 @@
                 state: {
                     playing: false
                 },
-                stick: false
+                minimized: true
             }
         },
         computed: {
@@ -201,9 +205,11 @@
                 this.$store.state.selectedAudio = undefined;
             },
             scrollHandler () {
-                let player = document.getElementById('podcast-player');
-                if(player){
-                    this.stick = (window.scrollY > player.offsetHeight);
+            //TODO: change handler to detect bottom of the page + size of player
+                if(this.minimized && (window.innerHeight + window.scrollY) >= document.body.offsetHeight){
+                    this.minimized = false;
+                } else {
+                    this.minimized = true;
                 }
             }
         }

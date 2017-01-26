@@ -11,10 +11,10 @@
   <div id="app">
     <main-dialog />
     <main-nav />
-     <audio-player :audio="audio" />
     <div class="container container-fluid">
       <router-view></router-view>
     </div>
+    <audio-player :audio="audio" />
   </div>
 </template>
 
