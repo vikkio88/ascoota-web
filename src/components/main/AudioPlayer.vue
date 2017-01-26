@@ -3,11 +3,6 @@
         margin: 5px 5px 10px 10px;
         padding-top: 5px;
     }
-    
-    div.controls-wrapper {
-        margin-top: 10px;
-    }
-    
     .clickable {
         cursor: pointer;
     }
@@ -21,53 +16,54 @@
     .fade-leave-active {
         opacity: 0
     }
-</style>
 
+    .stick {
+        width: 100%;
+        margin: auto;
+        position: fixed;
+        top: 0px;
+        z-index: 10000;
+    }
+
+</style>
 <template>
     <transition name="fade">
-        <div class="podcast panel panel-primary" v-if="audio != undefined">
-            <div class="clearfix" :class="{'panel-heading':showInfo}">
+        <div id="podcast-player" class="podcast panel panel-primary" v-if="audio != undefined" :class="{'stick':stick}">
+            <div v-show="!stick" class="clearfix panel-heading">
                 <div class="panel-title">
                     <a class="close" @click="close" aria-hidden="true">
                         <i class="material-icons">close</i>
-                    </a>
-                    <a @click="toggleInfo" class="close">
-                        <i v-show="showInfo" class="material-icons" title="Hide info">expand_less</i>
-                        <i v-show="!showInfo" class="material-icons" title="Show info">expand_more</i>
                     </a>
                 </div>
             </div>
             <article class="player-wrapper">
                 <div class="info-wrapper">
                     <div class="content">
-                        <div v-show="showInfo" class="podcast-title">
+                        <div  v-show="!stick" class="podcast-title">
                             <h2><strong>{{audio.name}}</strong></h2>
                         </div>
-                        <div v-show="showInfo" class="podcast-description">
+                        <div  v-show="!stick" class="podcast-description">
                             <h3>{{audio.description}}</h3>
                         </div>
-                        <!--
-                    <div class="audio-slider">
-                        <input class="form-control slider" type="range" :value="podcast.state.progress" min="0" max="100" step="0.01" v-model="podcast.state.progress"
-                            @click="seek">
-                    </div>
-                    -->
-                        <div id="slider-control" @click="seek" class="progress clickable" :class="{'progress-striped':state.playing, 'active': state.playing}"
-                            :style="{ height: showInfo? '10px':'30px'}">
-                            <!--<div v-if="!showInfo" style="width: 100%; z-index:1"><strong>{{audio.title}}</strong> {{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</div>-->
+                        <div v-show="!stick" id="slider-control" @click="seek" class="progress clickable"
+                             :class="{'progress-striped':state.playing, 'active': state.playing}"
+                             style="height: 15px">
                             <div class="progress-bar" :style="{width: podcast.state.progress+'%'}"></div>
                         </div>
-                        <div v-show="showInfo" class="audio-time" :class="{'clickable': state.playing}" @click="toggleTimeFormat">
+                        <div  v-show="!stick" class="audio-time" :class="{'clickable': state.playing}"
+                             @click="toggleTimeFormat">
                             <h2>{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</h2>
                         </div>
                     </div>
                     <div class="controls-wrapper">
-                        <button :disabled="audio.previous == undefined" @click="skip(10)" class="btn btn-lg hidden-xs" :class="{'disabled': !audio.previous}">
+                        <button :disabled="audio.previous == undefined" @click="skip(10)" class="btn btn-lg hidden-xs"
+                                :class="{'disabled': !audio.previous}">
                             <i class="material-icons">skip_previous</i>
                             <div class="ripple-container"></div>
                         </button>
 
-                        <button :disabled="!state.playing" @click="skip(-10)" class="btn btn-lg btn-raised" :class="{'disabled': !state.playing}">
+                        <button :disabled="!state.playing" @click="skip(-10)" class="btn btn-lg btn-raised"
+                                :class="{'disabled': !state.playing}">
                             <i class="material-icons">fast_rewind</i>
                         </button>
                         <button @click="togglePlay" class="btn btn-lg btn-raised btn-primary">
@@ -75,12 +71,14 @@
                             <i v-show="state.playing" class="material-icons">pause</i>
                             <div class="ripple-container"></div>
                         </button>
-                        <button :disabled="!state.playing" @click="skip(10)" class="btn btn-lg btn-raised" :class="{'disabled': !state.playing}">
+                        <button :disabled="!state.playing" @click="skip(10)" class="btn btn-lg btn-raised"
+                                :class="{'disabled': !state.playing}">
                             <i class="material-icons">fast_forward</i>
                             <div class="ripple-container"></div>
                         </button>
 
-                        <button :disabled="audio.next == undefined" @click="skip(10)" class="btn btn-lg hidden-xs" :class="{'disabled': !audio.next}">
+                        <button :disabled="audio.next == undefined" @click="skip(10)" class="btn btn-lg hidden-xs"
+                                :class="{'disabled': !audio.next}">
                             <i class="material-icons">skip_next</i>
                             <div class="ripple-container"></div>
                         </button>
@@ -90,7 +88,6 @@
         </div>
     </transition>
 </template>
-
 <script>
     import VueAudio from '../../VueAudio.js'
 
@@ -133,7 +130,7 @@
                 state: {
                     playing: false
                 },
-                showInfo: true
+                stick: false
             }
         },
         computed: {
@@ -142,7 +139,7 @@
             }
         },
         mounted() {
-
+            window.addEventListener('scroll', this.scrollHandler);
         },
         beforeDestroy() {
 
@@ -160,9 +157,6 @@
                     this.podcast.destroyed();
                     this.podcast = null;
                 }
-            },
-            toggleInfo() {
-                this.showInfo = !this.showInfo;
             },
             togglePlay() {
                 if (this.state.playing) {
@@ -205,6 +199,12 @@
             close () {
                 this.pause();
                 this.$store.state.selectedAudio = undefined;
+            },
+            scrollHandler () {
+                let player = document.getElementById('podcast-player');
+                if(player){
+                    this.stick = (window.scrollY > player.offsetHeight);
+                }
             }
         }
     }
