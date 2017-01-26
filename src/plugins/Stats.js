@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 
 var VueStats = {
-    push: (actionName) => {
+    push (actionName) {
         return Vue.http.post(
             process.env.STATS_URL,
             {
