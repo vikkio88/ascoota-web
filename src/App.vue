@@ -11,8 +11,8 @@
   <div id="app">
     <main-dialog />
     <main-nav />
+     <audio-player :audio="audio" />
     <div class="container container-fluid">
-      <audio-player :audio="audio" />
       <router-view></router-view>
     </div>
   </div>
