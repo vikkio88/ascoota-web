@@ -3,14 +3,11 @@ FE using ascoota-api
 
 ## Screenshot
 ### Main
-![initial](https://cloud.githubusercontent.com/assets/248805/21735558/ad993096-d462-11e6-9ad3-f6e9ffee54f7.png)
+![image](https://cloud.githubusercontent.com/assets/248805/22404047/35a4ac08-e620-11e6-8ed0-70ee99566ec2.png)
 ### Responsive Material on device
-![2017-01-06-225232_3840x1080_scrot](https://cloud.githubusercontent.com/assets/248805/21735587/e38f2322-d462-11e6-875a-fd137b2810f5.png)
+![image](https://cloud.githubusercontent.com/assets/248805/22404060/a023dc8e-e620-11e6-9c59-878ddf6d264e.png)
 ### Podcast Player
-![2017-01-06-225426_3840x1080_scrot](https://cloud.githubusercontent.com/assets/248805/21735623/26d6a72c-d463-11e6-9f67-2d8e96e74f98.png) 
-![2017-01-06-225536_3840x1080_scrot](https://cloud.githubusercontent.com/assets/248805/21735636/4c6850bc-d463-11e6-86a2-3c2ca35bcab6.png)
-
-
+![image](https://cloud.githubusercontent.com/assets/248805/22404067/c7950ef0-e620-11e6-8449-db865bbe37b4.png)
 
 
 ## Build Setup
