@@ -1,5 +1,13 @@
-# ascoota-web
-FE using ascoota-api
+# aScoota-web
+[aScoota](https://www.vikkio.it/ascootaweb) is a podcast manager platform.
+
+This repo contains the code of the front-end bit, which is coded in vue 2.0.
+
+At the moment this project is hosted on a subfolder in my personal website.
+
+## BackEnd
+The backend api, designed following a RestFul approach are opensource as well and can be found in their own repo
+[ascoota-api](https://github.com/vikkio88/ascoota-api).
 
 ## Screenshot
 ### Main
