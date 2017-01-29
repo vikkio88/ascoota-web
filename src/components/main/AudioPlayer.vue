@@ -1,5 +1,4 @@
 <style>
-
     .player-wrapper {
         margin: 5px 5px 0 0;
         padding-top: 5px;
@@ -32,7 +31,8 @@
 </style>
 <template>
     <transition name="fade">
-        <div id="podcast-player" class="podcast panel panel-primary" v-if="audio != undefined" :class="{'minimized':minimized}">
+        <div id="podcast-player" class="podcast panel panel-primary" v-if="audio != undefined"
+             :class="{'minimized':minimized}">
             <div v-show="!minimized" class="clearfix panel-heading">
                 <div class="panel-title">
                     <a class="close" @click="close" aria-hidden="true">
@@ -43,10 +43,10 @@
             <article class="player-wrapper">
                 <div class="info-wrapper">
                     <div class="content">
-                        <div  v-show="!minimized" class="podcast-title">
+                        <div v-show="!minimized" class="podcast-title">
                             <h2><strong>{{audio.name}}</strong></h2>
                         </div>
-                        <div  v-show="!minimized" class="podcast-description">
+                        <div v-show="!minimized" class="podcast-description">
                             <h3>{{audio.description}}</h3>
                         </div>
                         <div v-show="!minimized" id="slider-control" @click="seek" class="progress clickable"
@@ -54,7 +54,7 @@
                              style="height: 15px">
                             <div class="progress-bar" :style="{width: podcast.state.progress+'%'}"></div>
                         </div>
-                        <div  v-show="!minimized" class="audio-time" :class="{'clickable': state.playing}"
+                        <div v-show="!minimized" class="audio-time" :class="{'clickable': state.playing}"
                              @click="toggleTimeFormat">
                             <h2>{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</h2>
                         </div>
@@ -205,12 +205,21 @@
                 this.$store.state.selectedAudio = undefined;
             },
             scrollHandler () {
-            //TODO: change handler to detect bottom of the page + size of player
-                if(this.minimized && (window.innerHeight + window.scrollY) >= document.body.offsetHeight){
+                if(this.getOffset() >= document.body.offsetHeight){
                     this.minimized = false;
-                } else {
+                }else{
                     this.minimized = true;
                 }
+            },
+            getOffset(){
+                let wH = window.innerHeight;
+                let sH = window.scrollY;
+                let player = document.getElementById('podcast-player');
+                let pH = 0;
+                if(player != undefined){
+                    pH = player.offsetHeight;
+                }
+                return this.minimized ? (wH+sH) : (wH+sH+pH);
             }
         }
     }
