@@ -134,6 +134,7 @@
                 state: {
                     playing: false
                 },
+                tempTitle: null,
                 minimized: true
             }
         },
@@ -145,14 +146,12 @@
         mounted() {
             window.addEventListener('scroll', this.scrollHandler);
         },
-        beforeDestroy() {
-
-        },
         methods: {
             init() {
                 if (this.audio !== undefined) {
                     let options = this.audio.options === undefined ? this.defaultOptions : this.audio.options;
                     this.podcast = new VueAudio(this.audio.file_url, options);
+                    this.setTitle();
                 }
             },
             destroy() {
@@ -160,6 +159,7 @@
                     this.state.playing = false;
                     this.podcast.destroyed();
                     this.podcast = null;
+                    document.title = this.tempTitle;
                 }
             },
             togglePlay() {
@@ -174,11 +174,13 @@
                     this.state.playing = true
                     this.$stats.push('play_' + this.audio.id);
                 }
-                this.podcast.play()
+                this.podcast.play();
+                this.setTitle();
             },
             pause() {
                 this.state.playing = false
                 this.podcast.pause()
+                this.setTitle();
             },
             volumePlus() {
                 this.podcast.setVolume(this.podcast.state.volume + 0.1)
@@ -203,6 +205,13 @@
             close () {
                 this.pause();
                 this.$store.state.selectedAudio = undefined;
+            },
+            setTitle () {
+                if(this.tempTitle == undefined){
+                    this.tempTitle = document.title;
+                }
+                let playChar = this.state.playing ? '►':'■'
+                document.title = playChar +' '+ this.audio.name;
             },
             scrollHandler () {
                 if(this.getOffset() >= document.body.offsetHeight){
