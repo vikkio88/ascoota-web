@@ -151,6 +151,10 @@
                 if (this.audio !== undefined) {
                     let options = this.audio.options === undefined ? this.defaultOptions : this.audio.options;
                     this.podcast = new VueAudio(this.audio.file_url, options);
+                    let startTime = this.$store.state.startTime;
+                    if ( startTime !== undefined) {
+                        this.podcast.setTime(startTime);
+                    }
                     this.setTitle();
                 }
             },
