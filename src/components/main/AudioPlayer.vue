@@ -153,11 +153,13 @@
                     let options = this.audio.options === undefined ? this.defaultOptions : this.audio.options;
                     this.podcast = new VueAudio(this.audio.file_url, options);
                     this.state.initialSeek = this.$store.state.startTime;
+                    this.$store.state.startTime = 0;
                     this.setTitle();
-
                     if (this.$store.state.autoPlay) {
+                        this.$store.state.autoPlay = false;
                         this.play();
-                        setTimeout(() => { this.skip(this.state.initialSeek) }, 1000);
+                        setTimeout(() => { this.skip(this.state.initialSeek);this.state.initialSeek=0; }, 1000);
+                    
                     }
                 }
             },
