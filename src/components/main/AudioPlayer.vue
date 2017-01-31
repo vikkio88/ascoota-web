@@ -49,9 +49,9 @@
                         <div v-show="!minimized" class="podcast-description">
                             <h3>{{audio.description}}</h3>
                         </div>
-                        <div v-show="!minimized" id="slider-control" @click="seek" class="progress clickable"
+                        <div id="slider-control" @click="seek" class="progress clickable"
                              :class="{'progress-striped':state.playing, 'active': state.playing}"
-                             style="height: 15px">
+                             style="height: 15px;margin-bottom: 0">
                             <div class="progress-bar" :style="{width: podcast.state.progress+'%'}"></div>
                         </div>
                         <div v-show="!minimized" class="audio-time" :class="{'clickable': state.playing}"
