@@ -150,7 +150,7 @@
 
                     if (this.$store.state.autoPlay) {
                         this.play();
-                        setTimeout(()=> {this.skip(this.state.initialSeek)},1000);
+                        setTimeout(() => { this.skip(this.state.initialSeek) }, 1000);
                     }
                 }
             },
