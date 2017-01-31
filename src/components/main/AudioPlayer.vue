@@ -1,7 +1,6 @@
 <style>
     .player-wrapper {
         margin: 5px 5px 0 0;
-        padding-top: 5px;
     }
     .clickable {
         cursor: pointer;
@@ -54,19 +53,20 @@
                              style="height: 15px;margin-bottom: 0">
                             <div class="progress-bar" :style="{width: podcast.state.progress+'%'}"></div>
                         </div>
+                        <div v-show="minimized">{{shortDescription}}</div>
                         <div v-show="!minimized" class="audio-time" :class="{'clickable': state.playing}"
                              @click="toggleTimeFormat">
                             <h2>{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</h2>
                         </div>
                     </div>
                     <div class="controls-wrapper">
-                        <button :disabled="audio.previous == undefined" @click="skip(10)" class="btn btn-lg hidden-xs"
+                        <button :disabled="audio.previous == undefined" @click="skip(10)" class="btn btn-xs hidden-xs"
                                 :class="{'disabled': !audio.previous}">
                             <i class="material-icons">skip_previous</i>
                             <div class="ripple-container"></div>
                         </button>
 
-                        <button :disabled="!state.playing" @click="skip(-10)" class="btn btn-lg btn-raised"
+                        <button :disabled="!state.playing" @click="skip(-10)" class="btn btn-xs btn-raised"
                                 :class="{'disabled': !state.playing}">
                             <i class="material-icons">fast_rewind</i>
                         </button>
@@ -75,13 +75,13 @@
                             <i v-show="state.playing" class="material-icons">pause</i>
                             <div class="ripple-container"></div>
                         </button>
-                        <button :disabled="!state.playing" @click="skip(10)" class="btn btn-lg btn-raised"
+                        <button :disabled="!state.playing" @click="skip(10)" class="btn btn-xs btn-raised"
                                 :class="{'disabled': !state.playing}">
                             <i class="material-icons">fast_forward</i>
                             <div class="ripple-container"></div>
                         </button>
 
-                        <button :disabled="audio.next == undefined" @click="skip(10)" class="btn btn-lg hidden-xs"
+                        <button :disabled="audio.next == undefined" @click="skip(10)" class="btn btn-xs hidden-xs"
                                 :class="{'disabled': !audio.next}">
                             <i class="material-icons">skip_next</i>
                             <div class="ripple-container"></div>
@@ -142,6 +142,10 @@
         computed: {
             audio() {
                 return this.$store.state.selectedAudio;
+            },
+            shortDescription() {
+                let description = this.audio.description.substring(0, 13) + '...'
+                return `${this.audio.name} - ${description}`;
             }
         },
         mounted() {
