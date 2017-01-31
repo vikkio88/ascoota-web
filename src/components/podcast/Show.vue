@@ -83,7 +83,7 @@
                     (error) => {
                         console.log(error);
                     }
-                    );
+                );
             }
         }
     }

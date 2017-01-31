@@ -1,8 +1,7 @@
 <style></style>
 <template>
     <div>
-    {{params}}
-    {{time}}
+        {{params}} {{time}}
     </div>
 </template>
 <script>
@@ -17,26 +16,27 @@
                 podcastId: this.$route.params.podcastId
             };
         },
-        mounted () {
+        mounted() {
             this.init();
         },
         methods: {
             init() {
-                console.log(this.params);
                 let service = new PodcastService();
                 service.getOne(this.podcastId).then(
                     (data) => {
                         this.$store.state.selectedAudio = data.body.payload;
-                        if (this.time !== undefined) {
-                            this.$store.state.timeStart = this.time;
+                        this.$store.state.autoPlay = true;
+                        if (this.time != undefined) {
+                            this.$store.state.startTime = this.time;
                         }
-                        //this.$router.go('/dashboard');
+                        this.$router.push({ name: 'dashboard' });
+
                     }
                 ).catch(
                     (error) => {
                         console.log(error);
                     }
-                );
+                    );
             }
         }
     }
