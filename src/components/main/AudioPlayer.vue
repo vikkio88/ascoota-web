@@ -31,7 +31,8 @@
 </style>
 <template>
     <transition name="fade">
-        <div id="podcast-player" class="podcast panel panel-primary" v-if="audio != undefined" :class="{'minimized':minimized}">
+        <div id="podcast-player" class="podcast panel panel-primary" v-if="audio != undefined"
+             :class="{'minimized':minimized}">
             <div v-show="!minimized" class="clearfix panel-heading">
                 <div class="panel-title">
                     <a class="close" @click="close" aria-hidden="true">
@@ -48,42 +49,48 @@
                         <div v-show="!minimized" class="podcast-description">
                             <h3>{{audio.description}}</h3>
                         </div>
-                        <div v-show="!minimized" id="slider-control" @click="seek" class="progress clickable" :class="{'progress-striped':state.playing, 'active': state.playing}"
-                            style="height: 15px">
-<div class="progress-bar" :style="{width: podcast.state.progress+'%'}"></div>
-</div>
-<div v-show="!minimized" class="audio-time" :class="{'clickable': state.playing}" @click="toggleTimeFormat">
-    <h2>{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</h2>
-</div>
-</div>
-<div class="controls-wrapper">
-    <button :disabled="audio.previous == undefined" @click="skip(10)" class="btn btn-lg hidden-xs" :class="{'disabled': !audio.previous}">
+                        <div v-show="!minimized" id="slider-control" @click="seek" class="progress clickable"
+                             :class="{'progress-striped':state.playing, 'active': state.playing}"
+                             style="height: 15px">
+                            <div class="progress-bar" :style="{width: podcast.state.progress+'%'}"></div>
+                        </div>
+                        <div v-show="!minimized" class="audio-time" :class="{'clickable': state.playing}"
+                             @click="toggleTimeFormat">
+                            <h2>{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</h2>
+                        </div>
+                    </div>
+                    <div class="controls-wrapper">
+                        <button :disabled="audio.previous == undefined" @click="skip(10)" class="btn btn-lg hidden-xs"
+                                :class="{'disabled': !audio.previous}">
                             <i class="material-icons">skip_previous</i>
                             <div class="ripple-container"></div>
                         </button>
 
-    <button :disabled="!state.playing" @click="skip(-10)" class="btn btn-lg btn-raised" :class="{'disabled': !state.playing}">
+                        <button :disabled="!state.playing" @click="skip(-10)" class="btn btn-lg btn-raised"
+                                :class="{'disabled': !state.playing}">
                             <i class="material-icons">fast_rewind</i>
                         </button>
-    <button @click="togglePlay" class="btn btn-lg btn-raised btn-primary">
+                        <button @click="togglePlay" class="btn btn-lg btn-raised btn-primary">
                             <i v-show="!state.playing" class="material-icons">play_arrow</i>
                             <i v-show="state.playing" class="material-icons">pause</i>
                             <div class="ripple-container"></div>
                         </button>
-    <button :disabled="!state.playing" @click="skip(10)" class="btn btn-lg btn-raised" :class="{'disabled': !state.playing}">
+                        <button :disabled="!state.playing" @click="skip(10)" class="btn btn-lg btn-raised"
+                                :class="{'disabled': !state.playing}">
                             <i class="material-icons">fast_forward</i>
                             <div class="ripple-container"></div>
                         </button>
 
-    <button :disabled="audio.next == undefined" @click="skip(10)" class="btn btn-lg hidden-xs" :class="{'disabled': !audio.next}">
+                        <button :disabled="audio.next == undefined" @click="skip(10)" class="btn btn-lg hidden-xs"
+                                :class="{'disabled': !audio.next}">
                             <i class="material-icons">skip_next</i>
                             <div class="ripple-container"></div>
                         </button>
-</div>
-</div>
-</article>
-</div>
-</transition>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </transition>
 </template>
 <script>
     import VueAudio from '../../VueAudio.js'
