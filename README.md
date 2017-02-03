@@ -1,6 +1,8 @@
 # aScoota-web
 [aScoota](https://www.vikkio.it/ascootaweb) is a podcast manager platform.
 
+the latest version usually is deployed via [surge.sh](https://surge.sh) on [ascoota.surge.sh](https://ascoota.surge.sh)
+
 This repo contains the code of the front-end bit, which is coded in vue 2.0.
 
 At the moment this project is hosted on a subfolder in my personal website.
