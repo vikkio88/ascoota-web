@@ -60,8 +60,8 @@
                         </div>
                     </div>
                     <div class="controls-wrapper">
-                        <button :disabled="audio.previous == undefined" @click="skip(10)" class="btn btn-xs hidden-xs"
-                                :class="{'disabled': !audio.previous}">
+                        <button :disabled="audio.previous_podcast_id == undefined" @click="previous" class="btn btn-xs hidden-xs"
+                                :class="{'disabled': !audio.previous_podcast_id}">
                             <i class="material-icons">skip_previous</i>
                             <div class="ripple-container"></div>
                         </button>
@@ -81,8 +81,8 @@
                             <div class="ripple-container"></div>
                         </button>
 
-                        <button :disabled="audio.next == undefined" @click="skip(10)" class="btn btn-xs hidden-xs"
-                                :class="{'disabled': !audio.next}">
+                        <button :disabled="audio.next_podcast_id == undefined" @click="next" class="btn btn-xs hidden-xs"
+                                :class="{'disabled': !audio.next_podcast_id}">
                             <i class="material-icons">skip_next</i>
                             <div class="ripple-container"></div>
                         </button>
@@ -94,6 +94,10 @@
 </template>
 <script>
     import VueAudio from '../../VueAudio.js'
+    import PodcastService from '../../services/ascoota/PodcastService'
+    
+    const podcastService = new PodcastService();
+
 
     export default {
         name: 'audio-player',
@@ -215,6 +219,27 @@
                 let maxOffset = document.getElementById('slider-control').offsetWidth;
                 let percent = offset / maxOffset;
                 this.podcast.setTime(percent * this.podcast.state.duration);
+            },
+            next(){
+                this.changePodcast(this.audio.next_podcast_id);
+            },
+            previous () {
+                this.changePodcast(this.audio.previous_podcast_id);
+            },
+            changePodcast(podcastId) {
+                this.pause();
+                podcastService.getOne(podcastId).then(
+                    (data) => {
+                        if(data.body.payload !== null){
+                            this.$store.state.selectedAudio = data.body.payload;
+                            this.$store.state.autoPlay = true;
+                        }
+                    }
+                ).catch(
+                    (error) => {
+                        console.log(error);
+                    }
+                );
             },
             close() {
                 this.pause();
