@@ -34,6 +34,7 @@
             toggleMe() {
                 if(!this.isSelected){
                     this.$store.state.selectedAudio = this.podcast;
+                    this.$store.state.autoPlay = true;
                 }else{
                     this.$store.state.selectedAudio = undefined
                 }
