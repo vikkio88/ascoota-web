@@ -16,7 +16,8 @@
 <template>
     <div class="bottom-player" v-if="audio != undefined">
         <div @click="seek">
-        <md-progress :md-progress="podcast.state.progress"></md-progress>
+            <md-progress :md-progress="podcast.state.progress"></md-progress>
+            <span class="md-caption">{{shortDescription}}</span>
         </div>
         <md-bottom-bar>
             <div @click="previous">
@@ -32,60 +33,21 @@
             <div @click="skip(10)">
                 <md-bottom-bar-item v-if="state.playing" md-icon="fast_forward"></md-bottom-bar-item>
             </div>
-            
+
             <div @click="next">
                 <md-bottom-bar-item md-icon="skip_next"></md-bottom-bar-item>
             </div>
-            
+
         </md-bottom-bar>
+        <md-dialog-alert :md-content="alert.content" :md-ok-text="alert.ok" ref="errorMessage">
+        </md-dialog-alert>
     </div>
     <!--
-        <div id="podcast-player" class="podcast panel panel-primary" v-if="audio != undefined" :class="{'minimized':minimized}">
-            <article class="player-wrapper">
-                <div class="info-wrapper">
-                    <div class="content">
-                        <div v-show="!minimized" class="podcast-title">
-                            <h2><strong>{{audio.name}}</strong></h2>
-                        </div>
-                        <div v-show="!minimized" class="podcast-description">
-                            <h3>{{audio.description}}</h3>
-                        </div>
-                        <div id="slider-control" @click="seek" class="progress clickable" :class="{'progress-striped':state.playing, 'active': state.playing}"
-                            style="height: 15px;margin-bottom: 0">
-                            <div class="progress-bar" :style="{width: podcast.state.progress+'%'}"></div>
-                    </div>
-                    <div v-show="minimized">{{shortDescription}}</div>
-                    <div v-show="!minimized" class="audio-time" :class="{'clickable': state.playing}" @click="toggleTimeFormat">
-                        <h2>{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</h2>
-                    </div>
-                </div>
-                <div class="controls-wrapper">
-                    <button :disabled="audio.previous_podcast_id == undefined" @click="previous" class="btn btn-xs hidden-xs" :class="{'disabled': !audio.previous_podcast_id}">
-                            <i class="material-icons">skip_previous</i>
-                            <div class="ripple-container"></div>
-                        </button>
-
-                    <button :disabled="!state.playing" @click="skip(-10)" class="btn btn-xs btn-raised" :class="{'disabled': !state.playing}">
-                            <i class="material-icons">fast_rewind</i>
-                        </button>
-                    <button @click="togglePlay" class="btn btn-lg btn-raised btn-primary">
-                            <i v-show="!state.playing" class="material-icons">play_arrow</i>
-                            <i v-show="state.playing" class="material-icons">pause</i>
-                            <div class="ripple-container"></div>
-                        </button>
-                    <button :disabled="!state.playing" @click="skip(10)" class="btn btn-xs btn-raised" :class="{'disabled': !state.playing}">
-                            <i class="material-icons">fast_forward</i>
-                            <div class="ripple-container"></div>
-                        </button>
-
-                    <button :disabled="audio.next_podcast_id == undefined" @click="next" class="btn btn-xs hidden-xs" :class="{'disabled': !audio.next_podcast_id}">
-                            <i class="material-icons">skip_next</i>
-                            <div class="ripple-container"></div>
-                        </button>
-                </div>
+        This bit contains the audio time, still dont know where to put it :(
+        <div v-show="!minimized" class="audio-time" :class="{'clickable': state.playing}" @click="toggleTimeFormat">
+        <h2>{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</h2>
         </div>
-        </article>
-        </div>-->
+    -->
 </template>
 <script>
     import VueAudio from '../../VueAudio.js'
@@ -134,6 +96,10 @@
                     playing: false,
                     initialSeek: 0,
                 },
+                alert: {
+                    content: 'No more podcasts :(',
+                    ok: 'Ok'
+                },
                 tempTitle: null,
                 minimized: true
             }
@@ -143,8 +109,7 @@
                 return this.$store.state.selectedAudio;
             },
             shortDescription() {
-                let description = this.audio.description.substring(0, 13) + '...'
-                return `${this.audio.name} - ${description}`;
+                return `${this.audio.name} - ${this.audio.description}`.substring(0, 60) + '...';
             }
         },
         mounted() {
@@ -161,7 +126,7 @@
                     if (this.$store.state.autoPlay) {
                         this.$store.state.autoPlay = false;
                         this.play();
-                        if(this.state.initialSeek != 0){
+                        if (this.state.initialSeek != 0) {
                             setTimeout(() => { this.skip(this.state.initialSeek); this.state.initialSeek = 0; }, 1000);
                         }
                     }
@@ -223,6 +188,10 @@
                 this.changePodcast(this.audio.previous_podcast_id);
             },
             changePodcast(podcastId) {
+                if (podcastId== undefined){
+                    this.$refs['errorMessage'].open()
+                    return;
+                }
                 this.pause();
                 podcastService.getOne(podcastId).then(
                     (data) => {
@@ -248,21 +217,8 @@
                 document.title = playChar + ' ' + this.audio.name;
             },
             scrollHandler() {
-                if (this.getOffset() >= document.body.offsetHeight) {
-                    this.minimized = false;
-                } else {
-                    this.minimized = true;
-                }
-            },
-            getOffset() {
-                let wH = window.innerHeight;
-                let sH = window.scrollY;
-                let player = document.getElementById('podcast-player');
-                let pH = 0;
-                if (player != undefined) {
-                    pH = player.offsetHeight;
-                }
-                return this.minimized ? (wH + sH) : (wH + sH + pH);
+                //Here I will transform the audio-player
+                //in a floating button
             }
         }
     }
