@@ -1,21 +1,24 @@
-<style></style>
+<style>
+</style>
 <template>
-    <div class="card">
-        <img v-if="showimg" alt="Card image cap" :src="podcast.show.logo_url"
-             class="img card-img-top clickable" @click="toggleMe">
-        <div class="card-block">
-            <h3 class="card-title">
-                {{podcast.name}}
-            </h3>
-            <p class="card-text">
-                {{podcast.date}} {{podcast.description}}
-            </p>
-            <a class="btn btn-raised" :class="isSelected? 'btn-danger': 'btn-primary'" @click="toggleMe">
-                <i v-if="!isSelected" class="material-icons">play_arrow</i>
-                <i v-if="isSelected" class="material-icons">stop</i>
-            </a>
-        </div>
-    </div>
+    <md-card>
+        <md-card-media v-if="showimg">
+                <img alt="podcast.name" :src="podcast.show.logo_url" @click="toggleMe">
+        </md-card-media>
+        <md-card-header>
+            <div class="md-title">{{podcast.name}}</div>
+            <div class="md-subhead">{{podcast.date}}</div>
+        </md-card-header>
+        <md-card-content>
+            {{podcast.description}}
+        </md-card-content>
+        <md-card-actions>
+            <md-button class="md-raised" :class="{ 'md-warn': isSelected, 'md-primary':!isSelected }" @click="toggleMe">
+                <md-icon v-if="!isSelected">play_arrow</md-icon>
+                <md-icon v-if="isSelected">stop</md-icon>
+            </md-button>
+        </md-card-actions>
+    </md-card>
 </template>
 <script>
     export default {
@@ -32,14 +35,13 @@
         },
         methods: {
             toggleMe() {
-                if(!this.isSelected){
+                if (!this.isSelected) {
                     this.$store.state.selectedAudio = this.podcast;
                     this.$store.state.autoPlay = true;
-                }else{
+                } else {
                     this.$store.state.selectedAudio = undefined
                 }
             }
         }
     }
-
 </script>

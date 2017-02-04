@@ -1,25 +1,19 @@
 <style>
-    .img {
-        height: 180px;
-        width: 100%;
-        object-fit: cover;
-    }
 </style>
 <template>
-    <div class="card">
+    <md-card>
         <router-link :to="{ name: 'singleRadioView', params: { radioId: radio.id }}">
-            <img class="img card-img-top" alt="Card image cap" :src="radio.logo_url" />
+            <md-card-media>
+                <img alt="radio.name" :src="radio.logo_url">
+            </md-card-media>
         </router-link>
-        <div class="card-block">
-            <h3 class="card-title">
-                {{radio.name}}
-            </h3>
-            <p class="card-text">
-                <flag-icon :language="radio.language.iso" />
-                {{radio.description}}
-            </p>
-        </div>
-    </div>
+        <md-card-header>
+            <div class="md-title">{{radio.name}}</div>
+        </md-card-header>
+        <md-card-content>
+            <flag-icon :language="radio.language.iso" /> {{radio.description}}
+        </md-card-content>
+    </md-card>
 </template>
 <script>
     import FlagIcon from '../../common/FlagIcon';
@@ -33,4 +27,5 @@
             radio: Object
         }
     }
+
 </script>
