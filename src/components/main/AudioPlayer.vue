@@ -1,44 +1,46 @@
 <style>
-    .player-wrapper {
-        margin: 5px 5px 0 0;
-    }
-    .clickable {
-        cursor: pointer;
-    }
-
     .fade-enter-active,
     .fade-leave-active {
         transition: opacity .3s
     }
-
+    
     .fade-enter,
     .fade-leave-active {
         opacity: 0
     }
-
-    .minimized {
-        width: 100%;
-        margin: auto;
-        position: fixed;
-        bottom: 0;
-        z-index: 10000;
-    }
-
-    #podcast-player {
-        margin-bottom: 0;
+    
+    .bottom {
+        min-height: 56px;
     }
 </style>
 <template>
-    <transition name="fade">
-        <div id="podcast-player" class="podcast panel panel-primary" v-if="audio != undefined"
-             :class="{'minimized':minimized}">
-            <div v-show="!minimized" class="clearfix panel-heading">
-                <div class="panel-title">
-                    <a class="close" @click="close" aria-hidden="true">
-                        <i class="material-icons">close</i>
-                    </a>
-                </div>
+    <div class="bottom-player" v-if="audio != undefined">
+        <div @click="seek">
+        <md-progress :md-progress="podcast.state.progress"></md-progress>
+        </div>
+        <md-bottom-bar>
+            <div @click="previous">
+                <md-bottom-bar-item md-icon="skip_previous"></md-bottom-bar-item>
             </div>
+            <div @click="skip(-10)">
+                <md-bottom-bar-item v-if="state.playing" md-icon="fast_rewind"></md-bottom-bar-item>
+            </div>
+            <div @click="togglePlay">
+                <md-bottom-bar-item v-if="!state.playing" @click="togglePlay" md-icon="play_arrow"></md-bottom-bar-item>
+                <md-bottom-bar-item v-if="state.playing" @click="togglePlay" md-icon="pause"></md-bottom-bar-item>
+            </div>
+            <div @click="skip(10)">
+                <md-bottom-bar-item v-if="state.playing" md-icon="fast_forward"></md-bottom-bar-item>
+            </div>
+            
+            <div @click="next">
+                <md-bottom-bar-item md-icon="skip_next"></md-bottom-bar-item>
+            </div>
+            
+        </md-bottom-bar>
+    </div>
+    <!--
+        <div id="podcast-player" class="podcast panel panel-primary" v-if="audio != undefined" :class="{'minimized':minimized}">
             <article class="player-wrapper">
                 <div class="info-wrapper">
                     <div class="content">
@@ -48,54 +50,47 @@
                         <div v-show="!minimized" class="podcast-description">
                             <h3>{{audio.description}}</h3>
                         </div>
-                        <div id="slider-control" @click="seek" class="progress clickable"
-                             :class="{'progress-striped':state.playing, 'active': state.playing}"
-                             style="height: 15px;margin-bottom: 0">
+                        <div id="slider-control" @click="seek" class="progress clickable" :class="{'progress-striped':state.playing, 'active': state.playing}"
+                            style="height: 15px;margin-bottom: 0">
                             <div class="progress-bar" :style="{width: podcast.state.progress+'%'}"></div>
-                        </div>
-                        <div v-show="minimized">{{shortDescription}}</div>
-                        <div v-show="!minimized" class="audio-time" :class="{'clickable': state.playing}"
-                             @click="toggleTimeFormat">
-                            <h2>{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</h2>
-                        </div>
                     </div>
-                    <div class="controls-wrapper">
-                        <button :disabled="audio.previous_podcast_id == undefined" @click="previous" class="btn btn-xs hidden-xs"
-                                :class="{'disabled': !audio.previous_podcast_id}">
+                    <div v-show="minimized">{{shortDescription}}</div>
+                    <div v-show="!minimized" class="audio-time" :class="{'clickable': state.playing}" @click="toggleTimeFormat">
+                        <h2>{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</h2>
+                    </div>
+                </div>
+                <div class="controls-wrapper">
+                    <button :disabled="audio.previous_podcast_id == undefined" @click="previous" class="btn btn-xs hidden-xs" :class="{'disabled': !audio.previous_podcast_id}">
                             <i class="material-icons">skip_previous</i>
                             <div class="ripple-container"></div>
                         </button>
 
-                        <button :disabled="!state.playing" @click="skip(-10)" class="btn btn-xs btn-raised"
-                                :class="{'disabled': !state.playing}">
+                    <button :disabled="!state.playing" @click="skip(-10)" class="btn btn-xs btn-raised" :class="{'disabled': !state.playing}">
                             <i class="material-icons">fast_rewind</i>
                         </button>
-                        <button @click="togglePlay" class="btn btn-lg btn-raised btn-primary">
+                    <button @click="togglePlay" class="btn btn-lg btn-raised btn-primary">
                             <i v-show="!state.playing" class="material-icons">play_arrow</i>
                             <i v-show="state.playing" class="material-icons">pause</i>
                             <div class="ripple-container"></div>
                         </button>
-                        <button :disabled="!state.playing" @click="skip(10)" class="btn btn-xs btn-raised"
-                                :class="{'disabled': !state.playing}">
+                    <button :disabled="!state.playing" @click="skip(10)" class="btn btn-xs btn-raised" :class="{'disabled': !state.playing}">
                             <i class="material-icons">fast_forward</i>
                             <div class="ripple-container"></div>
                         </button>
 
-                        <button :disabled="audio.next_podcast_id == undefined" @click="next" class="btn btn-xs hidden-xs"
-                                :class="{'disabled': !audio.next_podcast_id}">
+                    <button :disabled="audio.next_podcast_id == undefined" @click="next" class="btn btn-xs hidden-xs" :class="{'disabled': !audio.next_podcast_id}">
                             <i class="material-icons">skip_next</i>
                             <div class="ripple-container"></div>
                         </button>
-                    </div>
                 </div>
-            </article>
         </div>
-    </transition>
+        </article>
+        </div>-->
 </template>
 <script>
     import VueAudio from '../../VueAudio.js'
     import PodcastService from '../../services/ascoota/PodcastService'
-    
+
     const podcastService = new PodcastService();
 
 
@@ -166,8 +161,9 @@
                     if (this.$store.state.autoPlay) {
                         this.$store.state.autoPlay = false;
                         this.play();
-                        setTimeout(() => { this.skip(this.state.initialSeek);this.state.initialSeek=0; }, 1000);
-                    
+                        if(this.state.initialSeek != 0){
+                            setTimeout(() => { this.skip(this.state.initialSeek); this.state.initialSeek = 0; }, 1000);
+                        }
                     }
                 }
             },
@@ -216,21 +212,21 @@
             },
             seek(event) {
                 let offset = event.offsetX;
-                let maxOffset = document.getElementById('slider-control').offsetWidth;
+                let maxOffset = document.body.offsetWidth;
                 let percent = offset / maxOffset;
                 this.podcast.setTime(percent * this.podcast.state.duration);
             },
-            next(){
+            next() {
                 this.changePodcast(this.audio.next_podcast_id);
             },
-            previous () {
+            previous() {
                 this.changePodcast(this.audio.previous_podcast_id);
             },
             changePodcast(podcastId) {
                 this.pause();
                 podcastService.getOne(podcastId).then(
                     (data) => {
-                        if(data.body.payload !== null){
+                        if (data.body.payload !== null) {
                             this.$store.state.selectedAudio = data.body.payload;
                             this.$store.state.autoPlay = true;
                         }
@@ -238,8 +234,7 @@
                 ).catch(
                     (error) => {
                         console.log(error);
-                    }
-                );
+                    });
             },
             close() {
                 this.pause();
@@ -271,4 +266,5 @@
             }
         }
     }
+
 </script>
