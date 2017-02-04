@@ -10,9 +10,9 @@
 
         <navigation />
 
-        <h2 class="md-title" style="flex: 1"><md-icon>hearing</md-icon>Scoota</h2>
+        <h2 class="md-title" style="flex: 1">
+            <md-icon>hearing</md-icon>Scoota</h2>
         <dev-links />
-
     </md-toolbar>
     <!--
     <nav class="navbar">

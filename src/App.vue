@@ -1,14 +1,19 @@
 <style>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  html,
+  body,
+  .app-viewport {
+    height: 100%;
+    overflow: hidden;
     text-align: center;
-    color: #2c3e50;
+  }
+  
+  .app-viewport {
+    display: flex;
+    flex-flow: column;
   }
 </style>
 <template>
-  <div id="app">
+  <div id="app" class="app-viewport phone-viewport">
     <main-nav />
     <md-card>
       <md-card-header>
@@ -18,6 +23,7 @@
       </md-card-content>
     </md-card>
     <audio-player :audio="audio" />
+  </div>
 </template>
 
 <script>
