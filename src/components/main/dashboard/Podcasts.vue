@@ -10,22 +10,20 @@
             </md-card-header-text>
         </md-card-header>
         <md-card-content>
-            <md-layout :md-gutter="8">
-                <md-layout v-for="podcast in podcasts">
-                    <podcast-card :podcast="podcast" />
-                </md-layout>
-            </md-layout>
+            <md-list class="md-double-line">
+                <podcast-list-item :podcast="podcast" v-for="podcast in podcasts" />
+            </md-list>
         </md-card-content>
     </md-card>
 </template>
 <script>
-    import PodcastCard from '../../podcast/cards/PodcastCard'
+    import PodcastListItem from '../../podcast/listItems/Podcast'
     import bazingas from '../../../mocks/bazingas'
 
     export default {
         name: "podcasts",
         components: {
-            PodcastCard
+            PodcastListItem
         },
         data() {
             return {
