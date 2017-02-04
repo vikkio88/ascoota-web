@@ -2,18 +2,21 @@
 
 </style>
 <template>
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3><i class="material-icons">trending_up</i> <i class="material-icons">audiotrack</i></h3>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div v-for="podcast in podcasts" class="col-sm-4">
+    <md-card>
+        <md-card-header>
+            <md-card-header-text>
+                <md-icon>trending_up</md-icon>
+                <md-icon>audiotrack</md-icon>
+            </md-card-header-text>
+        </md-card-header>
+        <md-card-content>
+            <md-layout :md-gutter="8">
+                <md-layout v-for="podcast in podcasts">
                     <podcast-card :podcast="podcast" />
-                </div>
-            </div>
-        </div>
-    </div>
+                </md-layout>
+            </md-layout>
+        </md-card-content>
+    </md-card>
 </template>
 <script>
     import PodcastCard from '../../podcast/cards/PodcastCard'
@@ -30,4 +33,5 @@
             };
         }
     }
+
 </script>
