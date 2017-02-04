@@ -1,11 +1,11 @@
 <style></style>
 <template>
     <div class="panel panel-primary">
-        <img class="img" :alt="radio.name" :title="radio.name" :src="radio.logo_url"/>
+        <!--<img class="img" :alt="radio.name" :title="radio.name" :src="radio.logo_url"/>-->
         <div class="panel-heading">
             <div class="panel-title pull-left">
                 <router-link :to="{ name: 'dashboard'}" class="btn">
-                    <i class="material-icons" style="color: white">arrow_back</i>
+                    <md-icon>arrow_back</md-icon>
                 </router-link>
             </div>
             <h2>
