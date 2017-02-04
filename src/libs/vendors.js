@@ -1,8 +1,11 @@
-import JQuery from 'jquery/src/jquery'
-import bootstrapjs from 'bootstrap/dist/js/bootstrap.js' 
-import bootstrap from 'bootstrap/dist/css/bootstrap.css'
-import bootstrapMaterial from 'bootstrap-material-design/dist/css/bootstrap-material-design.css'
-import ripplesCss from 'bootstrap-material-design/dist/css/ripples.css'
-import bootstrapMaterialJs from 'bootstrap-material-design/dist/js/material.js'
-import ripplesJs from 'bootstrap-material-design/dist/js/ripples.js'
+import Vue from 'vue'
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/vue-material.css'
+
+Vue.use(VueMaterial)
+Vue.material.registerTheme('default', {
+    primary: 'teal',
+    accent: 'white'
+})
+
 import flagIconCss from 'flag-icon-css/css/flag-icon.css'
