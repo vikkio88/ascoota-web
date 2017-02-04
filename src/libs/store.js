@@ -9,7 +9,7 @@ const store = new Vuex.Store({
         selectedAudio: undefined,
         autoPlay: false,
         showMainDialog: false,
-        startTime: undefined
+        startTime: 0
     }
 });
 
