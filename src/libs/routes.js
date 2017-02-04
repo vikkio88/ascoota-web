@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 //components
 import Dashboard from '../components/main/Dashboard'
+import About from '../components/main/About'
 import SingleRadio from '../components/podcast/SingleRadio'
 import PodcastTrigger from '../components/podcast/PodcastTrigger'
 import Show from '../components/podcast/Show'
@@ -31,6 +32,11 @@ var router = new VueRouter({
             path: '/podcasts/:podcastId',
             name: 'podcast',
             component: PodcastTrigger
+        },
+        {
+            path: '/about',
+            name: 'about',
+            component: About
         },
         {
             path: '*',
