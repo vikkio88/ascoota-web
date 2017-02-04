@@ -3,7 +3,7 @@
 </style>
 <template>
 
-    <md-toolbar>
+    <md-toolbar md-theme="navBar">
         <md-button class="md-icon-button">
             <md-icon>menu</md-icon>
         </md-button>
