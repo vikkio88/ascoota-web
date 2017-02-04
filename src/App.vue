@@ -15,9 +15,9 @@
       </md-card-header>
       <md-card-content>
         <router-view></router-view>
-        <audio-player :audio="audio" />
       </md-card-content>
     </md-card>
+    <audio-player :audio="audio" />
 </template>
 
 <script>
