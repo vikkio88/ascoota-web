@@ -1,6 +1,20 @@
 <style>
+
 </style>
 <template>
+
+    <md-toolbar>
+        <md-button class="md-icon-button">
+            <md-icon>menu</md-icon>
+        </md-button>
+
+        <navigation />
+
+        <h2 class="md-title" style="flex: 1"><md-icon>hearing</md-icon>Scoota</h2>
+        <dev-links />
+
+    </md-toolbar>
+    <!--
     <nav class="navbar">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -21,7 +35,7 @@
                             class="btn btn-xs btn-success btn-raised">
                             <i class="material-icons">account_circle</i>
                             <div class="ripple-container"></div>
-                        </a>
+                            </a>
                     </li>
                 </ul>
                 <dev-links />
@@ -29,6 +43,7 @@
         </div>
         </div>
     </nav>
+    -->
 </template>
 <script>
     import DevLinks from './elements/DevLinks'
@@ -41,4 +56,5 @@
             Navigation
         }
     }
+
 </script>

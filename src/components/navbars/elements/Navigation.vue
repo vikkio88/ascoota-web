@@ -1,16 +1,15 @@
 <style></style>
 <template>
-    <ul class="nav navbar-nav">
-        <li>
-            <router-link :to="{ name: 'dashboard' }" class="btn btn-xs">
-                <i class="material-icons">dashboard</i>
-                <div class="ripple-container"></div>
+    <div>
+        <md-button class="md-icon-button">
+            <router-link :to="{ name: 'dashboard' }">
+                <md-icon>dashboard</md-icon>
             </router-link>
-        </li>
-    </ul>
+        </md-button>
 </template>
 <script>
     export default {
         name: 'navigation'
     }
+
 </script>
