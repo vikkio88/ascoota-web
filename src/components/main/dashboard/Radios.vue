@@ -10,16 +10,14 @@
             </md-card-header-text>
         </md-card-header>
         <md-card-content>
-            <md-layout :md-gutter="8">
-                <md-layout v-for="radio in radios">
-                    <radio-card :radio="radio" />
-                </md-layout>
-            </md-layout>
+            <md-list class="md-double-line">
+                <radio-list-item :radio="radio" v-for="radio in radios" />
+            </md-list>
         </md-card-content>
     </md-card>
 </template>
 <script>
-    import RadioCard from '../../podcast/cards/RadioCard'
+    import RadioListItem from '../../podcast/listItems/Radio'
     import RadioService from '../../../services/ascoota/RadioService'
 
     var radioService = new RadioService();
@@ -43,7 +41,7 @@
             };
         },
         components: {
-            RadioCard
+            RadioListItem
         }
     }
 </script>
