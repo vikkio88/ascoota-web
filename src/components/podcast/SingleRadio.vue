@@ -1,41 +1,40 @@
 <style></style>
 <template>
-    <div class="panel panel-primary">
-        <!--<img class="img" :alt="radio.name" :title="radio.name" :src="radio.logo_url"/>-->
-        <div class="panel-heading">
-            <div class="panel-title pull-left">
-                <router-link :to="{ name: 'dashboard'}" class="btn">
+    <div>
+        <md-card>
+            <md-card-header>
+                <router-link :to="{ name: 'dashboard'}">
                     <md-icon>arrow_back</md-icon>
                 </router-link>
-            </div>
-            <h2>
-                {{radio.name}}
-                <flag-icon :language="language" />
-            </h2>
-        </div>
-        <div class="panel-body">
-            <h3>{{radio.description}}</h3>
-            <a class="btn btn-primary" :href="radio.website" target="_blank">
-                <i class="material-icons">link</i>
-            </a>
-            <div class="panel panel-primary" v-if="shows.length">
-                <div class="panel-heading">
-                    <h3>Shows</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div v-for="show in shows" class="col-sm-4">
-                            <show-card :show="show"/>
-                        </div>
+                <md-card-media>
+                    <img class="img" :alt="radio.name" :title="radio.name" :src="radio.logo_url" />
+                </md-card-media>
+                <md-card-header-text>
+                    <div class="md-title">{{radio.name}}
+                        <flag-icon :language="language" />
                     </div>
-                </div>
-            </div>
-        </div>
+                    <div class="md-subhead">{{radio.description}}</div>
+                </md-card-header-text>
+            </md-card-header>
+
+            <md-card-actions>
+                <a :href="radio.website" target="_blank">
+                    <md-icon>link</md-icon>
+                </a>
+            </md-card-actions>
+        </md-card>
+        <md-card>
+            <md-card-content v-if="shows.length">
+                <md-list class="md-double-line">
+                    <show-list-item :show="show" v-for="show in shows" />
+                </md-list>
+            </md-card-content>
+        </md-card>
     </div>
 </template>
 <script>
     import FlagIcon from '../common/FlagIcon';
-    import ShowCard from './cards/ShowCard';
+    import ShowListItem from './listItems/Show';
     import RadioService from '../../services/ascoota/RadioService';
 
     var radioService = new RadioService();
@@ -44,7 +43,7 @@
         name: 'single-radio',
         components: {
             FlagIcon,
-            ShowCard
+            ShowListItem
         },
         mounted() {
             radioService.getOne(this.$route.params.radioId).then(
