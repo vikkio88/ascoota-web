@@ -3,7 +3,7 @@
 </style>
 <template>
     <md-list-item @click="toggleMe">
-        <md-avatar class="md-avatar-icon">
+        <md-avatar class="md-avatar-icon" v-if="showimg">
             <img alt="podcast.name" :src="podcast.show.logo_url">
         </md-avatar>
 
