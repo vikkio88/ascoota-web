@@ -1,46 +1,32 @@
 <style>
-    .fade-enter-active,
-    .fade-leave-active {
-        transition: opacity .3s
-    }
-    
-    .fade-enter,
-    .fade-leave-active {
-        opacity: 0
-    }
-    
-    .bottom {
-        min-height: 56px;
-    }
+
 </style>
 <template>
-    <div class="bottom-player" v-if="audio != undefined">
-        <md-bottom-bar>
-            <div @click="previous">
-                <md-bottom-bar-item md-icon="skip_previous"></md-bottom-bar-item>
-            </div>
-            <div @click="skip(-10)">
-                <md-bottom-bar-item v-if="state.playing" md-icon="fast_rewind"></md-bottom-bar-item>
-            </div>
-            <div @click="togglePlay">
-                <md-bottom-bar-item v-if="!state.playing" @click="togglePlay" md-icon="play_arrow"></md-bottom-bar-item>
-                <md-bottom-bar-item v-if="state.playing" @click="togglePlay" md-icon="pause"></md-bottom-bar-item>
-            </div>
-            <div @click="skip(10)">
-                <md-bottom-bar-item v-if="state.playing" md-icon="fast_forward"></md-bottom-bar-item>
-            </div>
-
-            <div @click="next">
-                <md-bottom-bar-item md-icon="skip_next"></md-bottom-bar-item>
-            </div>
-        </md-bottom-bar>
-        <div @click="seek">
-            <md-progress :md-progress="podcast.state.progress"></md-progress>
-            <span class="md-caption">{{shortDescription}}</span>
-        </div>
+    <md-card v-if="audio != undefined">
+        <md-button-toggle>
+            <!--
+            <md-button class="md-raised" @click="previous">
+                <md-icon>skip_previous</md-icon>
+            </md-button>
+            -->
+            <md-button class="md-raised" @click="skip(-10)">
+                <md-icon>fast_rewind</md-icon>
+            </md-button>
+            <md-button class="md-raised" @click="togglePlay">
+                <md-icon v-if="!state.playing">play_arrow</md-icon>
+                <md-icon v-if="state.playing">pause</md-icon>
+            </md-button>
+            <md-button class="md-raised" @click="skip(10)">
+                <md-icon>fast_forward</md-icon>
+            </md-button>
+            <!--
+            <md-button class="md-raised" @click="next">
+                <md-icon>skip_next</md-icon>
+            </md-button>-->
+        </md-button-toggle>
         <md-dialog-alert :md-content="alert.content" :md-ok-text="alert.ok" ref="errorMessage">
         </md-dialog-alert>
-    </div>
+    </md-card>
     <!--
         This bit contains the audio time, still dont know where to put it :(
         <div v-show="!minimized" class="audio-time" :class="{'clickable': state.playing}" @click="toggleTimeFormat">
@@ -187,7 +173,7 @@
                 this.changePodcast(this.audio.previous_podcast_id);
             },
             changePodcast(podcastId) {
-                if (podcastId== undefined){
+                if (podcastId == undefined) {
                     this.$refs['errorMessage'].open()
                     return;
                 }
