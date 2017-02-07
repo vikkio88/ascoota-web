@@ -2,10 +2,10 @@
 <template>
     <div>
         <md-card>
-            <md-card-header>
-                <router-link :to="{ name: 'dashboard'}">
+            <router-link :to="{ name: 'dashboard'}" tag="md-button">
                     <md-icon>arrow_back</md-icon>
                 </router-link>
+            <md-card-header>
                 <md-card-media>
                     <img class="img" :alt="radio.name" :title="radio.name" :src="radio.logo_url" />
                 </md-card-media>

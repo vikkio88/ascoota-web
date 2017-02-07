@@ -2,10 +2,10 @@
 <template>
     <div>
         <md-card>
-            <md-card-header>
-                <router-link :to="{ name: 'singleRadioView', params: { radioId: radioId }}">
+            <router-link :to="{ name: 'singleRadioView', params: { radioId: radioId }}" tag="md-button">
                     <md-icon>arrow_back</md-icon>
                 </router-link>
+            <md-card-header>
                 <md-card-media>
                     <img class="img" :alt="show.name" :title="show.name" :src="show.logo_url" />
                 </md-card-media>
