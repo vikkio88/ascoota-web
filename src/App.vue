@@ -22,7 +22,17 @@
         <router-view></router-view>
       </md-card-content>
     </md-card>
-    <audio-player :audio="audio" />
+    <md-button @click="toggleRightSidenav" class="md-fab md-wanr md-fab-bottom-right">
+      <md-icon>play_arrow</md-icon>
+    </md-button>
+    <md-sidenav class="md-right" ref="rightSidenav">
+      <md-toolbar>
+        <div class="md-toolbar-container">
+          <h3 class="md-title">Sidenav content</h3>
+        </div>
+      </md-toolbar>
+      <audio-player :audio="audio" />
+    </md-sidenav>
   </div>
 </template>
 
@@ -45,6 +55,14 @@
     },
     mounted() {
       this.$stats.push('render_home');
+    },
+    methods: {
+      toggleRightSidenav() {
+        this.$refs.rightSidenav.toggle();
+      },
+      closeRightSidenav() {
+        this.$refs.rightSidenav.close();
+      }
     }
   }
 

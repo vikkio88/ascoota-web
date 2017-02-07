@@ -15,10 +15,6 @@
 </style>
 <template>
     <div class="bottom-player" v-if="audio != undefined">
-        <div @click="seek">
-            <md-progress :md-progress="podcast.state.progress"></md-progress>
-            <span class="md-caption">{{shortDescription}}</span>
-        </div>
         <md-bottom-bar>
             <div @click="previous">
                 <md-bottom-bar-item md-icon="skip_previous"></md-bottom-bar-item>
@@ -37,8 +33,11 @@
             <div @click="next">
                 <md-bottom-bar-item md-icon="skip_next"></md-bottom-bar-item>
             </div>
-
         </md-bottom-bar>
+        <div @click="seek">
+            <md-progress :md-progress="podcast.state.progress"></md-progress>
+            <span class="md-caption">{{shortDescription}}</span>
+        </div>
         <md-dialog-alert :md-content="alert.content" :md-ok-text="alert.ok" ref="errorMessage">
         </md-dialog-alert>
     </div>
