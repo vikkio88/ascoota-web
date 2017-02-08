@@ -22,16 +22,16 @@
         <router-view></router-view>
       </md-card-content>
     </md-card>
-    <md-button @click="toggleRightSidenav" class="md-fab md-wanr md-fab-bottom-right">
-      <md-icon>play_arrow</md-icon>
+    <md-button @click="toggleRightSidenav" class="md-fab md-fab-bottom-right">
+      <md-icon>audiotrack</md-icon>
     </md-button>
     <md-sidenav class="md-right" ref="rightSidenav">
       <md-toolbar>
         <div class="md-toolbar-container">
-          <h3 class="md-title">Sidenav content</h3>
+          <h3 class="md-title">Podcast Player</h3>
         </div>
       </md-toolbar>
-      <audio-player :audio="audio" />
+      <audio-player/>
     </md-sidenav>
   </div>
 </template>
@@ -43,11 +43,6 @@
 
   export default {
     name: 'app',
-    data() {
-      return {
-        audio: null
-      }
-    },
     components: {
       AudioPlayer,
       MainNav,
