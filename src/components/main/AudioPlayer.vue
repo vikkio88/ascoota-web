@@ -24,6 +24,7 @@
             </div>
         </md-toolbar>
         <h3 class="md-title">{{audio.name}}</h3>
+        <img v-if="audio.show" :src="audio.show.logo_url" />
         <span class="md-subheading">{{audio.description}}</span>
         <div @click="seek">
             <md-progress :md-progress="podcast.state.progress"></md-progress>
