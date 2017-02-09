@@ -1,5 +1,6 @@
 <style>
     div.audio-player {
+        margin-top: 20px;
         display: flex;
         justify-content: space-around;
         align-items: center;
@@ -10,45 +11,51 @@
         justify-content: center;
         align-items: center;
     }
+    
+    div.controls-wrapper.bottom {
+        justify-content: space-around;
+    }
 </style>
 <template>
-    <div class="audio-player">
-        <md-card v-if="audio != undefined">
-            <div class="controls-wrapper">
-                <md-button class="md-raised" @click="skip(-10)">
-                    <md-icon>fast_rewind</md-icon>
-                </md-button>
-                <md-button class="md-raised" @click="togglePlay">
-                    <md-icon v-if="!state.playing">play_arrow</md-icon>
-                    <md-icon v-if="state.playing">pause</md-icon>
-                </md-button>
-                <md-button class="md-raised" @click="skip(10)">
-                    <md-icon>fast_forward</md-icon>
-                </md-button>
+    <div v-if="audio != undefined">
+        <md-toolbar>
+            <div class="md-toolbar-container">
+                <h3 class="md-title">Player</h3>
             </div>
-            <span class="md-title">{{audio.name}}</span>
-            <span class="md-subheading">{{audio.description}}</span>
-            <div @click="seek">
-                <md-progress :md-progress="podcast.state.progress"></md-progress>
-            </div>
-            <div :class="{'clickable': state.playing}" @click="toggleTimeFormat">
-                <span class="md-headline">{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</span>
-            </div>
-            <div class="controls-wrapper">
-                <md-button class="md-raised" @click="previous">
-                    <md-icon>skip_previous</md-icon>
-                </md-button>
-                <md-button class="md-raised" @click="next">
-                    <md-icon>skip_next</md-icon>
-                </md-button>
-            </div>
-            <md-dialog-alert :md-content="alert.content" :md-ok-text="alert.ok" ref="errorMessage">
-            </md-dialog-alert>
-        </md-card>
+        </md-toolbar>
+        <h3 class="md-title">{{audio.name}}</h3>
+        <span class="md-subheading">{{audio.description}}</span>
+        <div @click="seek">
+            <md-progress :md-progress="podcast.state.progress"></md-progress>
+        </div>
+        <div :class="{'clickable': state.playing}" @click="toggleTimeFormat">
+                    <span class="md-headline">{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</span>
+                </div>
+        <div class="audio-player">
+            <md-card>
+                <div class="controls-wrapper">
+                    <md-button class="md-raised md-accent md-icon-button" @click="previous">
+                        <md-icon>skip_previous</md-icon>
+                    </md-button>
+                    <md-button class="md-raised md-icon-button" @click="skip(-10)">
+                        <md-icon>fast_rewind</md-icon>
+                    </md-button>
+                    <md-button class="md-raised" :class="{'md-primary':!state.playing, 'md-warn':state.playing}" @click="togglePlay">
+                        <md-icon v-if="!state.playing">play_arrow</md-icon>
+                        <md-icon v-if="state.playing">pause</md-icon>
+                    </md-button>
+                    <md-button class="md-raised md-icon-button" @click="skip(10)">
+                        <md-icon>fast_forward</md-icon>
+                    </md-button>
+                    <md-button class="md-raised md-accent md-icon-button" @click="next">
+                        <md-icon>skip_next</md-icon>
+                    </md-button>
+                </div>
+                <md-dialog-alert :md-content="alert.content" :md-ok-text="alert.ok" ref="errorMessage">
+                </md-dialog-alert>
+            </md-card>
+        </div>
     </div>
-    <!--
-        This bit contains the audio time, still dont know where to put it :(
-    -->
 </template>
 <script>
     import VueAudio from '../../VueAudio.js'
