@@ -22,15 +22,10 @@
         <router-view></router-view>
       </md-card-content>
     </md-card>
-    <md-button @click="toggleRightSidenav" class="md-fab md-fab-bottom-right">
+    <md-button v-if="audioSelected" @click="toggleRightSidenav" class="md-fab md-fab-bottom-right md-warn">
       <md-icon>audiotrack</md-icon>
     </md-button>
     <md-sidenav class="md-right" ref="rightSidenav">
-      <md-toolbar>
-        <div class="md-toolbar-container">
-          <h3 class="md-title">Podcast Player</h3>
-        </div>
-      </md-toolbar>
       <audio-player/>
     </md-sidenav>
   </div>
@@ -48,15 +43,17 @@
       MainNav,
       Dashboard
     },
+    computed: {
+      audioSelected() {
+        return this.$store.state.selectedAudio !== undefined;
+      }
+    },
     mounted() {
       this.$stats.push('render_home');
     },
     methods: {
       toggleRightSidenav() {
         this.$refs.rightSidenav.toggle();
-      },
-      closeRightSidenav() {
-        this.$refs.rightSidenav.close();
       }
     }
   }
