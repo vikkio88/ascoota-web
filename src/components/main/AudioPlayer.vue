@@ -1,4 +1,13 @@
 <style>
+    .clickable {
+        cursor: pointer;
+    }
+
+    .progress-bar {
+        margin-top:15px;
+        height: 20px;
+    }
+    
     div.audio-player {
         margin-top: 20px;
         display: flex;
@@ -26,12 +35,12 @@
         <h3 class="md-title">{{audio.name}}</h3>
         <img v-if="audio.show" :src="audio.show.logo_url" />
         <span class="md-subheading">{{audio.description}}</span>
-        <div @click="seek">
+        <div @click="seek" class="progress-bar">
             <md-progress :md-progress="podcast.state.progress"></md-progress>
         </div>
         <div :class="{'clickable': state.playing}" @click="toggleTimeFormat">
-                    <span class="md-headline">{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</span>
-                </div>
+            <span class="md-headline">{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</span>
+        </div>
         <div class="audio-player">
             <md-card>
                 <div class="controls-wrapper">
@@ -186,7 +195,7 @@
             },
             seek(event) {
                 let offset = event.offsetX;
-                let maxOffset = document.body.offsetWidth; //todo: change with element offset
+                let maxOffset = event.target.offsetWidth;
                 let percent = offset / maxOffset;
                 this.podcast.setTime(percent * this.podcast.state.duration);
             },
