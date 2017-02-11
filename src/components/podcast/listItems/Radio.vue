@@ -12,6 +12,7 @@
                 <flag-icon :language="radio.language.iso" />
             </p>
         </div>
+        <md-divider class="md-inset"></md-divider>
     </md-list-item>
 </template>
 <script>
@@ -26,8 +27,8 @@
             radio: Object
         },
         methods: {
-            gotoRadio (){
-                this.$router.push({ name: 'singleRadioView', params: { radioId: this.radio.id  }});
+            gotoRadio() {
+                this.$router.push({ name: 'singleRadioView', params: { radioId: this.radio.id } });
             }
         }
     }

@@ -15,6 +15,7 @@
             <md-icon v-if="!isSelected">play_arrow</md-icon>
             <md-icon v-if="isSelected">stop</md-icon>
         </md-button>
+        <md-divider class="md-inset"></md-divider>
     </md-list-item>
 </template>
 <script>
