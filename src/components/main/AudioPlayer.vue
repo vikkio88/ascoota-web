@@ -2,9 +2,9 @@
     .clickable {
         cursor: pointer;
     }
-
+    
     .progress-bar {
-        margin-top:15px;
+        margin-top: 15px;
         height: 20px;
     }
     
@@ -143,9 +143,15 @@
                     this.setTitle();
                     if (this.$store.state.autoPlay) {
                         this.$store.state.autoPlay = false;
-                        this.play();
+                        setTimeout(
+                            this.play(),
+                            500
+                        );
                         if (this.state.initialSeek != 0) {
-                            setTimeout(() => { this.skip(this.state.initialSeek); this.state.initialSeek = 0; }, 1000);
+                            setTimeout(
+                                () => { this.skip(this.state.initialSeek); this.state.initialSeek = 0; },
+                                2000
+                            );
                         }
                     }
                 }
