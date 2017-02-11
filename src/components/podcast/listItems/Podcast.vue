@@ -23,6 +23,7 @@
         name: "podcast-list-item",
         props: {
             podcast: Object,
+            show: { type: Object, default: undefined },
             showimg: { type: Boolean, default: true }
         },
         computed: {
@@ -34,6 +35,11 @@
         methods: {
             toggleMe() {
                 if (!this.isSelected) {
+                    if (this.show !== undefined) {
+                        this.podcast.show = {
+                            logo_url: this.show.logo_url
+                        }
+                    }
                     this.$store.state.selectedAudio = this.podcast;
                     this.$store.state.autoPlay = true;
                 } else {
