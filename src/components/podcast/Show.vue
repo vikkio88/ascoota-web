@@ -30,7 +30,7 @@
         <md-card>
             <md-card-content v-if="podcasts.length">
                 <md-list class="md-double-line">
-                    <podcast-list-item :podcast="podcast" :showimg="false" v-for="podcast in podcasts" />
+                    <podcast-list-item :podcast="podcast" :show="show" :showimg="false" v-for="podcast in podcasts" />
                 </md-list>
             </md-card-content>
         </md-card>
