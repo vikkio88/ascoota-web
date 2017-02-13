@@ -32,6 +32,7 @@
                 <md-list class="md-double-line">
                     <podcast-list-item :podcast="podcast" :show="show" :showimg="false" v-for="podcast in podcasts" />
                 </md-list>
+                <md-button @click="more">More</md-button>
             </md-card-content>
         </md-card>
     </div>
@@ -49,11 +50,13 @@
         },
         data() {
             return {
+                service: null,
                 params: this.$route.params,
                 radioId: this.$route.params.radioId,
                 show: {},
                 language: 'it',
-                podcasts: []
+                podcasts: [],
+                page:1
             };
         },
         watch: {
@@ -67,8 +70,8 @@
         methods: {
             init() {
                 let params = this.$route.params;
-                let service = new ShowService(params.radioId)
-                service.getOne(params.showId).then(
+                this.service = new ShowService(params.radioId)
+                this.service.getOne(params.showId).then(
                     (data) => {
                         this.show = data.body.payload;
                         if (this.show.language !== undefined) {
@@ -80,7 +83,19 @@
                     (error) => {
                         console.log(error);
                     }
-                    );
+                );
+            },
+            more(){
+                this.page += 1;
+                this.service.getMorePodcasts(this.show.id, this.page).then(
+                    (data) => {
+                        this.podcasts = this.podcasts.concat(data.body.payload);
+                    }
+                ).catch(
+                    (error) => {
+                        console.log(error);
+                    }
+                );
             }
         }
     }
