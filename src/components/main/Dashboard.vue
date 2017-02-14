@@ -6,8 +6,8 @@
 <template>
     <div id="dashboard">
         <div class="panel-group">
-            <podcasts />
             <radios />
+            <podcasts />
         </div>
     </div>
 </template>
