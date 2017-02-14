@@ -86,11 +86,11 @@
                 this.service.getMorePodcasts(this.show.id, this.page).then(
                     data => {
                         let newPodcasts = data.body.payload;
-                        if (newPodcasts.length) {
-                            this.podcasts = this.podcasts.concat(newPodcasts);
-                        } else {
+                        if (newPodcasts.length == 0) {
                             this.page = 0;
+                            return;
                         }
+                        this.podcasts = this.podcasts.concat(newPodcasts);
                     }
                 ).catch(error => { console.log(error); });
             }
