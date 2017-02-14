@@ -2,29 +2,45 @@
 
 </style>
 <template>
+    <div>
+        <md-toolbar md-theme="navBar">
+            <md-button @click="toggleMain" class="md-icon-button">
+                <md-icon>menu</md-icon>
+            </md-button>
+            <h2 class="md-title" style="flex: 1">
+                <md-icon>hearing</md-icon>Scoota</h2>
+            <dev-links />
+        </md-toolbar>
+        <md-sidenav class="md-left" ref="mainMenu">
+            <md-toolbar>
+                <div class="md-toolbar-container">
+                    <h3 class="md-title">
+                        <md-icon>hearing</md-icon>Scoota</h2>
+                    </h3>
+                </div>
+            </md-toolbar>
 
-    <md-toolbar md-theme="navBar">
-        <md-button class="md-icon-button">
-            <md-icon>menu</md-icon>
-        </md-button>
-
-        <navigation />
-
-        <h2 class="md-title" style="flex: 1">
-            <md-icon>hearing</md-icon>Scoota</h2>
-        <dev-links />
-    </md-toolbar>
+            <md-list>
+                <router-link tag="md-list-item" :to="{ name: 'dashboard' }" @click="toggleMain">
+                    <md-icon>dashboard</md-icon> <span>Dashboard</span>
+                </router-link>
+                <md-divider class="md-inset"></md-divider>
+            </md-list>
+        </md-sidenav>
+    </div>
 </template>
 <script>
     import DevLinks from './elements/DevLinks'
-    import Navigation from './elements/Navigation'
 
     export default {
         name: "mainNavBar",
         components: {
-            DevLinks,
-            Navigation
+            DevLinks
+        },
+        methods: {
+            toggleMain() {
+                this.$refs.mainMenu.toggle();
+            }
         }
     }
-
 </script>
