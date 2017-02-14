@@ -32,7 +32,7 @@
                 <md-list class="md-double-line">
                     <podcast-list-item :podcast="podcast" :show="show" :showimg="false" v-for="podcast in podcasts" />
                 </md-list>
-                <md-button @click="more">More</md-button>
+                <md-button v-if="page>0" @click="more">More</md-button>
             </md-card-content>
         </md-card>
     </div>
@@ -56,7 +56,7 @@
                 show: {},
                 language: 'it',
                 podcasts: [],
-                page:1
+                page: 1
             };
         },
         watch: {
@@ -79,23 +79,20 @@
                         }
                         this.podcasts = this.show.podcasts;
                     }
-                ).catch(
-                    (error) => {
-                        console.log(error);
-                    }
-                );
+                ).catch(error => { console.log(error); });
             },
-            more(){
+            more() {
                 this.page += 1;
                 this.service.getMorePodcasts(this.show.id, this.page).then(
-                    (data) => {
-                        this.podcasts = this.podcasts.concat(data.body.payload);
+                    data => {
+                        let newPodcasts = data.body.payload;
+                        if (newPodcasts.length) {
+                            this.podcasts = this.podcasts.concat(newPodcasts);
+                        } else {
+                            this.page = 0;
+                        }
                     }
-                ).catch(
-                    (error) => {
-                        console.log(error);
-                    }
-                );
+                ).catch(error => { console.log(error); });
             }
         }
     }
