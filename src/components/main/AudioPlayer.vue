@@ -24,6 +24,12 @@
     div.controls-wrapper.bottom {
         justify-content: space-around;
     }
+    
+    img.logo-url-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 </style>
 <template>
     <div v-if="audio != undefined">
@@ -33,7 +39,10 @@
             </div>
         </md-toolbar>
         <h3 class="md-title">{{audio.name}}</h3>
-        <img v-if="audio.show" :src="audio.show.logo_url" />
+        <div class="logo-url-wrapper">
+            <img v-if="audio.show" :src="audio.show.logo_url" style="height:150px" />
+        </div>
+
         <span class="md-subheading">{{audio.description}}</span>
         <div @click="seek" class="progress-bar">
             <md-progress :md-progress="podcast.state.progress"></md-progress>
