@@ -21,9 +21,9 @@
             </md-toolbar>
 
             <md-list>
-                <router-link tag="md-list-item" :to="{ name: 'dashboard' }" @click="toggleMain">
+                <md-list-item @click="goTo('dashboard')">
                     <md-icon>dashboard</md-icon> <span>Dashboard</span>
-                </router-link>
+                </md-list-item>
                 <md-divider class="md-inset"></md-divider>
             </md-list>
         </md-sidenav>
@@ -38,9 +38,14 @@
             DevLinks
         },
         methods: {
+            goTo(route) {
+                this.toggleMain();
+                this.$router.push('/' + route);
+            },
             toggleMain() {
                 this.$refs.mainMenu.toggle();
             }
         }
     }
+
 </script>
