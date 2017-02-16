@@ -1,5 +1,4 @@
 <style>
-
 </style>
 <template>
     <md-card v-if="radios.length > 0">
@@ -9,15 +8,17 @@
                 <md-icon>radio</md-icon>
             </md-card-header-text>
         </md-card-header>
-        <md-card-content>
-            <md-list class="md-double-line">
-                <radio-list-item :radio="radio" v-for="radio in radios" />
-            </md-list>
-        </md-card-content>
+        <div class="radios-wrapper">
+            <md-card-content>
+                <md-layout md-row md-align="center">
+                <radio-card :radio="radio" v-for="radio in radios" />
+                </md-layout>
+            </md-card-content>
+        </div>
     </md-card>
 </template>
 <script>
-    import RadioListItem from '../../podcast/listItems/Radio'
+    import RadioCard from '../../podcast/cards/RadioCard'
     import RadioService from '../../../services/ascoota/RadioService'
 
     var radioService = new RadioService();
@@ -27,7 +28,7 @@
         mounted() {
             radioService.getAll().then(
                 (data) => {
-                    this.radios = data.body.payload
+                    this.radios = data.body.payload;
                 }
             ).catch(
                 (errors) => {
@@ -41,7 +42,8 @@
             };
         },
         components: {
-            RadioListItem
+            RadioCard
         }
     }
+
 </script>
