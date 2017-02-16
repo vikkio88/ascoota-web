@@ -1,16 +1,14 @@
 <style>
-div.radio-card-wrapper {
-    margin: 10px;
-}
+    div.radio-card-wrapper {
+        margin: 10px;
+    }
 </style>
 <template>
-    <div class="radio-card-wrapper">
+    <div class="radio-card-wrapper" @click="showRadio">
         <md-card md-with-hover>
-            <router-link :to="{ name: 'singleRadioView', params: { radioId: radio.id }}">
                 <md-card-media>
-                    <img  style="width: 170px;height: auto;" alt="radio.name" :src="radio.logo_url">
+                    <img style="width: 170px;height: auto;" alt="radio.name" :src="radio.logo_url">
                 </md-card-media>
-            </router-link>
             <md-card-header>
                 <div class="md-title">{{radio.name}}</div>
             </md-card-header>
@@ -30,6 +28,11 @@ div.radio-card-wrapper {
         },
         props: {
             radio: Object
+        },
+        methods: {
+            showRadio() {
+                this.$router.push({ name: 'singleRadioView', params: { radioId: this.radio.id } });
+            }
         }
     }
 
