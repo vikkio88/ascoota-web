@@ -6,6 +6,7 @@ import Dashboard from '../components/main/Dashboard'
 import About from '../components/main/About'
 import SingleRadio from '../components/podcast/SingleRadio'
 import PodcastTrigger from '../components/podcast/PodcastTrigger'
+import RadioShow from '../components/podcast/RadioShow'
 import Show from '../components/podcast/Show'
 
 Vue.use(VueRouter);
@@ -26,6 +27,11 @@ var router = new VueRouter({
         {
             path: '/radio/:radioId/show/:showId',
             name: 'singleShowView',
+            component: RadioShow
+        },
+        {
+            path: '/shows/:slug',
+            name: 'show',
             component: Show
         },
         {
