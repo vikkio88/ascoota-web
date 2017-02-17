@@ -7,7 +7,7 @@
     <div class="radio-card-wrapper" @click="showRadio">
         <md-card md-with-hover>
                 <md-card-media>
-                    <img style="width: 170px;height: auto;" alt="radio.name" :src="radio.logo_url">
+                    <img style="width: 250px;height: auto;" alt="radio.name" :src="radio.logo_url">
                 </md-card-media>
             <md-card-header>
                 <div class="md-title">{{radio.name}}</div>
