@@ -1,7 +1,11 @@
 <style></style>
 <template>
-    -
-    <show-details :show="show" :podcasts="podcasts" :backLinkRadio="false" :language="language" :page="page" />
+    <div>
+        <show-details :show="show" :podcasts="podcasts" :backLinkRadio="false" :language="language" :page="page" />
+        <div v-if="podcasts.length">
+            <md-button class="md-raised" @click="more">More</md-button>
+        </div>
+    </div>
 </template>
 <script>
     import ShowService from '../../services/ascoota/ShowService.js'

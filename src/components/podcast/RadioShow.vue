@@ -5,6 +5,9 @@
             <md-icon>arrow_back</md-icon>
         </router-link>
         <show-details :show="show" :podcasts="podcasts" />
+        <div v-if="podcasts.length">
+            <md-button class="md-raised" @click="more">More</md-button>
+        </div>
     </div>
 </template>
 <script>
