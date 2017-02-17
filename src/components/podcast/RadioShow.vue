@@ -4,7 +4,7 @@
         <router-link :to="{ name: 'singleRadioView', params: { radioId: radioId }}" tag="md-button">
             <md-icon>arrow_back</md-icon>
         </router-link>
-        <show-details :show="show" :podcasts="podcasts" />
+        <show-details :show="show" :podcasts="podcasts" :language="language" :page="page" />
         <div v-if="podcasts.length && page > 0">
             <md-button class="md-raised" @click="more">More</md-button>
         </div>

@@ -1,7 +1,7 @@
 <style></style>
 <template>
     <div>
-        <show-details :show="show" :podcasts="podcasts" :backLinkRadio="false" :language="language" :page="page" />
+        <show-details :show="show" :podcasts="podcasts" :language="language" :page="page" />
         <div v-if="podcasts.length && page > 0">
             <md-button class="md-raised" @click="more">More</md-button>
         </div>
