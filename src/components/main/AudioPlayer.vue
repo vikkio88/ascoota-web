@@ -139,9 +139,6 @@
                 return `${this.audio.name} - ${this.audio.description}`.substring(0, 60) + '...';
             }
         },
-        mounted() {
-            window.addEventListener('scroll', this.scrollHandler);
-        },
         methods: {
             init() {
                 if (this.audio !== undefined) {
