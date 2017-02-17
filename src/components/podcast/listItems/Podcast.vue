@@ -1,22 +1,26 @@
 <style>
-
+div.podcast-list-item {
+    margin: 10px;
+}
 </style>
 <template>
-    <md-list-item @click="toggleMe">
-        <md-avatar class="md-avatar-icon" v-if="showimg">
-            <img alt="podcast.name" :src="podcast.show.logo_url">
-        </md-avatar>
+    <div class="podcast-list-item">
+        <md-list-item @click="toggleMe">
+            <md-avatar class="md-avatar-icon" v-if="showimg">
+                <img alt="podcast.name" :src="podcast.show.logo_url">
+            </md-avatar>
 
-        <div class="md-list-text-container">
-            <span>{{podcast.name}} - {{podcast.description}}</span>
-            <p>{{podcast.date}}</p>
-        </div>
-        <md-button class="md-raised md-icon-button md-list-action" :class="{ 'md-warn': isSelected, 'md-primary':!isSelected }">
-            <md-icon v-if="!isSelected">play_arrow</md-icon>
-            <md-icon v-if="isSelected">stop</md-icon>
-        </md-button>
-        <md-divider class="md-inset"></md-divider>
-    </md-list-item>
+            <div class="md-list-text-container">
+                <span>{{podcast.name}} - {{podcast.description}}</span>
+                <p>{{podcast.date}}</p>
+            </div>
+            <md-button class="md-raised md-icon-button md-list-action" :class="{ 'md-warn': isSelected, 'md-primary':!isSelected }">
+                <md-icon v-if="!isSelected">play_arrow</md-icon>
+                <md-icon v-if="isSelected">stop</md-icon>
+            </md-button>
+            <md-divider class="md-inset"></md-divider>
+        </md-list-item>
+    </div>
 </template>
 <script>
     export default {
