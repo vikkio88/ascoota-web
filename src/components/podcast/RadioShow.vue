@@ -5,7 +5,7 @@
             <md-icon>arrow_back</md-icon>
         </router-link>
         <show-details :show="show" :podcasts="podcasts" />
-        <div v-if="podcasts.length">
+        <div v-if="podcasts.length && page > 0">
             <md-button class="md-raised" @click="more">More</md-button>
         </div>
     </div>
