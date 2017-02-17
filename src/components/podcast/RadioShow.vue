@@ -1,10 +1,14 @@
 <style></style>
 <template>
-    -
-    <show-details :show="show" :podcasts="podcasts" :backLinkRadio="false" :language="language" :page="page" />
+    <div>
+        <router-link :to="{ name: 'singleRadioView', params: { radioId: radioId }}" tag="md-button">
+            <md-icon>arrow_back</md-icon>
+        </router-link>
+        <show-details :show="show" :podcasts="podcasts" />
+    </div>
 </template>
 <script>
-    import ShowService from '../../services/ascoota/ShowService.js'
+    import RadioShowService from '../../services/ascoota/RadioShowService.js'
     import ShowDetails from './cards/ShowDetails'
 
     export default {
@@ -16,6 +20,7 @@
             return {
                 service: null,
                 params: this.$route.params,
+                radioId: this.$route.params.radioId,
                 show: {},
                 language: 'it',
                 podcasts: [],
@@ -33,8 +38,8 @@
         methods: {
             init() {
                 let params = this.$route.params;
-                this.service = new ShowService()
-                this.service.getOne(params.slug).then(
+                this.service = new RadioShowService(params.radioId)
+                this.service.getOne(params.showId).then(
                     (data) => {
                         this.show = data.body.payload;
                         if (this.show.language !== undefined) {
