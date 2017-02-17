@@ -4,7 +4,7 @@ const ENDPOINT = 'radios';
 
 var radioService = class RadioService extends AscootaService {
   getAll() {
-    return this.get(ENDPOINT + '?l=5');
+    return this.get(ENDPOINT + '?l=10');
   }
   getOne(id) {
     return this.get(ENDPOINT + '/' + id);
