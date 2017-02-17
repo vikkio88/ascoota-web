@@ -1,15 +1,13 @@
 import AscootaService from '../AscootaService';
 
 var showService = class ShowService extends AscootaService {
-  constructor(radioId) {
+  constructor() {
     super();
-    this.endpoint = `radios/${radioId}/shows`;
+    this.endpoint = `shows`;
   }
-  getAll() {
-    return this.get(this.endpoint);
-  }
-  getOne(showId) {
-    return this.get(`${this.endpoint}/${showId}`);
+
+  getOne(slug) {
+    return this.get(`${this.endpoint}/${slug}`);
   }
 
   getMorePodcasts(showId, page) {
