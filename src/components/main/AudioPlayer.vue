@@ -70,10 +70,16 @@
                         <md-icon>skip_next</md-icon>
                     </md-button>
                 </div>
-                <md-dialog-alert :md-content="alert.content" :md-ok-text="alert.ok" ref="errorMessage">
-                </md-dialog-alert>
+                <md-snackbar :md-position="'bottom center'" ref="snackbar" :md-duration="4000">
+                    <span>No more podcasts</span>
+                    <md-button class="md-accent" @click.native="$refs.snackbar.close()">Close</md-button>
+                </md-snackbar>
+                <md-dialog-alert :md-title="'Shareable Link'" :md-ok-text="'Ok'" :md-content-html="podcastLink" ref="shareableLink"> </md-dialog-alert>
             </md-card>
         </div>
+        <md-button class="md-raised" @click.native="shareDialog">
+            <md-icon>link</md-icon>
+        </md-button>
     </div>
 </template>
 <script>
@@ -137,6 +143,10 @@
             },
             shortDescription() {
                 return `${this.audio.name} - ${this.audio.description}`.substring(0, 60) + '...';
+            },
+            podcastLink(){
+                let currentWebsite = window.location.protocol + "//" + window.location.host;
+                return `<input type="text" value="${currentWebsite}/#/podcasts/${this.audio.id}">`;
             }
         },
         methods: {
@@ -219,7 +229,7 @@
             },
             changePodcast(podcastId) {
                 if (podcastId == undefined) {
-                    this.$refs['errorMessage'].open()
+                    this.$refs.snackbar.open();
                     return;
                 }
                 this.pause();
@@ -246,9 +256,8 @@
                 let playChar = this.state.playing ? '►' : '■'
                 document.title = playChar + ' ' + this.audio.name;
             },
-            scrollHandler() {
-                //Here I will transform the audio-player
-                //in a floating button
+            shareDialog() {
+                this.$refs['shareableLink'].open();
             }
         }
     }
