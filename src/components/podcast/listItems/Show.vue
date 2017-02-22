@@ -2,7 +2,7 @@
 
 </style>
 <template>
-    <md-list-item @click="gotoShow">
+    <md-list-item @click.native="gotoShow">
         <md-avatar>
             <img :alt="show.name" :title="show.name" :src="show.logo_url" />
         </md-avatar>

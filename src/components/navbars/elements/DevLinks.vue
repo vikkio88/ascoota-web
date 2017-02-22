@@ -1,7 +1,7 @@
 <style></style>
 <template>
     <div>
-        <md-button class="md-icon-button" @click="showInfo">
+        <md-button class="md-icon-button" @click.native="showInfo">
             <router-link :to="{ name: 'about' }">
                 <md-icon>info_outline</md-icon>
             </router-link>

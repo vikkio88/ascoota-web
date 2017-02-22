@@ -5,7 +5,7 @@ div.podcast-list-item {
 </style>
 <template>
     <div class="podcast-list-item">
-        <md-list-item @click="toggleMe">
+        <md-list-item @click.native="toggleMe">
             <md-avatar class="md-avatar-icon" v-if="showimg">
                 <img alt="podcast.name" :src="podcast.show.logo_url">
             </md-avatar>

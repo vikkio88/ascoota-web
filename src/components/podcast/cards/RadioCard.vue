@@ -4,7 +4,7 @@
     }
 </style>
 <template>
-    <div class="radio-card-wrapper" @click="showRadio">
+    <div class="radio-card-wrapper" @click.native="showRadio">
         <md-card md-with-hover>
                 <md-card-media>
                     <img style="width: 250px;height: auto;" alt="radio.name" :src="radio.logo_url">

@@ -4,7 +4,7 @@
 <template>
     <div>
         <md-toolbar md-theme="navBar">
-            <md-button @click="toggleMain" class="md-icon-button">
+            <md-button @click.native="toggleMain" class="md-icon-button">
                 <md-icon>menu</md-icon>
             </md-button>
             <h2 class="md-title" style="flex: 1">
@@ -21,7 +21,7 @@
             </md-toolbar>
 
             <md-list>
-                <md-list-item @click="goTo('dashboard')">
+                <md-list-item @click.native="goTo('dashboard')">
                     <md-icon>dashboard</md-icon> <span>Dashboard</span>
                 </md-list-item>
                 <md-divider class="md-inset"></md-divider>

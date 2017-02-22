@@ -2,7 +2,7 @@
 
 </style>
 <template>
-    <md-list-item @click="gotoRadio">
+    <md-list-item @click.native="gotoRadio">
         <md-avatar>
             <img alt="radio.name" :src="radio.logo_url">
         </md-avatar>

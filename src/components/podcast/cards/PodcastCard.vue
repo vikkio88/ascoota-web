@@ -3,7 +3,7 @@
 <template>
     <md-card>
         <md-card-media v-if="showimg">
-                <img alt="podcast.name" :src="podcast.show.logo_url" @click="toggleMe">
+                <img alt="podcast.name" :src="podcast.show.logo_url" @click.native="toggleMe">
         </md-card-media>
         <md-card-header>
             <div class="md-title">{{podcast.name}}</div>
@@ -13,7 +13,7 @@
             {{podcast.description}}
         </md-card-content>
         <md-card-actions>
-            <md-button class="md-raised" :class="{ 'md-warn': isSelected, 'md-primary':!isSelected }" @click="toggleMe">
+            <md-button class="md-raised" :class="{ 'md-warn': isSelected, 'md-primary':!isSelected }" @click.native="toggleMe">
                 <md-icon v-if="!isSelected">play_arrow</md-icon>
                 <md-icon v-if="isSelected">stop</md-icon>
             </md-button>

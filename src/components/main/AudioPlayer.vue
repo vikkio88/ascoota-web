@@ -44,29 +44,29 @@
         </div>
 
         <span class="md-subheading">{{audio.description}}</span>
-        <div @click="seek" class="progress-bar">
+        <div @click.native="seek" class="progress-bar">
             <md-progress :md-progress="podcast.state.progress"></md-progress>
         </div>
-        <div :class="{'clickable': state.playing}" @click="toggleTimeFormat">
+        <div :class="{'clickable': state.playing}" @click.native="toggleTimeFormat">
             <span class="md-headline">{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</span>
         </div>
         <div class="audio-player">
             <md-card>
                 <div class="controls-wrapper">
-                    <md-button class="md-raised md-accent md-icon-button" @click="previous">
+                    <md-button class="md-raised md-accent md-icon-button" @click.native="previous">
                         <md-icon>skip_previous</md-icon>
                     </md-button>
-                    <md-button class="md-raised md-icon-button" @click="skip(-10)">
+                    <md-button class="md-raised md-icon-button" @click.native="skip(-10)">
                         <md-icon>fast_rewind</md-icon>
                     </md-button>
-                    <md-button class="md-raised" :class="{'md-primary':!state.playing, 'md-warn':state.playing}" @click="togglePlay">
+                    <md-button class="md-raised" :class="{'md-primary':!state.playing, 'md-warn':state.playing}" @click.native="togglePlay">
                         <md-icon v-if="!state.playing">play_arrow</md-icon>
                         <md-icon v-if="state.playing">pause</md-icon>
                     </md-button>
-                    <md-button class="md-raised md-icon-button" @click="skip(10)">
+                    <md-button class="md-raised md-icon-button" @click.native="skip(10)">
                         <md-icon>fast_forward</md-icon>
                     </md-button>
-                    <md-button class="md-raised md-accent md-icon-button" @click="next">
+                    <md-button class="md-raised md-accent md-icon-button" @click.native="next">
                         <md-icon>skip_next</md-icon>
                     </md-button>
                 </div>
