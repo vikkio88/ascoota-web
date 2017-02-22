@@ -1,10 +1,10 @@
 <style></style>
 <template>
     <div>
+        <md-button @click="goToDashboard">
+            <md-icon>arrow_back</md-icon>
+        </md-button>
         <md-card>
-            <router-link :to="{ name: 'dashboard'}" tag="md-button">
-                    <md-icon>arrow_back</md-icon>
-                </router-link>
             <md-card-header>
                 <md-card-media>
                     <img class="img" :alt="radio.name" :title="radio.name" :src="radio.logo_url" />
@@ -65,6 +65,11 @@
                 radio: {},
                 shows: [],
                 language: 'it'
+            }
+        },
+        methods: {
+            goToDashboard() {
+                this.$router.push('/dashboard');
             }
         }
     }
