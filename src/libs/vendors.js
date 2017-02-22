@@ -12,7 +12,11 @@ Vue.material.registerTheme({
     navBar: {
         primary: 'teal',
         accent: 'white'
-    }
+    },
+    speedDial: {
+        accent: 'red',
+        background: 'indigo'
+    },
 })
 
 import flagIconCss from 'flag-icon-css/css/flag-icon.css'

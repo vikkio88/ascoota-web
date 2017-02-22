@@ -23,7 +23,7 @@
       </md-card-content>
     </md-card>
 
-    <md-speed-dial v-if="audioSelected" md-mode="scale" class="md-fab md-fab-bottom-right">
+    <md-speed-dial v-if="audioSelected" md-mode="fling" md-direction="top" class="md-fab md-fab-bottom-right" md-theme="speedDial">
       <md-button class="md-fab" md-fab-trigger>
         <md-icon md-icon-morph>close</md-icon>
         <md-icon>audiotrack</md-icon>
