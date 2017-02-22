@@ -1,7 +1,7 @@
 <style></style>
 <template>
     <div>
-        <md-button @click="goToDashboard">
+        <md-button @click.native="goToDashboard">
             <md-icon>arrow_back</md-icon>
         </md-button>
         <md-card>
@@ -69,6 +69,7 @@
         },
         methods: {
             goToDashboard() {
+                console.log("a");
                 this.$router.push('/dashboard');
             }
         }
