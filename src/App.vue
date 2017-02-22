@@ -22,9 +22,20 @@
         <router-view></router-view>
       </md-card-content>
     </md-card>
-    <md-button v-if="audioSelected" @click="toggleRightSidenav" class="md-fab md-fab-bottom-right md-warn">
-      <md-icon>audiotrack</md-icon>
-    </md-button>
+
+    <md-speed-dial v-if="audioSelected" md-mode="scale" class="md-fab md-fab-bottom-right">
+      <md-button class="md-fab" md-fab-trigger>
+        <md-icon md-icon-morph>close</md-icon>
+        <md-icon>audiotrack</md-icon>
+      </md-button>
+      <md-button @click.native="togglePlayer" class="md-fab md-mini md-clean">
+        <md-icon>info_outline</md-icon>
+      </md-button>
+      <md-button class="md-fab md-mini md-clean">
+        <md-icon>play_arrow</md-icon>
+      </md-button>
+    </md-speed-dial>
+
     <md-sidenav class="md-right" ref="rightSidenav">
       <audio-player/>
     </md-sidenav>
@@ -52,7 +63,7 @@
       this.$stats.push('render_home');
     },
     methods: {
-      toggleRightSidenav() {
+      togglePlayer() {
         this.$refs.rightSidenav.toggle();
       }
     }
