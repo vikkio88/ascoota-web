@@ -69,7 +69,6 @@
         },
         methods: {
             goToDashboard() {
-                console.log("a");
                 this.$router.push('/dashboard');
             }
         }
