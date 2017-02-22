@@ -15,7 +15,7 @@ The backend api, designed following a RestFul approach are opensource as well an
 
 ## Screenshot
 ### Main
-![image](https://cloud.githubusercontent.com/assets/248805/22404047/35a4ac08-e620-11e6-8ed0-70ee99566ec2.png)
+![image](https://cloud.githubusercontent.com/assets/248805/23178132/2d600940-f861-11e6-88af-3cdda21e6a8a.png)
 ### Responsive Material on device
 ![image](https://cloud.githubusercontent.com/assets/248805/22404060/a023dc8e-e620-11e6-9c59-878ddf6d264e.png)
 ### Podcast Player
