@@ -1,9 +1,9 @@
 <style></style>
 <template>
     <div>
-        <router-link :to="{ name: 'singleRadioView', params: { radioId: radioId }}" tag="md-button">
+        <md-button @click.native="goToRadio">
             <md-icon>arrow_back</md-icon>
-        </router-link>
+        </md-button>
         <show-details :show="show" :podcasts="podcasts" :language="language" :page="page" />
         <div v-if="podcasts.length && page > 0">
             <md-button class="md-raised" @click.native="more">More</md-button>
@@ -64,6 +64,9 @@
                         this.podcasts = this.podcasts.concat(newPodcasts);
                     }
                 ).catch(error => { console.log(error); });
+            },
+            goToRadio() {
+                this.$router.push({ name: 'singleRadioView', params: { radioId: this.radioId } })
             }
         }
     }
