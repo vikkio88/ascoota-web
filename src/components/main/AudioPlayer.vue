@@ -156,7 +156,7 @@
             },
             podcastLink() {
                 let currentWebsite = window.location.protocol + "//" + window.location.host;
-                return `${currentWebsite}/#/podcasts/${this.audio.id}`;
+                return `${currentWebsite}/#/podcasts/${this.audio.id}?t=${this.podcast.state.currentTime}`;
             }
         },
         methods: {
