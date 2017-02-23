@@ -76,12 +76,10 @@
                 </md-snackbar>
 
                 <md-dialog ref="shareableLink">
-                    <md-dialog-title>Link to current Podcast</md-dialog-title>
-                    <md-dialog-content>
-                        <md-input-container>
-                            <md-textarea v-model="podcastLink" :disabled="true"></md-textarea>
-                        </md-input-container>
-                    </md-dialog-content>
+                    <md-dialog-title>{{podcastLink}}</md-dialog-title>
+                    <md-button class="md-primary" v-clipboard="podcastLink">
+                        <md-icon>content_copy</md-icon>
+                    </md-button>
                     <md-dialog-actions>
                         <md-button class="md-primary" @click.native="$refs.shareableLink.close()">Ok</md-button>
                     </md-dialog-actions>
