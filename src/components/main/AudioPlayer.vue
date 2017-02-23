@@ -71,13 +71,13 @@
                     </md-button>
                 </div>
                 <md-snackbar :md-position="'bottom center'" ref="snackbar" :md-duration="4000">
-                    <span>No more podcasts</span>
+                    <span>{{snackMessage}}</span>
                     <md-button class="md-accent" @click.native="$refs.snackbar.close()">Close</md-button>
                 </md-snackbar>
 
                 <md-dialog ref="shareableLink">
                     <md-dialog-title>{{podcastLink}}</md-dialog-title>
-                    <md-button class="md-primary" v-clipboard="podcastLink">
+                    <md-button class="md-primary" v-clipboard="podcastLink" @success="copiedSuccess">
                         <md-icon>content_copy</md-icon>
                     </md-button>
                     <md-dialog-actions>
@@ -109,6 +109,7 @@
         },
         data() {
             return {
+                snackMessage: '',
                 defaultOptions: {
                     preload: true,
                     autoplay: false,
@@ -239,6 +240,7 @@
             },
             changePodcast(podcastId) {
                 if (podcastId == undefined) {
+                    this.snackMessage = "No more podcasts";
                     this.$refs.snackbar.open();
                     return;
                 }
@@ -268,6 +270,11 @@
             },
             shareDialog() {
                 this.$refs['shareableLink'].open();
+            },
+            copiedSuccess() {
+                this.$refs.shareableLink.close();
+                this.snackMessage = "Link copied!";
+                this.$refs.snackbar.open();
             }
         }
     }
