@@ -44,7 +44,7 @@
         </div>
 
         <span class="md-subheading">{{audio.description}}</span>
-        <div @click.native="seek" class="progress-bar">
+        <div @click="seek" class="progress-bar">
             <md-progress :md-progress="podcast.state.progress"></md-progress>
         </div>
         <div :class="{'clickable': state.playing}" @click.native="toggleTimeFormat">
