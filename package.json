@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "vue": "^2.1.0",
+    "vue-clipboards": "^0.2.5",
     "vue-resource": "^1.0.3",
     "vue-router": "^2.1.1",
     "vue-service": "^1.0.3",

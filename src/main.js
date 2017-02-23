@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Resource from 'vue-resource'
 Vue.use(Resource);
 
+import VueClipboard from 'vue-clipboards'
+Vue.use(VueClipboard);
+
 //plugins
 import Stats from './plugins/Stats'
 Vue.use(Stats);
