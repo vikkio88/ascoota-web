@@ -57,14 +57,14 @@
                         <md-icon>skip_previous</md-icon>
                     </md-button>
                     <md-button class="md-raised md-icon-button" @click.native="skip(-10)">
-                        <md-icon>fast_rewind</md-icon>
+                        <md-icon>replay_10</md-icon>
                     </md-button>
                     <md-button class="md-raised" :class="{'md-primary':!state.playing, 'md-warn':state.playing}" @click.native="togglePlay">
                         <md-icon v-if="!state.playing">play_arrow</md-icon>
                         <md-icon v-if="state.playing">pause</md-icon>
                     </md-button>
                     <md-button class="md-raised md-icon-button" @click.native="skip(10)">
-                        <md-icon>fast_forward</md-icon>
+                        <md-icon>forward_10</md-icon>
                     </md-button>
                     <md-button class="md-raised md-accent md-icon-button" @click.native="next">
                         <md-icon>skip_next</md-icon>
