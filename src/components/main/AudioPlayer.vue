@@ -47,7 +47,7 @@
         <div @click="seek" class="progress-bar">
             <md-progress :md-progress="podcast.state.progress"></md-progress>
         </div>
-        <div :class="{'clickable': state.playing}" @click.native="toggleTimeFormat">
+        <div :class="{'clickable': state.playing}" @click="toggleTimeFormat">
             <span class="md-headline">{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</span>
         </div>
         <div class="audio-player">
