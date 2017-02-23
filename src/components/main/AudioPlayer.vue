@@ -74,7 +74,19 @@
                     <span>No more podcasts</span>
                     <md-button class="md-accent" @click.native="$refs.snackbar.close()">Close</md-button>
                 </md-snackbar>
-                <md-dialog-alert :md-title="'Shareable Link'" :md-ok-text="'Ok'" :md-content-html="podcastLink" ref="shareableLink"> </md-dialog-alert>
+
+                <md-dialog ref="shareableLink">
+                    <md-dialog-title>Link to current Podcast</md-dialog-title>
+                    <md-dialog-content>
+                        <md-input-container>
+                            <md-textarea v-model="podcastLink" :disabled="true"></md-textarea>
+                        </md-input-container>
+                    </md-dialog-content>
+                    <md-dialog-actions>
+                        <md-button class="md-primary" @click.native="$refs.shareableLink.close()">Ok</md-button>
+                    </md-dialog-actions>
+                </md-dialog>
+
             </md-card>
         </div>
         <md-button class="md-raised" @click.native="shareDialog">
@@ -144,9 +156,9 @@
             shortDescription() {
                 return `${this.audio.name} - ${this.audio.description}`.substring(0, 60) + '...';
             },
-            podcastLink(){
+            podcastLink() {
                 let currentWebsite = window.location.protocol + "//" + window.location.host;
-                return `<input type="text" value="${currentWebsite}/#/podcasts/${this.audio.id}">`;
+                return `${currentWebsite}/#/podcasts/${this.audio.id}`;
             }
         },
         methods: {
