@@ -3,12 +3,13 @@
 </style>
 <template>
     <div>
-        <md-toolbar md-theme="navBar">
+        <md-toolbar md-theme="navBar" class="md-dense">
             <md-button @click.native="toggleMain" class="md-icon-button">
                 <md-icon>menu</md-icon>
             </md-button>
             <h2 class="md-title" style="flex: 1">
-                <md-icon>hearing</md-icon>Scoota</h2>
+                <md-icon>hearing</md-icon>Scoota
+            </h2>
             <dev-links />
         </md-toolbar>
         <md-sidenav class="md-left" ref="mainMenu">
