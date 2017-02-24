@@ -77,6 +77,9 @@
 
                 <md-dialog ref="shareableLink">
                     <md-dialog-title>{{podcastLink}}</md-dialog-title>
+                    <div style="flex: 0">
+                        <md-switch v-model="attachTime">Add current time</md-switch>
+                    </div>
                     <md-button class="md-primary" v-clipboard="podcastLink" @success="copiedSuccess">
                         <md-icon>content_copy</md-icon>
                     </md-button>
@@ -110,6 +113,7 @@
         data() {
             return {
                 snackMessage: '',
+                attachTime: false,
                 defaultOptions: {
                     preload: true,
                     autoplay: false,
@@ -157,7 +161,11 @@
             },
             podcastLink() {
                 let currentWebsite = window.location.protocol + "//" + window.location.host;
-                return `${currentWebsite}/#/podcasts/${this.audio.id}?t=${this.podcast.state.currentTime}`;
+                let link = `${currentWebsite}/#/podcasts/${this.audio.id}`;
+                if (this.attachTime) {
+                    link = `${link}?t=${this.podcast.state.currentTime}`;
+                }
+                return link;
             }
         },
         methods: {
