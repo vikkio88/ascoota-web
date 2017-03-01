@@ -43,7 +43,7 @@ class VueAudio {
             durationTimerFormat: '00:00:00',
             currentTimeFormat: '00:00:00',
             lastTimeFormat: '00:00:00',
-            timeFormatRemaining: true
+            timeFormatRemaining: false
         };
         this.hook = {
             playState: [],
