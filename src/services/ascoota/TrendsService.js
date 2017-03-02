@@ -5,7 +5,7 @@ var trendsService = class TrendsService extends AscootaService {
     super();
     this.endpoint = `trends`;
   }
-  getTrends() {
+  getShows() {
     return this.get(`${this.endpoint}/shows`);
   }
 

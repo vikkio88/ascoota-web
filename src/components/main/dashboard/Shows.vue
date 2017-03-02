@@ -1,4 +1,5 @@
 <style>
+
 </style>
 <template>
     <md-card v-if="shows.length > 0">
@@ -11,7 +12,7 @@
         <div class="shows-wrapper">
             <md-card-content>
                 <md-layout md-row md-align="center">
-                <radio-card :show="show" v-for="show in shows" />
+                    <show-card :show="show" v-for="show in shows" />
                 </md-layout>
             </md-card-content>
         </div>
@@ -19,14 +20,14 @@
 </template>
 <script>
     import ShowCard from '../../podcast/cards/ShowCard'
-    import ShowService from '../../../services/ascoota/ShowService'
+    import TrendsService from '../../../services/ascoota/TrendsService'
 
-    var service = new ShowService();
+    var service = new TrendsService();
 
     export default {
         name: "showsWidget",
         mounted() {
-            service.getTrends().then(
+            service.getShows().then(
                 (data) => {
                     this.shows = data.body.payload;
                 }
