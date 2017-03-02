@@ -1,28 +1,39 @@
 <style>
-    .img {
-        height: 180px;
-        width: 100%;
-        object-fit: cover;
+    div.show-card-wrapper {
+        margin: 10px;
     }
 </style>
 <template>
-    <div class="radio">
-        <router-link :to="{ name: 'singleShowView', params: { radioId: show.radio_id , showId: show.id }}">
-            <img class="img card-img-top" :alt="show.name" :title="show.name" :src="show.logo_url"/>
-        </router-link>
-        <div class="card">
-            <div class="card-block">
-                <h3>{{show.name}}</h3>
-                <h4>{{show.description}}</h4>
-            </div>
-        </div>
+    <div class="show-card-wrapper" @click="goToShow">
+        <md-card md-with-hover>
+                <md-card-media>
+                    <img style="width: 250px;height: auto;" alt="radio.name" :src="show.logo_url">
+                </md-card-media>
+            <md-card-header>
+                <div class="md-title">{{show.name}}</div>
+            </md-card-header>
+            <md-card-content>
+                <flag-icon :language="show.language.iso" /> {{show.description}}
+            </md-card-content>
+        </md-card>
     </div>
 </template>
 <script>
+    import FlagIcon from '../../common/FlagIcon';
+
     export default {
-        name: "show-card",
+        name: "showCard",
+        components: {
+            FlagIcon
+        },
         props: {
             show: Object
+        },
+        methods: {
+            goToShow() {
+                this.$router.push({ name: 'show', params: { slug: this.show.slug } });
+            }
         }
     }
+
 </script>
