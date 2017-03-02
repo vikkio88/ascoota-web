@@ -163,7 +163,8 @@
                 let currentWebsite = window.location.protocol + "//" + window.location.host;
                 let link = `${currentWebsite}/#/podcasts/${this.audio.id}`;
                 if (this.attachTime) {
-                    link = `${link}?t=${this.podcast.state.currentTime}`;
+                    let seconds = parseInt(this.podcast.state.currentTime);
+                    link = `${link}?t=${seconds}`;
                 }
                 return link;
             }
