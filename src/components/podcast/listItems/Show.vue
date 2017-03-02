@@ -23,7 +23,7 @@
         },
         methods: {
             gotoShow() {
-                this.$router.push({ name: 'singleShowView', params: { radioId: this.show.radio_id, showId: this.show.id } });
+                this.$router.push({ name: 'show', params: { slug: this.show.slug } });
             }
         }
     }
