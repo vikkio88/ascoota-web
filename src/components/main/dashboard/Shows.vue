@@ -18,17 +18,17 @@
     </md-card>
 </template>
 <script>
-    import RadioCard from '../../podcast/cards/RadioCard'
-    import RadioService from '../../../services/ascoota/RadioService'
+    import ShowCard from '../../podcast/cards/ShowCard'
+    import ShowService from '../../../services/ascoota/ShowService'
 
-    var radioService = new RadioService();
+    var service = new ShowService();
 
     export default {
         name: "showsWidget",
         mounted() {
-            radioService.getAll().then(
+            service.getTrendings().then(
                 (data) => {
-                    this.radios = data.body.payload;
+                    this.shows = data.body.payload;
                 }
             ).catch(
                 (errors) => {
@@ -38,7 +38,7 @@
         },
         data() {
             return {
-                radios: []
+                shows: []
             };
         },
         components: {
