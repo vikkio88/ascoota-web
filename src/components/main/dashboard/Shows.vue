@@ -26,7 +26,7 @@
     export default {
         name: "showsWidget",
         mounted() {
-            service.getTrendings().then(
+            service.getTrends().then(
                 (data) => {
                     this.shows = data.body.payload;
                 }
@@ -42,7 +42,7 @@
             };
         },
         components: {
-            RadioCard
+            ShowCard
         }
     }
 

@@ -14,7 +14,7 @@ var showService = class ShowService extends AscootaService {
     return this.get(`${this.endpoint}/${showId}/podcasts?l=10&p=${page}`);
   }
 
-  getTrendings() {
+  getTrends() {
     return this.get(`${this.endpoint}/trends`);
   }
 
