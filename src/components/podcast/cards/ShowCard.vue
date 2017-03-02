@@ -12,9 +12,6 @@
             <md-card-header>
                 <div class="md-title">{{show.name}}</div>
             </md-card-header>
-            <md-card-content>
-                <flag-icon :language="show.language.iso" /> {{show.description}}
-            </md-card-content>
         </md-card>
     </div>
 </template>
