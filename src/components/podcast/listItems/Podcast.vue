@@ -1,10 +1,14 @@
 <style>
-div.podcast-list-item {
-    margin: 10px;
-}
+    div.podcast-list-item {
+        margin: 10px;
+    }
+    
+    .selected {
+        background-color: #E0E0E0;
+    }
 </style>
 <template>
-    <div class="podcast-list-item">
+    <div class="podcast-list-item" :class="{ 'selected': isSelected}">
         <md-list-item @click.native="toggleMe">
             <md-avatar class="md-avatar-icon" v-if="showimg">
                 <img alt="podcast.name" :src="podcast.show.logo_url">
