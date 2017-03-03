@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
-    "build": "node build/build.js && node build/repair.js"
+    "build": "node build/build.js && node build/repair.js",
+    "deploy": "surge --domain ascoota.surge.sh dist/"
   },
   "dependencies": {
     "vue": "^2.1.0",
