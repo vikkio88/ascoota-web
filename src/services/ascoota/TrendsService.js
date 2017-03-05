@@ -8,6 +8,9 @@ var trendsService = class TrendsService extends AscootaService {
   getShows() {
     return this.get(`${this.endpoint}/shows`);
   }
+  getLatestPodcasts() {
+    return this.get(`${this.endpoint}/podcasts/latest`);
+  }
 
 };
 export default trendsService;

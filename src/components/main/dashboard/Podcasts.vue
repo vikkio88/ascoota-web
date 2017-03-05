@@ -28,7 +28,7 @@
             PodcastListItem
         },
         mounted() {
-            service.getPodcasts().then(
+            service.getLatestPodcasts().then(
                 (data) => {
                     this.podcasts = data.body.payload;
                 }
