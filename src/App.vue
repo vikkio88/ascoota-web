@@ -22,26 +22,21 @@
         <router-view></router-view>
       </md-card-content>
     </md-card>
-    <audio-player />
+    <player-wrapper />
   </div>
 </template>
 
 <script>
-  import AudioPlayer from './components/main/AudioPlayer'
+  import PlayerWrapper from './components/main/PlayerWrapper'
   import MainNav from './components/navbars/MainNav'
   import Dashboard from './components/main/Dashboard'
 
   export default {
     name: 'app',
     components: {
-      AudioPlayer,
+      PlayerWrapper,
       MainNav,
       Dashboard
-    },
-    computed: {
-      audioSelected() {
-        return this.$store.state.selectedAudio !== undefined;
-      }
     },
     mounted() {
       this.$stats.push('render_home');

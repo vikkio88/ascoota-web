@@ -32,84 +32,67 @@
     }
 </style>
 <template>
-    <div>
-        <md-speed-dial v-if="audio!=undefined" md-mode="fling" md-direction="top" class="md-fab md-fab-bottom-right" md-theme="speedDial">
-            <md-button class="md-fab" md-fab-trigger>
-                <md-icon md-icon-morph>close</md-icon>
-                <md-icon>audiotrack</md-icon>
-            </md-button>
-            <md-button @click.native="togglePlayer" class="md-fab md-mini md-clean">
-                <md-icon>info_outline</md-icon>
-            </md-button>
-            <md-button class="md-fab md-mini md-clean">
-                <md-icon>play_arrow</md-icon>
-            </md-button>
-        </md-speed-dial>
-
-        <md-sidenav class="md-right" ref="rightSidenav">
-            <div v-if="audio != undefined">
-                <md-toolbar>
-                    <div class="md-toolbar-container">
-                        <h3 class="md-title">Player</h3>
-                    </div>
-                </md-toolbar>
-                <h3 class="md-title">{{audio.name}}</h3>
-                <div class="logo-url-wrapper">
-                    <img v-if="audio.show" :src="audio.show.logo_url" style="height:150px" />
-                </div>
-
-                <span class="md-subheading">{{audio.description}}</span>
-                <div @click="seek" class="progress-bar">
-                    <md-progress :md-progress="podcast.state.progress"></md-progress>
-                </div>
-                <div :class="{'clickable': state.playing}" @click="toggleTimeFormat">
-                    <span class="md-headline">{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</span>
-                </div>
-                <div class="audio-player">
-                    <md-card>
-                        <div class="controls-wrapper">
-                            <md-button class="md-raised md-accent md-icon-button" @click.native="previous">
-                                <md-icon>skip_previous</md-icon>
-                            </md-button>
-                            <md-button class="md-raised md-icon-button" @click.native="skip(-10)">
-                                <md-icon>replay_10</md-icon>
-                            </md-button>
-                            <md-button class="md-raised" :class="{'md-primary':!state.playing, 'md-warn':state.playing}" @click.native="togglePlay">
-                                <md-icon v-if="!state.playing">play_arrow</md-icon>
-                                <md-icon v-if="state.playing">pause</md-icon>
-                            </md-button>
-                            <md-button class="md-raised md-icon-button" @click.native="skip(10)">
-                                <md-icon>forward_10</md-icon>
-                            </md-button>
-                            <md-button class="md-raised md-accent md-icon-button" @click.native="next">
-                                <md-icon>skip_next</md-icon>
-                            </md-button>
-                        </div>
-                        <md-snackbar :md-position="'bottom center'" ref="snackbar" :md-duration="4000">
-                            <span>{{snackMessage}}</span>
-                            <md-button class="md-accent" @click.native="$refs.snackbar.close()">Close</md-button>
-                        </md-snackbar>
-
-                        <md-dialog ref="shareableLink">
-                            <md-dialog-title>{{podcastLink}}</md-dialog-title>
-                            <div style="flex: 0">
-                                <md-switch v-model="attachTime">Add current time</md-switch>
-                            </div>
-                            <md-button class="md-primary" v-clipboard="podcastLink" @success="copiedSuccess">
-                                <md-icon>content_copy</md-icon>
-                            </md-button>
-                            <md-dialog-actions>
-                                <md-button class="md-primary" @click.native="$refs.shareableLink.close()">Ok</md-button>
-                            </md-dialog-actions>
-                        </md-dialog>
-
-                    </md-card>
-                </div>
-                <md-button class="md-raised" @click.native="shareDialog">
-                    <md-icon>link</md-icon>
-                </md-button>
+    <div v-if="audio != undefined">
+        <md-toolbar>
+            <div class="md-toolbar-container">
+                <h3 class="md-title">Player</h3>
             </div>
-        </md-sidenav>
+        </md-toolbar>
+        <h3 class="md-title">{{audio.name}}</h3>
+        <div class="logo-url-wrapper">
+            <img v-if="audio.show" :src="audio.show.logo_url" style="height:150px" />
+        </div>
+
+        <span class="md-subheading">{{audio.description}}</span>
+        <div @click="seek" class="progress-bar">
+            <md-progress :md-progress="podcast.state.progress"></md-progress>
+        </div>
+        <div :class="{'clickable': state.playing}" @click="toggleTimeFormat">
+            <span class="md-headline">{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</span>
+        </div>
+        <div class="audio-player">
+            <md-card>
+                <div class="controls-wrapper">
+                    <md-button class="md-raised md-accent md-icon-button" @click.native="previous">
+                        <md-icon>skip_previous</md-icon>
+                    </md-button>
+                    <md-button class="md-raised md-icon-button" @click.native="skip(-10)">
+                        <md-icon>replay_10</md-icon>
+                    </md-button>
+                    <md-button class="md-raised" :class="{'md-primary':!state.playing, 'md-warn':state.playing}" @click.native="togglePlay">
+                        <md-icon v-if="!state.playing">play_arrow</md-icon>
+                        <md-icon v-if="state.playing">pause</md-icon>
+                    </md-button>
+                    <md-button class="md-raised md-icon-button" @click.native="skip(10)">
+                        <md-icon>forward_10</md-icon>
+                    </md-button>
+                    <md-button class="md-raised md-accent md-icon-button" @click.native="next">
+                        <md-icon>skip_next</md-icon>
+                    </md-button>
+                </div>
+                <md-snackbar :md-position="'bottom center'" ref="snackbar" :md-duration="4000">
+                    <span>{{snackMessage}}</span>
+                    <md-button class="md-accent" @click.native="$refs.snackbar.close()">Close</md-button>
+                </md-snackbar>
+
+                <md-dialog ref="shareableLink">
+                    <md-dialog-title>{{podcastLink}}</md-dialog-title>
+                    <div style="flex: 0">
+                        <md-switch v-model="attachTime">Add current time</md-switch>
+                    </div>
+                    <md-button class="md-primary" v-clipboard="podcastLink" @success="copiedSuccess">
+                        <md-icon>content_copy</md-icon>
+                    </md-button>
+                    <md-dialog-actions>
+                        <md-button class="md-primary" @click.native="$refs.shareableLink.close()">Ok</md-button>
+                    </md-dialog-actions>
+                </md-dialog>
+
+            </md-card>
+        </div>
+        <md-button class="md-raised" @click.native="shareDialog">
+            <md-icon>link</md-icon>
+        </md-button>
     </div>
 </template>
 <script>
@@ -286,9 +269,6 @@
             close() {
                 this.pause();
                 this.$store.state.selectedAudio = undefined;
-            },
-            togglePlayer() {
-                this.$refs.rightSidenav.toggle();
             },
             setTitle() {
                 if (this.tempTitle == undefined) {
