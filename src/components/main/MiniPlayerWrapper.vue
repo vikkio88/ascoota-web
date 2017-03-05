@@ -2,7 +2,7 @@
 
 </style>
 <template>
-    <div>
+    <div v-if="$mq.below(700)">
         <md-speed-dial v-if="audioSelected" md-mode="fling" md-direction="top" class="md-fab md-fab-bottom-right" md-theme="speedDial">
             <md-button class="md-fab" md-fab-trigger>
                 <md-icon md-icon-morph>close</md-icon>
@@ -15,18 +15,21 @@
                 <md-icon>play_arrow</md-icon>
             </md-button>
         </md-speed-dial>
-
         <md-sidenav class="md-right" ref="rightSidenav">
+            <md-toolbar>
+                <div class="md-toolbar-container">
+                    <h3 class="md-title">Player</h3>
+                </div>
+            </md-toolbar>
             <audio-player />
         </md-sidenav>
     </div>
-
 </template>
 <script>
     import AudioPlayer from './AudioPlayer';
 
     export default {
-        name: 'PlayerWrapper',
+        name: 'miniPlayerWrapper',
         components: {
             AudioPlayer
         },

@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
+import VueMediaQuery from 'v-media-query'
 
-Vue.use(VueMaterial)
+Vue.use(VueMaterial);
+Vue.use(VueMediaQuery);
 
 Vue.material.inkRipple = false;
 

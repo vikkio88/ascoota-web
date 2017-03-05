@@ -4,12 +4,10 @@
     }
 </style>
 <template>
-    <div id="dashboard">
-        <div class="panel-group">
-            <shows />
-            <radios />
-            <podcasts />
-        </div>
+    <div class="dashboard">
+        <shows />
+        <radios />
+        <podcasts />
     </div>
 </template>
 <script>
@@ -25,4 +23,5 @@
             Podcasts
         }
     }
+
 </script>

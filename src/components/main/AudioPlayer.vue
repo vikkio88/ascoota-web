@@ -33,11 +33,6 @@
 </style>
 <template>
     <div v-if="audio != undefined">
-        <md-toolbar>
-            <div class="md-toolbar-container">
-                <h3 class="md-title">Player</h3>
-            </div>
-        </md-toolbar>
         <h3 class="md-title">{{audio.name}}</h3>
         <div class="logo-url-wrapper">
             <img v-if="audio.show" :src="audio.show.logo_url" style="height:150px" />
@@ -87,7 +82,6 @@
                         <md-button class="md-primary" @click.native="$refs.shareableLink.close()">Ok</md-button>
                     </md-dialog-actions>
                 </md-dialog>
-
             </md-card>
         </div>
         <md-button class="md-raised" @click.native="shareDialog">
