@@ -18,18 +18,31 @@
 </template>
 <script>
     import PodcastListItem from '../../podcast/listItems/Podcast'
-    import bazingas from '../../../mocks/bazingas'
+    import TrendsService from '../../../services/ascoota/TrendsService'
+
+    var service = new TrendsService();
 
     export default {
         name: "podcasts",
         components: {
             PodcastListItem
         },
+        mounted() {
+            service.getPodcasts().then(
+                (data) => {
+                    this.podcasts = data.body.payload;
+                }
+            ).catch(
+                (errors) => {
+                    console.log(errors)
+                }
+                );
+        },
         data() {
             return {
-                podcasts: bazingas
+                podcasts: []
             };
-        }
+        },
     }
 
 </script>
