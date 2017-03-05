@@ -8,7 +8,7 @@
                 <md-icon>menu</md-icon>
             </md-button>
             <h2 class="md-title" style="flex: 1">
-                <md-icon>hearing</md-icon>Scoota
+                <img src="../../assets/logo.png" alt="aScoota" title="aScoota">
             </h2>
             <dev-links />
         </md-toolbar>
@@ -16,7 +16,8 @@
             <md-toolbar>
                 <div class="md-toolbar-container">
                     <h3 class="md-title">
-                        <md-icon>hearing</md-icon>Scoota</h2>
+                    <img src="../../assets/logo.png" alt="aScoota" title="aScoota">
+                        aScoota
                     </h3>
                 </div>
             </md-toolbar>
