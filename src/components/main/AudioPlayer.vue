@@ -172,6 +172,7 @@
         methods: {
             init() {
                 if (this.audio !== undefined) {
+                    this.$stats.push('play_' + this.audio.id);
                     let options = this.audio.options === undefined ? this.defaultOptions : this.audio.options;
                     this.podcast = new VueAudio(this.audio.file_url, options);
                     this.state.initialSeek = this.$store.state.startTime;
@@ -210,7 +211,6 @@
             play() {
                 if (this.podcast) {
                     this.state.playing = true
-                    this.$stats.push('play_' + this.audio.id);
                 }
                 this.podcast.play();
                 this.setTitle();
