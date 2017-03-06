@@ -175,7 +175,11 @@
                 return link;
             },
             audioEnded() {
-                return this.podcast.state.ended;
+                let ended = false;
+                if(this.podcast != undefined){
+                    ended = this.podcast.state.ended;
+                }
+                return ended;
             }
         },
         methods: {
