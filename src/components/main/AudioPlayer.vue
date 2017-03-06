@@ -59,9 +59,12 @@
                     <md-button class="md-raised md-icon-button" @click.native="skip(-10)">
                         <md-icon>replay_10</md-icon>
                     </md-button>
-                    <md-button class="md-raised" :class="{'md-primary':!state.playing, 'md-warn':state.playing}" @click.native="togglePlay">
+                    <md-button v-if="podcast.state.buffering">
+                        <md-progress md-indeterminate></md-progress>
+                    </md-button>
+                    <md-button v-else class="md-raised" :class="{'md-primary':!state.playing, 'md-warn':state.playing}" @click.native="togglePlay">
                         <md-icon v-if="!state.playing">play_arrow</md-icon>
-                        <md-icon v-if="state.playing">pause</md-icon>
+                        <md-icon v-else="state.playing">pause</md-icon>
                     </md-button>
                     <md-button class="md-raised md-icon-button" @click.native="skip(10)">
                         <md-icon>forward_10</md-icon>
@@ -108,6 +111,9 @@
             audio() {
                 this.destroy();
                 this.init();
+            },
+            audioEnded() {
+                this.pause();
             }
         },
         data() {
@@ -167,6 +173,9 @@
                     link = `${link}?t=${seconds}`;
                 }
                 return link;
+            },
+            audioEnded() {
+                return this.podcast.state.ended;
             }
         },
         methods: {
