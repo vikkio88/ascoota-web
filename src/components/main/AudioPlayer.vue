@@ -64,8 +64,8 @@
                     <md-button class="md-raised md-icon-button" @click.native="skip(-10)">
                         <md-icon>replay_10</md-icon>
                     </md-button>
-                    <md-button class="md-raised" :class="{'md-primary':!state.playing, 'md-warn':state.playing}" @click.native="togglePlay">
-                        <md-icon v-if="!state.playing">play_arrow</md-icon>
+                    <md-button class="md-raised" :class="{'md-primary':!podcast.state.playing, 'md-warn':podcast.state.playing}" @click.native="togglePlay">
+                        <md-icon v-if="!podcast.state.playing">play_arrow</md-icon>
                         <md-icon v-else>pause</md-icon>
                     </md-button>
                     <md-button class="md-raised md-icon-button" @click.native="skip(10)">
