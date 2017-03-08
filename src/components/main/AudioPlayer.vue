@@ -9,7 +9,7 @@
     }
     
     .md-progress {
-        height: 10px;
+        height: 15px;
     }
     
     div.audio-player {
@@ -49,7 +49,8 @@
 
         <span class="md-subheading">{{audio.description}}</span>
         <div class="progress-bar">
-            <md-progress @click.native="seek" :md-progress="podcast.state.progress"></md-progress>
+            <md-progress v-if="podcast.state.buffering" md-indeterminate style="height:10px"></md-progress>
+            <md-progress v-else @click.native="seek" :md-progress="podcast.state.progress" style="height:10px"></md-progress>
         </div>
         <div :class="{'clickable': state.playing}" @click="toggleTimeFormat">
             <span class="md-headline">{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</span>
@@ -63,12 +64,9 @@
                     <md-button class="md-raised md-icon-button" @click.native="skip(-10)">
                         <md-icon>replay_10</md-icon>
                     </md-button>
-                    <md-button v-if="podcast.state.buffering">
-                        <md-progress md-indeterminate></md-progress>
-                    </md-button>
-                    <md-button v-else class="md-raised" :class="{'md-primary':!state.playing, 'md-warn':state.playing}" @click.native="togglePlay">
+                    <md-button class="md-raised" :class="{'md-primary':!state.playing, 'md-warn':state.playing}" @click.native="togglePlay">
                         <md-icon v-if="!state.playing">play_arrow</md-icon>
-                        <md-icon v-else="state.playing">pause</md-icon>
+                        <md-icon v-else>pause</md-icon>
                     </md-button>
                     <md-button class="md-raised md-icon-button" @click.native="skip(10)">
                         <md-icon>forward_10</md-icon>
@@ -151,7 +149,7 @@
                     }
                 },
                 state: {
-                    playing: false,
+                    playing: true,
                     initialSeek: 0,
                 },
                 alert: {
@@ -226,10 +224,10 @@
                 }
             },
             play() {
+                this.state.playing = true;
                 if (this.podcast) {
-                    this.state.playing = true
+                    this.podcast.play();
                 }
-                this.podcast.play();
                 this.setTitle();
             },
             pause() {
