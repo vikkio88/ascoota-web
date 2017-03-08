@@ -33,6 +33,9 @@ class VueAudio {
             tried: 0,
             playing: false,
             paused: false,
+            ended: false,
+            buffering: false,
+            waiting: false,
             playbackRate: 1.0,
             progress: 0,
             currentTime: 0,
@@ -89,6 +92,15 @@ class VueAudio {
                 this.loadState();
             })
         }
+        Cov.on(this.$Audio, 'waiting', () => { 
+            this.state.buffering = true;
+        });
+        Cov.on(this.$Audio, 'playing', () => {
+            this.state.buffering = false;
+        });
+        Cov.on(this.$Audio, 'ended', () => {
+            this.state.ended = true;
+        });
     }
 
     updateLoadState(e) {

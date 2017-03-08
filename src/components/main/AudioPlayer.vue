@@ -5,7 +5,11 @@
     
     .progress-bar {
         margin-top: 15px;
-        height: 20px;
+        height: 10px;
+    }
+    
+    .md-progress {
+        height: 10px;
     }
     
     div.audio-player {
@@ -39,8 +43,8 @@
         </div>
 
         <span class="md-subheading">{{audio.description}}</span>
-        <div @click="seek" class="progress-bar">
-            <md-progress :md-progress="podcast.state.progress"></md-progress>
+        <div class="progress-bar">
+            <md-progress @click.native="seek" :md-progress="podcast.state.progress"></md-progress>
         </div>
         <div :class="{'clickable': state.playing}" @click="toggleTimeFormat">
             <span class="md-headline">{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</span>
@@ -54,9 +58,12 @@
                     <md-button class="md-raised md-icon-button" @click.native="skip(-10)">
                         <md-icon>replay_10</md-icon>
                     </md-button>
-                    <md-button class="md-raised" :class="{'md-primary':!state.playing, 'md-warn':state.playing}" @click.native="togglePlay">
+                    <md-button v-if="podcast.state.buffering">
+                        <md-progress md-indeterminate></md-progress>
+                    </md-button>
+                    <md-button v-else class="md-raised" :class="{'md-primary':!state.playing, 'md-warn':state.playing}" @click.native="togglePlay">
                         <md-icon v-if="!state.playing">play_arrow</md-icon>
-                        <md-icon v-if="state.playing">pause</md-icon>
+                        <md-icon v-else="state.playing">pause</md-icon>
                     </md-button>
                     <md-button class="md-raised md-icon-button" @click.native="skip(10)">
                         <md-icon>forward_10</md-icon>
@@ -102,6 +109,9 @@
             audio() {
                 this.destroy();
                 this.init();
+            },
+            audioEnded() {
+                this.pause();
             }
         },
         data() {
@@ -161,11 +171,19 @@
                     link = `${link}?t=${seconds}`;
                 }
                 return link;
+            },
+            audioEnded() {
+                let ended = false;
+                if (this.podcast != undefined) {
+                    ended = this.podcast.state.ended;
+                }
+                return ended;
             }
         },
         methods: {
             init() {
                 if (this.audio !== undefined) {
+                    this.$stats.push('play_' + this.audio.id);
                     let options = this.audio.options === undefined ? this.defaultOptions : this.audio.options;
                     this.podcast = new VueAudio(this.audio.file_url, options);
                     this.state.initialSeek = this.$store.state.startTime;
@@ -204,7 +222,6 @@
             play() {
                 if (this.podcast) {
                     this.state.playing = true
-                    this.$stats.push('play_' + this.audio.id);
                 }
                 this.podcast.play();
                 this.setTitle();
