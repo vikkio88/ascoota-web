@@ -21,17 +21,17 @@
                     <h3 class="md-title">Player</h3>
                 </div>
             </md-toolbar>
-            <audio-player />
+            <side-audio-player />
         </md-sidenav>
     </div>
 </template>
 <script>
-    import AudioPlayer from './AudioPlayer';
+    import SideAudioPlayer from './SideAudioPlayer';
 
     export default {
         name: 'miniPlayerWrapper',
         components: {
-            AudioPlayer
+            SideAudioPlayer
         },
         computed: {
             audioSelected() {

@@ -11,12 +11,6 @@
     display: flex;
     flex-flow: column;
   }
-
-  .content {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-  }
 </style>
 <template>
   <div id="app" class="app-viewport phone-viewport">
@@ -25,14 +19,7 @@
       <md-card-header>
       </md-card-header>
       <md-card-content>
-        <div class="content">
-          <div>
-            <router-view></router-view>
-          </div>
-          <div v-if="$mq.above(700) && audioSelected">
-            <audio-player />
-          </div>
-        </div>
+        <router-view></router-view>
       </md-card-content>
     </md-card>
     <mini-player-wrapper />
@@ -40,7 +27,6 @@
 </template>
 
 <script>
-  import AudioPlayer from './components/main/AudioPlayer'
   import MiniPlayerWrapper from './components/main/MiniPlayerWrapper'
   import MainNav from './components/navbars/MainNav'
   import Dashboard from './components/main/Dashboard'
@@ -48,7 +34,6 @@
   export default {
     name: 'app',
     components: {
-      AudioPlayer,
       MiniPlayerWrapper,
       MainNav,
       Dashboard
