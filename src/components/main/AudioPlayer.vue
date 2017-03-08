@@ -5,7 +5,11 @@
     
     .progress-bar {
         margin-top: 15px;
-        height: 20px;
+        height: 10px;
+    }
+    
+    .md-progress {
+        height: 10px;
     }
     
     div.audio-player {
@@ -44,8 +48,8 @@
         </div>
 
         <span class="md-subheading">{{audio.description}}</span>
-        <div @click="seek" class="progress-bar">
-            <md-progress :md-progress="podcast.state.progress"></md-progress>
+        <div class="progress-bar">
+            <md-progress @click.native="seek" :md-progress="podcast.state.progress"></md-progress>
         </div>
         <div :class="{'clickable': state.playing}" @click="toggleTimeFormat">
             <span class="md-headline">{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</span>
@@ -176,7 +180,7 @@
             },
             audioEnded() {
                 let ended = false;
-                if(this.podcast != undefined){
+                if (this.podcast != undefined) {
                     ended = this.podcast.state.ended;
                 }
                 return ended;
