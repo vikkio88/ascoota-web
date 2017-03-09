@@ -44,6 +44,7 @@
             </md-button>
             <md-button @click.native="togglePlayer" class="md-fab md-mini md-clean">
                 <md-icon>info_outline</md-icon>
+                <md-tooltip v-if="audio.show" md-direction="left">{{audio.show.name}} - {{podcast.state.lastTimeFormat}}</md-tooltip>
             </md-button>
             <md-button @click.native="togglePlay" class="md-fab md-mini md-clean">
                 <md-icon v-if="!podcast.state.playing">play_arrow</md-icon>
@@ -59,7 +60,7 @@
                 </md-toolbar>
                 <h3 class="md-title">{{audio.name}}</h3>
                 <div class="logo-url-wrapper">
-                    <img v-if="audio.show" :src="audio.show.logo_url" style="height:150px" />
+                    <img v-if="audio.show" class="clickable" :src="audio.show.logo_url" @click="goToShow(audio.show.slug)" style="height:150px" />
                 </div>
 
                 <span class="md-subheading">{{audio.description}}</span>
@@ -321,6 +322,10 @@
                 this.$refs.snackbar.open();
             },
             togglePlayer() {
+                this.$refs.rightSidenav.toggle();
+            },
+            goToShow(slug) {
+                this.$router.push({ name: 'show', params: { slug } });
                 this.$refs.rightSidenav.toggle();
             }
         }
