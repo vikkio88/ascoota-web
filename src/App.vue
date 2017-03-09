@@ -22,19 +22,19 @@
         <router-view></router-view>
       </md-card-content>
     </md-card>
-    <player-wrapper />
+    <audio-player />
   </div>
 </template>
 
 <script>
-  import PlayerWrapper from './components/main/PlayerWrapper'
+  import AudioPlayer from './components/main/AudioPlayer'
   import MainNav from './components/navbars/MainNav'
   import Dashboard from './components/main/Dashboard'
 
   export default {
     name: 'app',
     components: {
-      PlayerWrapper,
+      AudioPlayer,
       MainNav,
       Dashboard
     },

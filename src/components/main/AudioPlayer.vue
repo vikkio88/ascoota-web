@@ -36,68 +36,85 @@
     }
 </style>
 <template>
-    <div v-if="audio != undefined">
-        <md-toolbar>
-            <div class="md-toolbar-container">
-                <h3 class="md-title">Player</h3>
-            </div>
-        </md-toolbar>
-        <h3 class="md-title">{{audio.name}}</h3>
-        <div class="logo-url-wrapper">
-            <img v-if="audio.show" :src="audio.show.logo_url" style="height:150px" />
-        </div>
-
-        <span class="md-subheading">{{audio.description}}</span>
-        <div class="progress-bar">
-            <md-progress v-if="podcast.state.buffering" md-indeterminate style="height:10px"></md-progress>
-            <md-progress v-else @click.native="seek" :md-progress="podcast.state.progress" style="height:10px"></md-progress>
-        </div>
-        <div :class="{'clickable': state.playing}" @click="toggleTimeFormat">
-            <span class="md-headline">{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</span>
-        </div>
-        <div class="audio-player">
-            <md-card>
-                <div class="controls-wrapper">
-                    <md-button class="md-raised md-accent md-icon-button" @click.native="previous">
-                        <md-icon>skip_previous</md-icon>
-                    </md-button>
-                    <md-button class="md-raised md-icon-button" @click.native="skip(-10)">
-                        <md-icon>replay_10</md-icon>
-                    </md-button>
-                    <md-button class="md-raised" :class="{'md-primary':!podcast.state.playing, 'md-warn':podcast.state.playing}" @click.native="togglePlay">
-                        <md-icon v-if="!podcast.state.playing">play_arrow</md-icon>
-                        <md-icon v-else>pause</md-icon>
-                    </md-button>
-                    <md-button class="md-raised md-icon-button" @click.native="skip(10)">
-                        <md-icon>forward_10</md-icon>
-                    </md-button>
-                    <md-button class="md-raised md-accent md-icon-button" @click.native="next">
-                        <md-icon>skip_next</md-icon>
-                    </md-button>
-                </div>
-                <md-snackbar :md-position="'bottom center'" ref="snackbar" :md-duration="4000">
-                    <span>{{snackMessage}}</span>
-                    <md-button class="md-accent" @click.native="$refs.snackbar.close()">Close</md-button>
-                </md-snackbar>
-
-                <md-dialog ref="shareableLink">
-                    <md-dialog-title>{{podcastLink}}</md-dialog-title>
-                    <div style="flex: 0">
-                        <md-switch v-model="attachTime">Add current time</md-switch>
+    <div>
+        <md-speed-dial v-if="audioSelected" md-mode="fling" md-direction="top" class="md-fab md-fab-bottom-right" md-theme="speedDial">
+            <md-button class="md-fab" md-fab-trigger>
+                <md-icon md-icon-morph>close</md-icon>
+                <md-icon>audiotrack</md-icon>
+            </md-button>
+            <md-button @click.native="togglePlayer" class="md-fab md-mini md-clean">
+                <md-icon>info_outline</md-icon>
+            </md-button>
+            <md-button @click.native="togglePlay" class="md-fab md-mini md-clean">
+                <md-icon v-if="!podcast.state.playing">play_arrow</md-icon>
+                <md-icon v-else>pause</md-icon>
+            </md-button>
+        </md-speed-dial>
+        <md-sidenav class="md-right" ref="rightSidenav">
+            <div v-if="audio != undefined">
+                <md-toolbar>
+                    <div class="md-toolbar-container">
+                        <h3 class="md-title">Player</h3>
                     </div>
-                    <md-button class="md-primary" v-clipboard="podcastLink" @success="copiedSuccess">
-                        <md-icon>content_copy</md-icon>
-                    </md-button>
-                    <md-dialog-actions>
-                        <md-button class="md-primary" @click.native="$refs.shareableLink.close()">Ok</md-button>
-                    </md-dialog-actions>
-                </md-dialog>
+                </md-toolbar>
+                <h3 class="md-title">{{audio.name}}</h3>
+                <div class="logo-url-wrapper">
+                    <img v-if="audio.show" :src="audio.show.logo_url" style="height:150px" />
+                </div>
 
-            </md-card>
-        </div>
-        <md-button class="md-raised" @click.native="shareDialog">
-            <md-icon>link</md-icon>
-        </md-button>
+                <span class="md-subheading">{{audio.description}}</span>
+                <div id="progress-bar-wrapper" class="progress-bar" @click="seek">
+                    <md-progress class="md-warn" v-if="podcast.state.buffering" md-indeterminate style="height:10px"></md-progress>
+                    <md-progress v-else :md-progress="podcast.state.progress" style="height:10px"></md-progress>
+                </div>
+                <div :class="{'clickable': state.playing}" @click="toggleTimeFormat">
+                    <span class="md-headline">{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</span>
+                </div>
+                <div class="audio-player">
+                    <md-card>
+                        <div class="controls-wrapper">
+                            <md-button class="md-raised md-accent md-icon-button" @click.native="previous">
+                                <md-icon>skip_previous</md-icon>
+                            </md-button>
+                            <md-button class="md-raised md-icon-button" @click.native="skip(-10)">
+                                <md-icon>replay_10</md-icon>
+                            </md-button>
+                            <md-button class="md-raised" :class="{'md-primary':!podcast.state.playing, 'md-warn':podcast.state.playing}" @click.native="togglePlay">
+                                <md-icon v-if="!podcast.state.playing">play_arrow</md-icon>
+                                <md-icon v-else>pause</md-icon>
+                            </md-button>
+                            <md-button class="md-raised md-icon-button" @click.native="skip(10)">
+                                <md-icon>forward_10</md-icon>
+                            </md-button>
+                            <md-button class="md-raised md-accent md-icon-button" @click.native="next">
+                                <md-icon>skip_next</md-icon>
+                            </md-button>
+                        </div>
+                        <md-snackbar :md-position="'bottom center'" ref="snackbar" :md-duration="4000">
+                            <span>{{snackMessage}}</span>
+                            <md-button class="md-accent" @click.native="$refs.snackbar.close()">Close</md-button>
+                        </md-snackbar>
+
+                        <md-dialog ref="shareableLink">
+                            <md-dialog-title>{{podcastLink}}</md-dialog-title>
+                            <div style="flex: 0">
+                                <md-switch v-model="attachTime">Add current time</md-switch>
+                            </div>
+                            <md-button class="md-primary" v-clipboard="podcastLink" @success="copiedSuccess">
+                                <md-icon>content_copy</md-icon>
+                            </md-button>
+                            <md-dialog-actions>
+                                <md-button class="md-primary" @click.native="$refs.shareableLink.close()">Ok</md-button>
+                            </md-dialog-actions>
+                        </md-dialog>
+
+                    </md-card>
+                </div>
+                <md-button class="md-raised" @click.native="shareDialog">
+                    <md-icon>link</md-icon>
+                </md-button>
+            </div>
+        </md-sidenav>
     </div>
 </template>
 <script>
@@ -163,6 +180,9 @@
         computed: {
             audio() {
                 return this.$store.state.selectedAudio;
+            },
+            audioSelected() {
+                return this.$store.state.selectedAudio !== undefined;
             },
             shortDescription() {
                 return `${this.audio.name} - ${this.audio.description}`.substring(0, 60) + '...';
@@ -250,9 +270,9 @@
                 sec = parseInt(sec);
                 this.podcast.setTime(this.podcast.state.currentTime + sec);
             },
-            seek(event) {
+            seek() {
                 let offset = event.offsetX;
-                let maxOffset = event.target.offsetWidth;
+                let maxOffset = document.getElementById("progress-bar-wrapper").offsetWidth;
                 let percent = offset / maxOffset;
                 this.podcast.setTime(percent * this.podcast.state.duration);
             },
@@ -299,6 +319,9 @@
                 this.$refs.shareableLink.close();
                 this.snackMessage = "Link copied!";
                 this.$refs.snackbar.open();
+            },
+            togglePlayer() {
+                this.$refs.rightSidenav.toggle();
             }
         }
     }
