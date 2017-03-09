@@ -11,7 +11,7 @@
         </md-card-header>
         <md-card-content>
             <md-list class="md-double-line">
-                <podcast-list-item :podcast="podcast" v-for="podcast in podcasts" />
+                <podcast-list-item :podcast="podcast" :show="podcast.show" v-for="podcast in podcasts" />
             </md-list>
         </md-card-content>
     </md-card>

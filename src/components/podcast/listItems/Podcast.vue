@@ -4,24 +4,25 @@
     }
     
     .selected {
-        background-color: #E0E0E0;
+        background-color: #E8E8E8;
+        color: #009688;
     }
 </style>
 <template>
     <div class="podcast-list-item" :class="{ 'selected': isSelected}">
         <md-list-item @click.native="toggleMe">
-            <md-avatar class="md-avatar-icon" v-if="showimg">
-                <img alt="podcast.name" :src="podcast.show.logo_url">
-            </md-avatar>
-
-            <div class="md-list-text-container">
-                <span>{{podcast.name}} - {{podcast.description}}</span>
-                <p>{{podcast.date}}</p>
-            </div>
-            <md-button class="md-raised md-icon-button md-list-action" :class="{ 'md-warn': isSelected, 'md-primary':!isSelected }">
+            <md-button class="md-raised md-icon-button md-list-action" :class="{ 'md-warn': isSelected, 'md-primary':!isSelected }" v-if="!showimg">
                 <md-icon v-if="!isSelected">play_arrow</md-icon>
                 <md-icon v-if="isSelected">stop</md-icon>
             </md-button>
+            <md-avatar class="md-avatar-icon" v-else>
+                <img alt="podcast.name" :src="podcast.show.logo_url">
+            </md-avatar>
+            <div class="md-list-text-container">
+                <span v-if="showimg">{{show.name}}</span>
+                <span>{{podcast.name}} - {{podcast.description}}</span>
+                <p>{{podcast.date}}</p>
+            </div>
             <md-divider class="md-inset"></md-divider>
         </md-list-item>
     </div>
