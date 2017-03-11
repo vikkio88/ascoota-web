@@ -45,10 +45,11 @@
             <md-button @click.native="togglePlay" class="md-fab md-mini md-clean">
                 <md-icon v-if="!podcast.state.playing">play_arrow</md-icon>
                 <md-icon v-else>pause</md-icon>
+                <md-tooltip md-direction="left">{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</md-tooltip>
             </md-button>
             <md-button @click.native="togglePlayer" class="md-fab md-mini md-clean">
                 <md-icon>info_outline</md-icon>
-                <md-tooltip v-if="audio.show" md-direction="left">{{audio.show.name}} - {{podcast.state.lastTimeFormat}}</md-tooltip>
+                <md-tooltip v-if="audio.show" md-direction="left">{{audio.show.name}} - {{audio.name}}</md-tooltip>
             </md-button>
             <md-button @click.native="shareDialog" class="md-fab md-mini md-clean">
                 <md-icon>link</md-icon>
