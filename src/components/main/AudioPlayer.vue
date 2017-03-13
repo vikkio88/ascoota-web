@@ -73,7 +73,7 @@
                     <md-progress class="md-warn" v-if="podcast.state.buffering" md-indeterminate style="height:10px"></md-progress>
                     <md-progress v-else :md-progress="podcast.state.progress" style="height:10px"></md-progress>
                 </div>
-                <div :class="{'clickable': state.playing}" @click="toggleTimeFormat">
+                <div :class="{'clickable': podcast.state.playing}" @click="toggleTimeFormat">
                     <span class="md-headline">{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</span>
                 </div>
                 <div class="audio-player">
@@ -169,15 +169,13 @@
                     }
                 },
                 state: {
-                    playing: true,
                     initialSeek: 0,
                 },
                 alert: {
                     content: 'No more podcasts :(',
                     ok: 'Ok'
                 },
-                tempTitle: null,
-                minimized: true
+                tempTitle: null
             }
         },
         computed: {
@@ -233,28 +231,25 @@
             },
             destroy() {
                 if (this.podcast !== null && this.podcast.destroyed !== undefined) {
-                    this.state.playing = false;
                     this.podcast.destroyed();
                     this.podcast = null;
                     document.title = this.tempTitle;
                 }
             },
             togglePlay() {
-                if (this.state.playing) {
+                if (this.podcast.state.playing) {
                     this.pause();
                 } else {
                     this.play();
                 }
             },
             play() {
-                this.state.playing = true;
                 if (this.podcast) {
                     this.podcast.play();
                 }
                 this.setTitle();
             },
             pause() {
-                this.state.playing = false
                 this.podcast.pause()
                 this.setTitle();
             },
@@ -265,7 +260,7 @@
                 this.podcast.setVolume(this.podcast.state.volume - 0.1)
             },
             toggleTimeFormat() {
-                if (this.state.playing) {
+                if (this.podcast.state.playing) {
                     this.podcast.state.timeFormatRemaining = !this.podcast.state.timeFormatRemaining;
                 }
             },
@@ -312,7 +307,7 @@
                 if (this.tempTitle == undefined) {
                     this.tempTitle = document.title;
                 }
-                let playChar = this.state.playing ? '►' : '■'
+                let playChar = this.podcast.state.playing ? '►' : '■'
                 document.title = playChar + ' ' + this.audio.name;
             },
             shareDialog() {
