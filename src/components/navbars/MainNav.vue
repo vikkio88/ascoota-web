@@ -11,6 +11,12 @@
                 <img src="../../assets/logo.png" alt="aScoota" title="aScoota">
             </h2>
             <dev-links />
+
+            <md-button class="md-icon-button md-raised md-warn">
+                <router-link :to="{ name: 'auth' }">
+                    <md-icon>account_circle</md-icon>
+                </router-link>
+            </md-button>
         </md-toolbar>
         <md-sidenav class="md-left" ref="mainMenu">
             <md-toolbar>
@@ -25,6 +31,11 @@
             <md-list>
                 <md-list-item @click.native="goTo('dashboard')">
                     <md-icon>dashboard</md-icon> <span>Dashboard</span>
+                </md-list-item>
+                <md-divider class="md-inset"></md-divider>
+
+                <md-list-item @click.native="goTo('about')">
+                    <md-icon>info_outline</md-icon> <span>About</span>
                 </md-list-item>
                 <md-divider class="md-inset"></md-divider>
             </md-list>
@@ -42,6 +53,7 @@
         methods: {
             goTo(route) {
                 this.toggleMain();
+                this.$stats.push(`menu_${route}`);
                 this.$router.push('/' + route);
             },
             toggleMain() {
