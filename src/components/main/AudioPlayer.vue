@@ -135,7 +135,9 @@
                 this.init();
             },
             audioEnded() {
-                this.pause();
+                if(this.audioSelected){
+                    this.pause();
+                }
             }
         },
         data() {
