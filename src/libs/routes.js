@@ -8,8 +8,6 @@ import SingleRadio from '../components/podcast/SingleRadio'
 import PodcastTrigger from '../components/podcast/PodcastTrigger'
 import Show from '../components/podcast/Show'
 import Auth from '../components/auth/Auth'
-import Callback from '../components/auth/Callback'
-import InterceptCallback from '../components/auth/InterceptCallback'
 
 Vue.use(VueRouter);
 
@@ -42,19 +40,9 @@ var router = new VueRouter({
             component: Auth
         },
         {
-            path: '/callback',
-            name: 'callback',
-            component: Callback
-        },
-        {
             path: '/about',
             name: 'about',
             component: About
-        },
-        {
-            path: '/',
-            name: 'interceptCallback',
-            component: InterceptCallback
         },
         {
             path: '*',
