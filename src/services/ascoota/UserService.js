@@ -9,4 +9,9 @@ export default class UserService extends AscootaService {
   getMe() {
     return this.get('me');
   }
+
+  positionSave(podcastInfo) {
+    return this.put('me/position', podcastInfo);
+  }
+
 };
