@@ -5,9 +5,8 @@
         <md-button class="md-raised md-primary" @click.native="loginFb">Login with Facebook</md-button>
         <md-button class="md-raised md-primary" @click.native="gatherInfo">Check</md-button>
         <div>
-            <img v-if="userPic" :src="userPic" />
             <pre>
-                {{response}}
+                {{user}}
             </pre>
         </div>
     </div>
@@ -24,8 +23,7 @@
         },
         data(){
             return {
-                response: null,
-                userPic: null,
+                user: null
             };
         },
         methods: {
@@ -49,25 +47,19 @@
             loginFb(){
                 FB.login((response) => {
                     if (response.authResponse) {
-                        this.gatherInfo();
+                        this.fbAuth(response.authResponse.accessToken);
                     } else {
                         console.log('User cancelled login or did not fully authorize.');
                     }
                 },{scope: 'email'});
             },
-            gatherInfo() {
-                FB.api('/me',{fields:'name,email'}, (response) => {
-                    this.response = response;
-                    this.fetchUserPic(response.id);
-                });
-            },
-            fetchUserPic(userId){
-                FB.api(
-                    `/${userId}/picture`,
-                    (response) => {
-                        if (response && !response.error) {
-                            this.userPic = response.data.url;
-                        }
+            fbAuth(token) {
+                service.providerAuth('facebook', token).then(
+                    (data) => {
+                        this.user = data.body.payload;
+                    },
+                    (error) => {
+                        console.log(error);
                     }
                 );
             }

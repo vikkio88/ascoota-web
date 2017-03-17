@@ -6,15 +6,9 @@ var authService = class AuthService extends AscootaService {
     this.endpoint = `auth`;
   }
 
-  getAuthUrl(provider) {
-    let currentWebsite = window.location.protocol + "//" + window.location.host;
-    return this.get(`${this.endpoint}/${provider}?callback=${currentWebsite}`);
+  providerAuth(provider, token) {
+    return this.post(`${this.endpoint}/${provider}`, { auth: token });
   }
-  
-  getInfoCallback(provider, data) {
-    let currentWebsite = window.location.protocol + "//" + window.location.host;
-    return this.get(`${this.endpoint}/${provider}/callback?code=${data}&callback=${currentWebsite}`);
-  }
-
 };
+
 export default authService;
