@@ -2,6 +2,13 @@ import Vue from 'vue'
 import Resource from 'vue-resource'
 Vue.use(Resource);
 
+Vue.http.interceptors.push(
+    (request, next) => {
+        request.headers.set('ASCOOTA-TOKEN', localStorage.getItem('token'));
+        next();
+    }
+);
+
 import VueClipboard from 'vue-clipboards'
 Vue.use(VueClipboard);
 
