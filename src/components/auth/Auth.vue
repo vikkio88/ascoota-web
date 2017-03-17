@@ -3,7 +3,6 @@
     <div>
         <h1>Login</h1>
         <md-button class="md-raised md-primary" @click.native="loginFb">Login with Facebook</md-button>
-        <md-button class="md-raised md-primary" @click.native="gatherInfo">Check</md-button>
         <div>
             <pre>
                 {{user}}
@@ -56,12 +55,18 @@
             fbAuth(token) {
                 service.providerAuth('facebook', token).then(
                     (data) => {
-                        this.user = data.body.payload;
+                        this.login(data.body.payload.token);
                     },
                     (error) => {
                         console.log(error);
                     }
                 );
+            },
+            login(token){
+                this.$store.dispatch("login", token)
+                .then(() => {
+                    this.$router.push("/me")
+                });
             }
         }
     }
