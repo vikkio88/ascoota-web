@@ -122,8 +122,10 @@
 <script>
     import VueAudio from '../../VueAudio.js'
     import PodcastService from '../../services/ascoota/PodcastService'
+    import UserService from '../../services/ascoota/UserService'
 
     const podcastService = new PodcastService();
+    const userService = new UserService();
 
 
     export default {
@@ -134,7 +136,7 @@
                 this.init();
             },
             audioEnded() {
-                if(this.audioSelected){
+                if(this.audioSelected && this.podcast.currentTime > 1){
                     this.pause();
                 }
             }
@@ -150,6 +152,7 @@
                     loop: false,
                     volume: 0.5
                 },
+                positionSaver: null,
                 podcast: {
                     state: {
                         startLoad: false,
@@ -217,14 +220,11 @@
                     this.setTitle();
                     if (this.$store.state.autoPlay) {
                         this.$store.state.autoPlay = false;
-                        setTimeout(
-                            this.play(),
-                            500
-                        );
+                        this.play()
                         if (this.state.initialSeek != 0) {
                             setTimeout(
                                 () => { this.skip(this.state.initialSeek); this.state.initialSeek = 0; },
-                                2000
+                                1000
                             );
                         }
                     }
@@ -247,12 +247,16 @@
             play() {
                 if (this.podcast) {
                     this.podcast.play();
+                    this.setTitle();
+                    this.startPositionSaver()
                 }
-                this.setTitle();
             },
             pause() {
-                this.podcast.pause()
-                this.setTitle();
+                if (this.podcast) {
+                    this.podcast.pause()
+                    this.setTitle();
+                    this.stopPositionSaver()
+                }
             },
             volumePlus() {
                 this.podcast.setVolume(this.podcast.state.volume + 0.1)
@@ -274,6 +278,7 @@
                 let maxOffset = document.getElementById("progress-bar-wrapper").offsetWidth;
                 let percent = offset / maxOffset;
                 this.podcast.setTime(percent * this.podcast.state.duration);
+                this.positionSave();
             },
             next() {
                 this.changePodcast(this.audio.next_podcast_id);
@@ -309,7 +314,7 @@
                     this.tempTitle = document.title;
                 }
                 let playChar = this.podcast.state.playing ? '►' : '■'
-                document.title = playChar + ' ' + this.audio.name;
+                document.title = `${playChar} ${this.audio.name}`;
             },
             shareDialog() {
                 this.$refs['shareableLink'].open();
@@ -325,6 +330,20 @@
             goToShow(slug) {
                 this.$router.push({ name: 'show', params: { slug } });
                 this.$refs.rightSidenav.toggle();
+            },
+            startPositionSaver() {
+                if (!this.positionSaver){
+                    this.positionSaver = setInterval(
+                        this.positionSave(),
+                        1000 * 30
+                    )
+                }
+            },
+            stopPositionSaver() {
+                clearInterval(this.positionSaver);
+            },
+            positionSave(){
+                userService.positionSave({podcast_id: this.audio.id,position: this.podcast.state.currentTime})
             }
         }
     }
