@@ -8,6 +8,7 @@ import SingleRadio from '../components/podcast/SingleRadio'
 import PodcastTrigger from '../components/podcast/PodcastTrigger'
 import Show from '../components/podcast/Show'
 import Auth from '../components/auth/Auth'
+import Me from '../components/user/Me'
 
 Vue.use(VueRouter);
 
@@ -43,6 +44,11 @@ var router = new VueRouter({
             path: '/about',
             name: 'about',
             component: About
+        },
+        {
+            path: '/me',
+            name: 'me',
+            component: Me
         },
         {
             path: '*',
