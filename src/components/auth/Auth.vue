@@ -27,6 +27,7 @@
         },
         methods: {
             init(){
+                this.$router.push("/dashboard")
                 window.fbAsyncInit = function() {
                     FB.init({
                         appId      : '1849009082025452',
