@@ -27,6 +27,7 @@
         },
         methods: {
             init(){
+                this.$stats.push('login');
                 this.$router.push("/dashboard")
                 window.fbAsyncInit = function() {
                     FB.init({
