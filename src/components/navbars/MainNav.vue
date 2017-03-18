@@ -1,5 +1,10 @@
 <style>
-
+    .padright {
+        padding-right:80px;
+    }
+    .padleft{
+        padding-left: 80px;
+    }
 </style>
 <template>
     <div>
@@ -7,16 +12,14 @@
             <md-button @click.native="toggleMain" class="md-icon-button">
                 <md-icon>menu</md-icon>
             </md-button>
-            <h2 class="md-title" style="flex: 1">
-                <img src="../../assets/logo.png" alt="aScoota" title="aScoota">
-            </h2>
-            <dev-links />
-
-            <md-button class="md-icon-button md-raised md-warn">
-                <router-link :to="{ name: 'auth' }">
-                    <md-icon>account_circle</md-icon>
-                </router-link>
-            </md-button>
+            <div :class="{'padright': audioSelected}">
+                <md-button class="md-icon-button md-raised md-warn">
+                    <router-link :to="{ name: 'auth' }">
+                        <md-icon>account_circle</md-icon>
+                    </router-link>
+                    <md-tooltip md-direction="bottom">Login</md-tooltip>
+                </md-button>
+            </div>
         </md-toolbar>
         <md-sidenav class="md-left" ref="mainMenu">
             <md-toolbar>
@@ -58,6 +61,11 @@
             },
             toggleMain() {
                 this.$refs.mainMenu.toggle();
+            }
+        },
+         computed: {
+            audioSelected() {
+                return this.$store.state.selectedAudio !== undefined;
             }
         }
     }
