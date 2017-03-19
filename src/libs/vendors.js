@@ -15,7 +15,10 @@ Vue.material.registerTheme('default', {
         color: 'deep-orange',
         hue: 600
     },
-    warn: 'lime'
+    warn: {
+        color: 'red',
+        hue: 600
+    }
 });
 
 import flagIconCss from 'flag-icon-css/css/flag-icon.css'
