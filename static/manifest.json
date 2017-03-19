@@ -1,5 +1,5 @@
 {
-    "name": "aScoota - the open source podcast manager",
+    "name": "aScoota - podcast manager",
     "short_name": "aScoota",
     "icons": [
         {
@@ -42,6 +42,6 @@
     "scope": "/",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#009688",
-    "theme_color": "#009688"
+    "background_color": "#eeeeee",
+    "theme_color": "#eeeeee"
 }
