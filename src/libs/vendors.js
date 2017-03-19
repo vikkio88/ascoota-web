@@ -7,9 +7,15 @@ Vue.use(VueMaterial)
 Vue.material.inkRipple = false;
 
 Vue.material.registerTheme('default', {
-    primary: 'white',
-    accent: 'black',
-    warn: 'red'
+    primary: {
+        color: 'grey',
+        hue: 200
+    },
+    accent: {
+        color: 'deep-orange',
+        hue: 600
+    },
+    warn: 'lime'
 });
 
 import flagIconCss from 'flag-icon-css/css/flag-icon.css'
