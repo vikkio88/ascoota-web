@@ -25,7 +25,7 @@
             <md-toolbar>
                 <div class="md-toolbar-container">
                     <h3 class="md-title">
-                    <img src="../../assets/logo.png" alt="aScoota" title="aScoota">
+                    <img src="../../assets/main-logo.svg" style="width:50px;height:50px" alt="aScoota" title="aScoota">
                         aScoota
                     </h3>
                 </div>
