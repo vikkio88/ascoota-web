@@ -11,7 +11,7 @@
 <template>
     <div class="podcast-list-item" :class="{ 'selected': isSelected}">
         <md-list-item @click.native="toggleMe">
-            <md-button class="md-raised md-icon-button md-list-action" :class="{ 'md-primary': isSelected }"v-if="!showimg">
+            <md-button class="md-raised md-icon-button md-list-action" :class="{ 'md-warn': isSelected, 'md-primary': !isSelected }"v-if="!showimg">
                 <md-icon v-if="!isSelected">play_arrow</md-icon>
                 <md-icon v-if="isSelected">stop</md-icon>
             </md-button>
