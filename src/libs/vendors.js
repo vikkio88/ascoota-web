@@ -7,19 +7,9 @@ Vue.use(VueMaterial)
 Vue.material.inkRipple = false;
 
 Vue.material.registerTheme('default', {
-    primary: 'teal',
-    accent: 'light-blue'
-})
-
-Vue.material.registerTheme({
-    navBar: {
-        primary: 'teal',
-        accent: 'white'
-    },
-    speedDial: {
-        accent: 'red',
-        background: 'indigo'
-    },
-})
+    primary: 'white',
+    accent: 'black',
+    warn: 'red'
+});
 
 import flagIconCss from 'flag-icon-css/css/flag-icon.css'
