@@ -54,7 +54,7 @@
     <div>
         <md-speed-dial v-if="audioSelected" md-mode="fling" md-direction="bottom" class="md-fab md-fab-top-right">
             <md-button class="md-fab" md-fab-trigger>
-                <img :class="{'rotating-dial-icon': podcast.state.playing}" src="../../assets/logo.svg" style="heigh:32px; width:32px; fill:white"/>
+                <img :class="{'rotating-dial-icon': podcast.state.playing}" src="../../assets/logo.svg" style="heigh:40px; width:40px"/>
             </md-button>
             <md-button @click.native="togglePlay" class="md-fab md-mini md-clean">
                 <md-icon v-if="!podcast.state.playing">play_arrow</md-icon>
