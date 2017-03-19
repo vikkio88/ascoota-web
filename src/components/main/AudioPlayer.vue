@@ -119,11 +119,11 @@
                             <div style="flex: 0">
                                 <md-switch v-model="attachTime">Add current time</md-switch>
                             </div>
-                            <md-button class="md-primary" v-clipboard="podcastLink" @success="copiedSuccess">
+                            <md-button class="md-warn" v-clipboard="podcastLink" @success="copiedSuccess">
                                 <md-icon>content_copy</md-icon>
                             </md-button>
                             <md-dialog-actions>
-                                <md-button class="md-primary" @click.native="$refs.shareableLink.close()">Ok</md-button>
+                                <md-button class="md-warn md-raised" @click.native="$refs.shareableLink.close()">Cancel</md-button>
                             </md-dialog-actions>
                         </md-dialog>
 
