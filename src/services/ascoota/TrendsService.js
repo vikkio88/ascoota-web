@@ -6,10 +6,10 @@ var trendsService = class TrendsService extends AscootaService {
     this.endpoint = `trends`;
   }
   getShows() {
-    return this.get(`${this.endpoint}/shows`);
+    return this.get(`${this.endpoint}/shows?l=5`);
   }
   getLatestPodcasts() {
-    return this.get(`${this.endpoint}/podcasts/latest`);
+    return this.get(`${this.endpoint}/podcasts/latest?l=5`);
   }
 
 };
