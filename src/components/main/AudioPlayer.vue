@@ -34,13 +34,27 @@
         justify-content: center;
         align-items: center;
     }
+    .rotating-dial-icon {
+        animation-name: ckw;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        transform-origin: 50% 50%;
+        display: inline-block;
+    }
+    @keyframes ckw {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 </style>
 <template>
     <div>
         <md-speed-dial v-if="audioSelected" md-mode="fling" md-direction="bottom" class="md-fab md-fab-top-right">
             <md-button class="md-fab" md-fab-trigger>
-                <md-icon md-icon-morph>close</md-icon>
-                <md-icon>audiotrack</md-icon>
+                <img :class="{'rotating-dial-icon': podcast.state.playing}" src="../../assets/logo.svg" style="heigh:32px; width:32px; fill:white"/>
             </md-button>
             <md-button @click.native="togglePlay" class="md-fab md-mini md-clean">
                 <md-icon v-if="!podcast.state.playing">play_arrow</md-icon>
