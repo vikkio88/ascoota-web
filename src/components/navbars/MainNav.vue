@@ -46,13 +46,8 @@
     </div>
 </template>
 <script>
-    import DevLinks from './elements/DevLinks'
-
     export default {
         name: "mainNavBar",
-        components: {
-            DevLinks
-        },
         methods: {
             goTo(route) {
                 this.toggleMain();
