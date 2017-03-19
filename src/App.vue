@@ -16,8 +16,6 @@
   <div id="app" class="app-viewport phone-viewport">
     <main-nav />
     <md-card>
-      <md-card-header>
-      </md-card-header>
       <md-card-content>
         <router-view></router-view>
       </md-card-content>
