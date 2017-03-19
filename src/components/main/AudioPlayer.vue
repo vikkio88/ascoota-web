@@ -84,7 +84,7 @@
                 <span class="md-subheading">{{audio.description}}</span>
                 <div id="progress-bar-wrapper" class="progress-bar" @click="seek">
                     <md-progress class="md-warn" v-if="podcast.state.buffering" md-indeterminate style="height:10px"></md-progress>
-                    <md-progress v-else :md-progress="podcast.state.progress" style="height:10px"></md-progress>
+                    <md-progress class="md-accent" v-else :md-progress="podcast.state.progress" style="height:10px"></md-progress>
                 </div>
                 <div :class="{'clickable': podcast.state.playing}" @click="toggleTimeFormat">
                     <span class="md-headline">{{podcast.state.lastTimeFormat}} / {{podcast.state.durationParsed}}</span>
