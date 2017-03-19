@@ -8,12 +8,12 @@
 </style>
 <template>
     <div>
-        <md-toolbar md-theme="navBar" class="md-dense">
+        <md-toolbar class="md-dense">
             <md-button @click.native="toggleMain" class="md-icon-button">
                 <md-icon>menu</md-icon>
             </md-button>
             <div :class="{'padright': audioSelected}">
-                <md-button class="md-icon-button md-raised md-warn">
+                <md-button class="md-icon-button md-raised">
                     <router-link :to="{ name: 'auth' }">
                         <md-icon>account_circle</md-icon>
                     </router-link>

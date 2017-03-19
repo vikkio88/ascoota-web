@@ -37,7 +37,7 @@
 </style>
 <template>
     <div>
-        <md-speed-dial v-if="audioSelected" md-mode="fling" md-direction="bottom" class="md-fab md-fab-top-right" md-theme="speedDial">
+        <md-speed-dial v-if="audioSelected" md-mode="fling" md-direction="bottom" class="md-fab md-fab-top-right">
             <md-button class="md-fab" md-fab-trigger>
                 <md-icon md-icon-morph>close</md-icon>
                 <md-icon>audiotrack</md-icon>
