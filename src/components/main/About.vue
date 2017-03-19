@@ -1,7 +1,5 @@
-<style scoped>
-a {
-    color: black;
-}
+<style>
+
 </style>
 <template>
     <md-card>
@@ -12,23 +10,15 @@ a {
         </md-card-header>
         <md-card-content>
             <div>
-                <md-button class="md-raised md-warn">
-                    <a href="https://github.com/vikkio88/ascoota-web"
-                       target="_blank"
-                       style="color:white">
-                        <img src="../../assets/github-circle.png"
-                             alt="github"> codebase
-                    </a>
+                <md-button href="https://github.com/vikkio88/ascoota-web"
+                           class="md-raised md-warn">
+                    <img src="../../assets/github-circle.png"
+                         alt="github"> codebase
                 </md-button>
     
-                <md-button class="md-raised md-warn"
-                           style="color:white">
-                    <a target="_blank"
-                       href="https://github.com/vikkio88/ascoota-web/issues/new">
-                        <span style="color:white">
-                                    <md-icon>bug_report</md-icon> Report bug
-                                </span>
-                    </a>
+                <md-button href="https://github.com/vikkio88/ascoota-web/issues/new"
+                           class="md-raised md-warn">
+                    <span style="color:white"><md-icon>bug_report</md-icon> Report bug</span>
                 </md-button>
             </div>
             <p><strong>Ascoota</strong> is a small side project of mine, it will be a podcast player/manager. At the moment I am planning just to show some free random podcasts. Some of them are from my old radio show
