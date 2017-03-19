@@ -5,24 +5,22 @@
 </style>
 <template>
     <div id="dashboard">
-        <div class="panel-group">
-            <md-tabs md-centered>
-                <md-tab md-label="Shows"
-                        md-icon="ondemand_video">
-                    <shows />
-                </md-tab>
+        <md-tabs md-centered>
+            <md-tab md-label="Shows"
+                    md-icon="ondemand_video">
+                <shows />
+            </md-tab>
     
-                <md-tab md-label="Radios"
-                        md-icon="radios">
-                    <radios />
-                </md-tab>
+            <md-tab md-label="Radios"
+                    md-icon="radios">
+                <radios />
+            </md-tab>
     
-                <md-tab md-label="Podcasts"
-                        md-icon="audiotrack">
-                    <podcasts />
-                </md-tab>
-            </md-tabs>
-        </div>
+            <md-tab md-label="Podcasts"
+                    md-icon="audiotrack">
+                <podcasts />
+            </md-tab>
+        </md-tabs>
     </div>
 </template>
 <script>

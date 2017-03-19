@@ -15,7 +15,9 @@ body,
 <template>
   <div id="app" class="app-viewport phone-viewport">
     <main-nav />
-    <router-view></router-view>
+    <md-card>
+      <router-view></router-view>
+    </md-card>
     <audio-player />
   </div>
 </template>
