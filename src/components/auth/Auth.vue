@@ -1,12 +1,9 @@
 <style></style>
 <template>
     <div>
-        <h1>Login</h1>
         <md-button class="md-raised md-primary" @click.native="loginFb">Login with Facebook</md-button>
         <div>
-            <pre>
-                {{user}}
-            </pre>
+            <img v-if="hamster" src="../../assets/hamster-soon.gif" />
         </div>
     </div>
 </template>
@@ -22,13 +19,14 @@
         },
         data(){
             return {
-                user: null
+                user: null,
+                hamster: false
             };
         },
         methods: {
             init(){
                 this.$stats.push('login');
-                this.$router.push("/dashboard")
+                /*this.$router.push("/dashboard")
                 window.fbAsyncInit = function() {
                     FB.init({
                         appId      : '1849009082025452',
@@ -43,9 +41,11 @@
                     js = d.createElement(s); js.id = id;
                     js.src = "//connect.facebook.net/en_US/sdk.js";
                     fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));
+                }(document, 'script', 'facebook-jssdk'));*/
             },
             loginFb(){
+                this.hamster = true;
+                return;
                 FB.login((response) => {
                     if (response.authResponse) {
                         this.fbAuth(response.authResponse.accessToken);
