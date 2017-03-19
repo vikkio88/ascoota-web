@@ -11,9 +11,11 @@ a {
                    target="_blank">vikkio</a></div>
         </md-card-header>
         <md-card-content>
-        <div><md-button class="md-raised md-warn">
+            <div>
+                <md-button class="md-raised md-warn">
                     <a href="https://github.com/vikkio88/ascoota-web"
-                       target="_blank" style="color:white">
+                       target="_blank"
+                       style="color:white">
                         <img src="../../assets/github-circle.png"
                              alt="github"> codebase
                     </a>
@@ -24,10 +26,11 @@ a {
                     <a target="_blank"
                        href="https://github.com/vikkio88/ascoota-web/issues/new">
                         <span style="color:white">
-                                <md-icon>bug_report</md-icon> Report bug
-                            </span>
+                                    <md-icon>bug_report</md-icon> Report bug
+                                </span>
                     </a>
-                </md-button></div>
+                </md-button>
+            </div>
             <p><strong>Ascoota</strong> is a small side project of mine, it will be a podcast player/manager. At the moment I am planning just to show some free random podcasts. Some of them are from my old radio show
                 <a href="https://www.facebook.com/BazingaRadioSISMA"
                    title="Bazinga!"
