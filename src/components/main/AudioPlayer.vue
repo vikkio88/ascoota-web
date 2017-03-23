@@ -86,10 +86,10 @@ img.logo-url-wrapper {
             <div v-if="audio != undefined">
                 <md-toolbar>
                     <div class="md-toolbar-container">
-                        <h3 class="md-title">Player</h3>
+                        <h3 class="md-title">{{audio.name}}</h3>
                     </div>
                 </md-toolbar>
-                <h3 class="md-title">{{audio.name}}</h3>
+                <span class="md-subheading">{{audio.description}}</span>
                 <div class="logo-url-wrapper">
                     <img v-if="audio.show"
                          class="clickable"
@@ -97,8 +97,7 @@ img.logo-url-wrapper {
                          @click="goToShow(audio.show.slug)"
                          style="height:150px" />
                 </div>
-    
-                <span class="md-subheading">{{audio.description}}</span>
+
                 <div id="progress-bar-wrapper"
                      class="progress-bar"
                      @click="seek">
