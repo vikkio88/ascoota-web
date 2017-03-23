@@ -4,7 +4,7 @@
     }
 </style>
 <template>
-    <div class="show-card-wrapper" @click="goToShow">
+    <div class="show-card-wrapper clickable" @click="goToShow">
         <md-card>
                 <md-card-media>
                     <img style="width: 250px;height: auto;" alt="radio.name" :src="show.logo_url">

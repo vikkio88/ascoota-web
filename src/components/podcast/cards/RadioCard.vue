@@ -5,7 +5,7 @@
 </style>
 <template>
     <div class="radio-card-wrapper" @click="showRadio">
-        <md-card>
+        <md-card class="clickable">
                 <md-card-media>
                     <img style="width: 250px;height: auto;" alt="radio.name" :src="radio.logo_url">
                 </md-card-media>

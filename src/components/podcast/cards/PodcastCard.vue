@@ -1,7 +1,7 @@
 <style>
 </style>
 <template>
-    <md-card>
+    <md-card class="clickable">
         <md-card-media v-if="showimg">
                 <img alt="podcast.name" :src="podcast.show.logo_url" @click.native="toggleMe">
         </md-card-media>
