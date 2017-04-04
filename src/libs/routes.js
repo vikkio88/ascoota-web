@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 //components
 import Dashboard from '../components/main/Dashboard'
+import FeedParser from '../components/main/FeedParser'
 import About from '../components/main/About'
 import SingleRadio from '../components/podcast/SingleRadio'
 import PodcastTrigger from '../components/podcast/PodcastTrigger'
@@ -19,6 +20,11 @@ var router = new VueRouter({
             path: '/dashboard',
             name: 'dashboard',
             component: Dashboard
+        },
+        {
+            path: '/feeds/parser',
+            name: 'feedParser',
+            component: FeedParser
         },
         {
             path: '/radio/:radioId',

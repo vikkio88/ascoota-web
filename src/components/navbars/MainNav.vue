@@ -36,6 +36,11 @@
                     <md-icon>dashboard</md-icon> <span>Dashboard</span>
                 </md-list-item>
                 <md-divider class="md-inset"></md-divider>
+                
+                <md-list-item @click.native="goTo('feeds/parser')">
+                    <md-icon>rss_feed</md-icon> <span>Parse Feed</span>
+                </md-list-item>
+                <md-divider class="md-inset"></md-divider>
 
                 <md-list-item @click.native="goTo('about')">
                     <md-icon>info_outline</md-icon> <span>About</span>

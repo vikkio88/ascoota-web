@@ -10,6 +10,7 @@
     "deploy": "surge --domain ascoota.surge.sh dist/"
   },
   "dependencies": {
+    "validator": "^7.0.0",
     "vue": "^2.1.0",
     "vue-clipboards": "^0.2.5",
     "vue-resource": "^1.0.3",
