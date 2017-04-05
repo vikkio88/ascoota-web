@@ -69,9 +69,6 @@ export default {
             } else {
                 this.$store.state.selectedAudio = undefined
             }
-        },
-        downloadFile(){
-            console.log("Download");
         }
     }
 }

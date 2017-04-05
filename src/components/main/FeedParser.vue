@@ -8,23 +8,37 @@
 <template>
     <div id="feedparser">
         <div v-if="!isParsed">
-            <h1>JIT - Feed Parser</h1>
+            <div class="md-title">JIT - Podcast Feed Parser</div>
+            <span class="md-subheading narrow">Paste the podcast rss feed url, and <strong>aScoota</strong> will show them out in a more user friendly way, for you to play or download them.</span>
             <md-input-container>
                 <md-input v-model="feedUrl"
                           placeholder="http://thewebsite.com/the/feed.xml"></md-input>
             </md-input-container>
-            <md-button class="md-raised" v-if="readyToSend" @click.native="parse" :disable="parsing">
+            <md-button class="md-raised"
+                       v-if="readyToSend"
+                       @click.native="parse"
+                       :disable="parsing">
                 <span v-if="parsing">
-                    <md-spinner md-indeterminate class="md-warn"></md-spinner>
-                </span>
+                        <md-spinner md-indeterminate class="md-warn"></md-spinner>
+                    </span>
                 <span v-else>
-                    Parse
-                </span>
+                        Parse
+                    </span>
             </md-button>
         </div>
         <div v-else>
-            <show-details :show="show" :podcasts="podcasts" />
+            <show-details :show="show"
+                          :podcasts="podcasts"
+                          downloadable/>
         </div>
+        <md-snackbar :md-position="'bottom center'"
+                     ref="snackbar"
+                     :md-duration="4000">
+            <span>I can't see any podcasts in there... :(</span>
+            <md-button class="md-accent"
+                       md-theme="light-blue"
+                       @click.native="$refs.snackbar.close()">OK</md-button>
+        </md-snackbar>
     </div>
 </template>
 <script>
@@ -64,14 +78,15 @@ export default {
         validFeedURL(website) {
             return isURL(website);
         },
-        fixAndAssignPodcasts(podcasts){
-            this.podcasts = podcasts.map( (podcast,index) =>{
+        fixAndAssignPodcasts(podcasts) {
+            this.podcasts = podcasts.map((podcast, index) => {
                 podcast.id = `PARSED_${index + 1}`;
                 podcast.date = podcast.date.date;
                 return podcast;
             });
         },
         parse() {
+            this.$stats.push(`PARSE_REQUEST_${this.feedUrl}`);
             this.parsing = true;
             service.parse(this.feedUrl).then(
                 data => {
@@ -81,7 +96,10 @@ export default {
                     this.fixAndAssignPodcasts(this.show.podcasts);
                 },
                 error => {
-                    console.log(error);
+                    this.$refs.snackbar.open();
+                    this.isParsed = false;
+                    this.parsing = false;
+                    this.feedUrl = null;
                 }
             );
         }
