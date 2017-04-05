@@ -36,6 +36,7 @@
                     <podcast-list-item :podcast="podcast"
                                        :show="show"
                                        :showimg="false"
+                                       :downloadable="downloadable"
                                        v-for="podcast in podcasts" />
                 </md-list>
             </md-card-content>
@@ -54,6 +55,7 @@ export default {
     },
     props: {
         show: Object,
+        downloadable: { type: Boolean, default: false },
         podcasts: { type: Array, default: [] },
         language: { type: String, default: null },
         page: { type: Number, default: 1 }
