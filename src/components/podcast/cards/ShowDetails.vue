@@ -11,7 +11,7 @@
                 </md-card-media>
                 <md-card-header-text>
                     <div class="md-title">{{show.name}}
-                        <flag-icon :language="language" />
+                        <flag-icon v-if="language" :language="language" />
                     </div>
                     <div class="md-subhead">{{show.author}}</div>
                 </md-card-header-text>
@@ -55,7 +55,7 @@ export default {
     props: {
         show: Object,
         podcasts: { type: Array, default: [] },
-        language: { type: String, default: "it" },
+        language: { type: String, default: null },
         page: { type: Number, default: 1 }
     },
     methods: {

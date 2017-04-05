@@ -7,19 +7,33 @@
 </style>
 <template>
     <div id="feedparser">
-        <h1>Feed Parser</h1>
-        <md-input-container>
-            <md-input v-model="feedUrl"
-                      placeholder="http://thewebsite.com/the/feed.xml"></md-input>
-        </md-input-container>
-        <md-button class="md-raised" v-if="readyToSend" @click.native="parse">Parse</md-button>
+        <div v-if="!isParsed">
+            <h1>JIT - Feed Parser</h1>
+            <md-input-container>
+                <md-input v-model="feedUrl"
+                          placeholder="http://thewebsite.com/the/feed.xml"></md-input>
+            </md-input-container>
+            <md-button class="md-raised"
+                       v-if="readyToSend"
+                       @click.native="parse">Parse</md-button>
+        </div>
+        <div v-else>
+            <show-details :show="show" :podcasts="podcasts" />
+        </div>
     </div>
 </template>
 <script>
+import ShowService from '../../services/ascoota/ShowService.js';
 import isURL from 'validator/lib/isURL';
+import ShowDetails from '../podcast/cards/ShowDetails';
+
+const service = new ShowService();
 
 export default {
     name: "feedParser",
+    components: {
+        ShowDetails
+    },
     computed: {
         isValidUrl() {
             if (this.feedUrl) {
@@ -27,22 +41,34 @@ export default {
             }
             return true;
         },
-        readyToSend(){
+        readyToSend() {
             return this.feedUrl && this.validFeedURL(this.feedUrl);
         }
 
     },
     data() {
         return {
-            feedUrl: null
+            feedUrl: null,
+            show: {},
+            podcasts: [],
+            isParsed: false
         }
     },
     methods: {
         validFeedURL(website) {
             return isURL(website);
         },
-        parse(){
-            console.log(this.feedUrl);
+        parse() {
+            service.parse(this.feedUrl).then(
+                data => {
+                    this.isParsed = true;
+                    this.show = data.body.payload;
+                    this.podcasts = this.show.podcasts;
+                },
+                error => {
+                    console.log(error);
+                }
+            );
         }
     }
 }
