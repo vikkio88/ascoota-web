@@ -1,36 +1,39 @@
 <style>
 #feedparser {
     text-align: center;
-    width: 90%;
-    margin: auto;
 }
 </style>
 <template>
     <div id="feedparser">
-        <div v-if="!isParsed">
-            <div class="md-title">JIT - Podcast Feed Parser</div>
-            <span class="md-subheading narrow">Paste the podcast rss feed url, and <strong>aScoota</strong> will show them out in a more user friendly way, for you to play or download them.</span>
-            <md-input-container>
-                <md-input v-model="feedUrl"
-                          placeholder="http://thewebsite.com/the/feed.xml"></md-input>
-            </md-input-container>
-            <md-button class="md-raised"
-                       v-if="readyToSend"
-                       @click.native="parse"
-                       :disable="parsing">
-                <span v-if="parsing">
-                        <md-spinner md-indeterminate class="md-warn"></md-spinner>
-                    </span>
-                <span v-else>
-                        Parse
-                    </span>
-            </md-button>
-        </div>
-        <div v-else>
-            <show-details :show="show"
-                          :podcasts="podcasts"
-                          downloadable/>
-        </div>
+        <md-card>
+            <div v-if="!isParsed">
+                <md-card-header>
+                    <div class="md-title">JIT - Podcast Feed Parser</div>
+                    <span class="md-subheading narrow">Paste the podcast rss feed url, and <strong>aScoota</strong> will show them out in a more user friendly way, for you to play or download them.</span>
+                </md-card-header>
+                <md-card-content>
+                    <md-input-container>
+                        <md-input v-model="feedUrl" placeholder="http://thewebsite.com/the/feed.xml"></md-input>
+                    </md-input-container>
+                    <md-button class="md-raised"
+                               v-if="readyToSend"
+                               @click.native="parse"
+                               :disable="parsing">
+                        <md-spinner v-if="parsing" md-indeterminate class="md-warn"></md-spinner>
+                        <span v-else>
+                            <md-icon>send</md-icon>
+                        </span>
+                    </md-button>
+                </md-card-content>
+            </div>
+            <div v-else>
+                <md-card-content>
+                    <show-details :show="show"
+                                  :podcasts="podcasts"
+                                  downloadable/>
+                </md-card-content>
+            </div>
+        </md-card>
         <md-snackbar :md-position="'bottom center'"
                      ref="snackbar"
                      :md-duration="4000">
