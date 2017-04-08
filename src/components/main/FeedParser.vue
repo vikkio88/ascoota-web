@@ -16,28 +16,28 @@
                         <md-input v-model="feedUrl" placeholder="http://thewebsite.com/the/feed.xml"></md-input>
                     </md-input-container>
                     <md-button class="md-raised"
-                               v-if="readyToSend"
+                               v-if="readyToSend && !parsing"
                                @click.native="parse"
                                :disable="parsing">
-                        <md-spinner v-if="parsing" md-indeterminate class="md-warn"></md-spinner>
-                        <span v-else>
                             <md-icon>send</md-icon>
-                        </span>
                     </md-button>
+                    <md-spinner v-if="parsing" md-indeterminate class="md-warn"></md-spinner>
                 </md-card-content>
             </div>
             <div v-else>
                 <md-card-content>
                     <show-details :show="show"
                                   :podcasts="podcasts"
-                                  downloadable/>
+                                  downloadable
+                                  sortable
+                                  />
                 </md-card-content>
             </div>
         </md-card>
         <md-snackbar :md-position="'bottom center'"
                      ref="snackbar"
                      :md-duration="4000">
-            <span>I can't see any podcasts in there... :(</span>
+            <span>Wrong feed format, probably not an RSS feed!</span>
             <md-button class="md-accent"
                        md-theme="light-blue"
                        @click.native="$refs.snackbar.close()">OK</md-button>

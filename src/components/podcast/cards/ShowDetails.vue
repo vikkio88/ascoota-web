@@ -32,6 +32,11 @@
         </md-card>
         <md-card>
             <md-card-content v-if="podcasts.length">
+                <md-button v-if="sortable" class="md-raised" @click.native="reverseSort">
+                    <md-icon>sort</md-icon>
+                    <md-icon v-if="sortOrderRecent">arrow_upward</md-icon>
+                    <md-icon v-else>arrow_downward</md-icon>
+                </md-button>
                 <md-list class="md-double-line">
                     <podcast-list-item :podcast="podcast"
                                        :show="show"
@@ -53,15 +58,24 @@ export default {
         PodcastListItem,
         FlagIcon
     },
+    data() {
+        return {
+            sortOrderRecent: true
+        }
+    },
     props: {
         show: Object,
         downloadable: { type: Boolean, default: false },
+        sortable: { type: Boolean, default: false },
         podcasts: { type: Array, default: [] },
         language: { type: String, default: null },
         page: { type: Number, default: 1 }
     },
     methods: {
-
+        reverseSort() {
+            this.sortOrderRecent = ! this.sortOrderRecent;
+            this.podcasts = this.podcasts.reverse();
+        }
     }
 }
 
