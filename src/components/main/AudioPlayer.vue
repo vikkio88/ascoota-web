@@ -167,6 +167,7 @@ img.logo-url-wrapper {
     
                     </md-card>
                 </div>
+                <md-button class="md-raised" :href="audio.file_url" download target="_blank"><md-icon>file_download</md-icon></md-button>
             </div>
         </md-sidenav>
     </div>
