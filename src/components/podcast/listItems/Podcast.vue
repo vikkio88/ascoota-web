@@ -13,12 +13,16 @@ div.podcast-list-item {
          :class="{ 'selected': isSelected}">
         <md-list-item>
             <div v-if="downloadable">
-                <md-button class="md-raised md-icon-button md-list-action" :href="podcast.file_url" download target="_blank">
+                <md-button class="md-raised md-icon-button md-list-action"
+                           :href="podcast.file_url"
+                           download
+                           target="_blank">
                     <md-icon>file_download</md-icon>
                 </md-button>
             </div>
             <div v-else>
-                <md-button @click.native="toggleMe" class="md-raised md-icon-button md-list-action"
+                <md-button @click.native="toggleMe"
+                           class="md-raised md-icon-button md-list-action"
                            :class="{ 'md-warn': isSelected, 'md-primary': !isSelected }"
                            v-if="!showimg">
                     <md-icon v-if="!isSelected">play_arrow</md-icon>
@@ -30,7 +34,8 @@ div.podcast-list-item {
                 <img alt="podcast.name"
                      :src="podcast.show.logo_url">
             </md-avatar>
-            <div class="md-list-text-container clickable" @click="toggleMe">
+            <div class="md-list-text-container clickable"
+                 @click="toggleMe">
                 <span v-if="showimg">{{show.name}}</span>
                 <span>{{podcast.name}} - {{podcast.description}}</span>
                 <p>{{podcast.date}}</p>
@@ -56,6 +61,21 @@ export default {
     },
     methods: {
         toggleMe() {
+            if (this.show !== undefined) {
+                this.podcast.show = {
+                    name: this.show.name,
+                    logo_url: this.show.logo_url,
+                    slug: this.show.slug
+                }
+            }
+            
+            if (!this.isSelected) {
+                let podcast = this.podcast;
+                this.$store.commit('selectAndPlay', { podcast });
+            } else {
+                this.$store.commit('stop');
+            }
+            /*
             if (!this.isSelected) {
                 if (this.show !== undefined) {
                     this.podcast.show = {
@@ -68,7 +88,7 @@ export default {
                 this.$store.state.autoPlay = true;
             } else {
                 this.$store.state.selectedAudio = undefined
-            }
+            }*/
         }
     }
 }

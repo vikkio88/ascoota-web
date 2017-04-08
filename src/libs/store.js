@@ -1,43 +1,72 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VueAudio from '../VueAudio'
 
 Vue.use(Vuex);
 
-const LOGIN = "LOGIN";
-const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-const LOGOUT = "LOGOUT";
+const options = {
+    preload: true,
+    autoplay: false,
+    rate: 1,
+    loop: false,
+    volume: 0.5
+};
 
 
 const store = new Vuex.Store({
     state: {
         selectedAudio: undefined,
+        audio: undefined,
         autoPlay: false,
-        showMainDialog: false,
         startTime: 0,
         isLoggedIn: !!localStorage.getItem("token")
     },
     mutations: {
-        [LOGIN](state) {
-            state.pending = true;
+        select(state, audio) {
+            if (state.audio != undefined) {
+                state.audio.destroyed();
+            }
+            state.selectedAudio = audio;
+            state.audio = new VueAudio(audio.file_url, options)
         },
-        [LOGIN_SUCCESS](state) {
-            state.isLoggedIn = true;
-            state.pending = false;
+        selectAndPlay(state, audioParameters) {
+            if (state.audio != undefined) {
+                state.audio.pause();
+            }
+            const { podcast, initialSeek } = audioParameters;
+            state.selectedAudio = podcast;
+            state.audio = new VueAudio(podcast.file_url, options)
+            state.audio.play();
+            if (initialSeek) {
+                setTimeout(
+                    () => {
+                        state.audio.setTime(parseInt(initialSeek)); 
+                    },
+                    1000
+                );
+            }
         },
-        [LOGOUT](state) {
-            state.isLoggedIn = false;
+        stop(state) {
+            state.audio.pause();
+            state.selectedAudio = undefined;
+            state.audio = undefined;
+        },
+        play(state) {
+            if (state.audio) {
+                state.audio.play();
+            }
+        },
+        pause(state) {
+            if (state.audio) {
+                state.audio.pause();
+            }
+        },
+        seek(time){
+            state.audio.setTime(parseInt(time));
         }
     },
     actions: {
-        login({ commit }, token) {
-            commit(LOGIN);
-            localStorage.setItem("token", token);
-            commit(LOGIN_SUCCESS);
-        },
-        logout({ commit }) {
-            localStorage.removeItem("token");
-            commit(LOGOUT);
-        }
+
     }
 });
 

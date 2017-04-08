@@ -15,22 +15,22 @@ body,
 <template>
   <div id="app" class="app-viewport phone-viewport">
     <main-nav />
+    <audio-player2 />
     <md-card>
       <router-view></router-view>
     </md-card>
-    <audio-player />
   </div>
 </template>
 
 <script>
-import AudioPlayer from './components/main/AudioPlayer'
+import AudioPlayer2 from './components/main/AudioPlayer2'
 import MainNav from './components/navbars/MainNav'
 import Dashboard from './components/main/Dashboard'
 
 export default {
   name: 'app',
   components: {
-    AudioPlayer,
+    AudioPlayer2,
     MainNav,
     Dashboard
   },
