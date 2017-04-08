@@ -100,7 +100,7 @@ img.logo-url-wrapper {
 
                 <span class="md-subheading">{{audio.description}}</span>
                 <div id="progress-bar-wrapper"
-                     class="progress-bar"
+                     class="progress-bar clickable"
                      @click="seek">
                     <md-progress class="md-warn"
                                  v-if="podcast.state.buffering"
