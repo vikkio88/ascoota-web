@@ -85,6 +85,7 @@ export default {
             this.podcasts = podcasts.map((podcast, index) => {
                 podcast.id = `PARSED_${index + 1}`;
                 podcast.date = podcast.date.date;
+                podcast.jit_parsed = true;
                 return podcast;
             });
         },
