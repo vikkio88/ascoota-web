@@ -11,13 +11,18 @@
         <md-card-content>
             <div>
                 <md-button href="https://github.com/vikkio88/ascoota-web"
-                           class="md-raised md-warn">
+                           class="md-raised md-warn" target="_blank">
                     <img src="../../assets/github-circle.png"
                          alt="github"> codebase
                 </md-button>
     
                 <md-button href="https://github.com/vikkio88/ascoota-web/issues/new"
-                           class="md-raised md-warn">
+                           class="md-raised md-warn" target="_blank">
+                    <span style="color:white"><md-icon>lightbulb_outline</md-icon> Request Feature</span>
+                </md-button>
+
+                <md-button href="https://github.com/vikkio88/ascoota-web/issues/new"
+                           class="md-raised md-warn" target="_blank">
                     <span style="color:white"><md-icon>bug_report</md-icon> Report bug</span>
                 </md-button>
             </div>
