@@ -46,6 +46,10 @@ export default {
             this.$store.commit('pause');
         },
         seek() {
+            let offset = event.offsetX;
+            let maxOffset = document.getElementById("progress-bar-wrapper").offsetWidth;
+            let percent = offset / maxOffset;
+            let time = percent * this.audio.state.duration;
             this.$store.commit('seek', time);
         }
     }

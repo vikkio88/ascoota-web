@@ -40,7 +40,7 @@ const store = new Vuex.Store({
             if (initialSeek) {
                 setTimeout(
                     () => {
-                        state.audio.setTime(parseInt(initialSeek)); 
+                        state.audio.setTime(parseInt(initialSeek));
                     },
                     1000
                 );
@@ -61,7 +61,7 @@ const store = new Vuex.Store({
                 state.audio.pause();
             }
         },
-        seek(time){
+        seek(state, time) {
             state.audio.setTime(parseInt(time));
         }
     },
