@@ -12,6 +12,10 @@ const options = {
     volume: 0.5
 };
 
+const isMobile = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
 var originalTitle = 'aScoota - the opensource cloud podcast manager';
 
 const setTitle = (podcast, playing) => {
@@ -50,12 +54,22 @@ const store = new Vuex.Store({
             options.autoplay = true;
             state.audio = new VueAudio(podcast.file_url, options)
             setTitle(state.selectedAudio, true);
+            if(isMobile()){
+                console.log("mobile");
+                setTimeout(
+                    () => {
+                        state.audio.play();
+                    },
+                    1000
+                );
+            }
+
             if (initialSeek) {
                 setTimeout(
                     () => {
                         state.audio.setTime(parseInt(initialSeek));
                     },
-                    1000
+                    1100
                 );
             }
         },
