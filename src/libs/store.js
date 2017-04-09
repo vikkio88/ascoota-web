@@ -47,8 +47,8 @@ const store = new Vuex.Store({
             }
             const { podcast, initialSeek } = audioParameters;
             state.selectedAudio = podcast;
+            options.autoplay = true;
             state.audio = new VueAudio(podcast.file_url, options)
-            state.audio.play();
             setTitle(state.selectedAudio, true);
             if (initialSeek) {
                 setTimeout(
