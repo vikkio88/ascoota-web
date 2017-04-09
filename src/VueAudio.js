@@ -178,7 +178,6 @@ class VueAudio {
     }
 
     setTime(time) {
-        console.log(time);
         time = time < 0 ? 0 : time;
         time = time > this.state.duration ? this.state.duration : time;
         this.$Audio.currentTime = time;

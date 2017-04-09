@@ -75,20 +75,6 @@ export default {
             } else {
                 this.$store.commit('stop');
             }
-            /*
-            if (!this.isSelected) {
-                if (this.show !== undefined) {
-                    this.podcast.show = {
-                        name: this.show.name,
-                        logo_url: this.show.logo_url,
-                        slug: this.show.slug
-                    }
-                }
-                this.$store.state.selectedAudio = this.podcast;
-                this.$store.state.autoPlay = true;
-            } else {
-                this.$store.state.selectedAudio = undefined
-            }*/
         }
     }
 }

@@ -12,6 +12,17 @@ const options = {
     volume: 0.5
 };
 
+var originalTitle = 'aScoota - the opensource cloud podcast manager';
+
+const setTitle = (podcast, playing) => {
+    if (podcast == undefined) {
+        document.title = originalTitle;
+        return;
+    }
+    let playChar = playing ? '►' : '■';
+    document.title = `${playChar} ${podcast.name}`;
+};
+
 
 const store = new Vuex.Store({
     state: {
@@ -28,6 +39,7 @@ const store = new Vuex.Store({
             }
             state.selectedAudio = audio;
             state.audio = new VueAudio(audio.file_url, options)
+            setTitle(state.selectedAudio, false);
         },
         selectAndPlay(state, audioParameters) {
             if (state.audio != undefined) {
@@ -37,6 +49,7 @@ const store = new Vuex.Store({
             state.selectedAudio = podcast;
             state.audio = new VueAudio(podcast.file_url, options)
             state.audio.play();
+            setTitle(state.selectedAudio, true);
             if (initialSeek) {
                 setTimeout(
                     () => {
@@ -50,15 +63,18 @@ const store = new Vuex.Store({
             state.audio.pause();
             state.selectedAudio = undefined;
             state.audio = undefined;
+            setTitle(state.audio);
         },
         play(state) {
             if (state.audio) {
                 state.audio.play();
+                setTitle(state.selectedAudio, true);
             }
         },
         pause(state) {
             if (state.audio) {
                 state.audio.pause();
+                setTitle(state.selectedAudio, false);
             }
         },
         seek(state, time) {
