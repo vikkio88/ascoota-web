@@ -51,25 +51,17 @@ const store = new Vuex.Store({
             }
             const { podcast, initialSeek } = audioParameters;
             state.selectedAudio = podcast;
-            options.autoplay = true;
+            if (!isMobile()) {
+                options.autoplay = true;
+            }
             state.audio = new VueAudio(podcast.file_url, options)
             setTitle(state.selectedAudio, true);
-            if(isMobile()){
-                console.log("mobile");
-                setTimeout(
-                    () => {
-                        state.audio.play();
-                    },
-                    1000
-                );
-            }
-
             if (initialSeek) {
                 setTimeout(
                     () => {
                         state.audio.setTime(parseInt(initialSeek));
                     },
-                    1100
+                    1000
                 );
             }
         },
