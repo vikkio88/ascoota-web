@@ -80,9 +80,6 @@ const store = new Vuex.Store({
         seek(state, time) {
             state.audio.setTime(parseInt(time));
         }
-    },
-    actions: {
-
     }
 });
 
