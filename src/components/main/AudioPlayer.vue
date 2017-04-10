@@ -167,7 +167,7 @@ import PodcastService from '../../services/ascoota/PodcastService'
 const podcastService = new PodcastService();
 
 export default {
-    name: 'audioPlayer2',
+    name: 'audioPlayer',
     data() {
         return {
             snackMessage: '',
@@ -177,6 +177,13 @@ export default {
     computed: {
         audio() {
             return this.$store.state.audio;
+        },
+        audioEnded() {
+            let ended = false;
+            if (this.audio != undefined) {
+                ended = this.audio.state.ended;
+            }
+            return ended;
         },
         podcast() {
             return this.$store.state.selectedAudio;
@@ -189,6 +196,13 @@ export default {
                 link = `${link}?t=${seconds}`;
             }
             return link;
+        }
+    },
+    watch: {
+        audioEnded() {
+            if (this.audio && this.audio.state.currentTime > 1) {
+                this.pause();
+            }
         }
     },
     methods: {
