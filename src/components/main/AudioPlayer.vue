@@ -157,7 +157,7 @@ div.controls-wrapper {
                      :md-duration="1500">
             <span>{{audio.state.lastTimeFormat}} / {{audio.state.durationParsed}}</span>
             <md-button class="md-accent"
-                       @click.native="$refs.snackbar.close()">Close</md-button>
+                       @click.native="$refs.timeSkip.close()">Close</md-button>
         </md-snackbar>
 
         <md-snackbar :md-position="'bottom center'"
