@@ -5,7 +5,7 @@
     <md-card>
         <md-card-header>
             <div class="md-title">About aScoota</div>
-            <div class="md-subhead">Made with ♥ by <a href="http://www.vikkio.it"
+            <div class="md-subhead">Made with ♥ by <a href="https://vikkio.co"
                    target="_blank">vikkio</a></div>
         </md-card-header>
         <md-card-content>
