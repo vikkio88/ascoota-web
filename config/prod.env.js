@@ -1,5 +1,5 @@
 module.exports = {
   NODE_ENV: '"production"',
-  SERVICE_URL: '"https://www.vikkio.it/ascoota-api/"',
-  STATS_URL: '"https://www.vikkio.it/ascoota-api/stats"'
+  SERVICE_URL: '"https://vikkio.co/ascoota-api/"',
+  STATS_URL: '"http://vikkio.co/ascoota-api/stats"'
 }
