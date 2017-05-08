@@ -1,8 +1,8 @@
 <style></style>
 <template>
-<pre>
-    {{me}}
-</pre>
+<div v-if="me">
+Logged in as {{me.name}}
+</div>
 </template>
 <script>
     import UserService from '../../services/ascoota/UserService'

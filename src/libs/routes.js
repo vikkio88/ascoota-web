@@ -44,7 +44,10 @@ var router = new VueRouter({
         {
             path: '/auth',
             name: 'auth',
-            component: Auth
+            component: Auth,
+            meta: {
+                requiresGuest: true
+            }
         },
         {
             path: '/about',
@@ -54,7 +57,10 @@ var router = new VueRouter({
         {
             path: '/me',
             name: 'me',
-            component: Me
+            component: Me,
+            meta: {
+                requiresLogin: true
+            }
         },
         {
             path: '*',
@@ -62,6 +68,17 @@ var router = new VueRouter({
             redirect: '/dashboard'
         }
     ]
+});
+
+router.beforeEach((to, from, next) => {
+    let loggedIn = Vue.auth.loggedIn();
+    if (to.matched.some((record) => record.meta.requiresGuest) && loggedIn) {
+        next({ path: '/me' });
+    } else if (to.matched.some((record) => record.meta.requiresLogin) && !loggedIn) {
+        next({ path: '/auth' });
+    } else {
+        next();
+    }
 });
 
 
