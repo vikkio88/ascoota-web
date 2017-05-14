@@ -18,7 +18,8 @@ div.show-card-wrapper {
             <md-card-action v-if="$auth.loggedIn()">
                 <md-button @click.native="addToFavourites(show.id)"
                            class="md-icon-button">
-                    <md-icon>star</md-icon>
+                    <md-icon v-if="!inFavourites(show.id)">favorite_border</md-icon>
+                    <md-icon v-else>favorite</md-icon>
                 </md-button>
             </md-card-action>
         </md-card>
@@ -39,6 +40,9 @@ export default {
         show: Object
     },
     methods: {
+        inFavourites(showId){
+            return false;
+        },
         goToShow() {
             this.$router.push({ name: 'show', params: { slug: this.show.slug } });
         },
