@@ -6,5 +6,6 @@ module.exports = merge(prodEnv, {
   SERVICE_URL: '"http://localhost:8888/ascoota-api/"',
   STATS_URL: '"http://localhost:8888/ascoota-api/stats"',
   TOKEN_LOCAL_KEY: "'usertoken01'",
-  USER_LOCAL_CONFG: "'userconf01'"
+  USER_LOCAL_CONFG: "'userconf01'",
+  FACEBOOK_APP_ID: '"1849009082025452"'
 })

@@ -25,7 +25,7 @@ export default {
             this.$stats.push('login');
             window.fbAsyncInit = function () {
                 FB.init({
-                    appId: '1849009082025452',
+                    appId: process.env.FACEBOOK_APP_ID,
                     xfbml: true,
                     version: 'v2.8'
                 });
