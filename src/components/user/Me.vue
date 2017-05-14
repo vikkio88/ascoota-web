@@ -47,7 +47,7 @@
                 </md-card-header-text>
             </md-card-header>
             <md-card-content>
-                <div v-if="me.favourites">
+                <div v-if="me.favourites && me.favourites.length">
                     <md-list class="md-double-line">
                         <show-list-item :show="favourite.show"
                                         v-for="favourite in me.favourites" />
