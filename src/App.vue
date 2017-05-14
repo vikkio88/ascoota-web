@@ -11,13 +11,20 @@ body,
   display: flex;
   flex-flow: column;
 }
+
+.content {
+  margin-top: 15px
+}
 </style>
 <template>
-  <div id="app" class="app-viewport phone-viewport">
+  <div id="app"
+       class="app-viewport phone-viewport">
     <main-nav />
     <audio-player />
     <md-card>
-      <router-view></router-view>
+      <div class="content">
+        <router-view></router-view>
+      </div>
     </md-card>
   </div>
 </template>

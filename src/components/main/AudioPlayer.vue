@@ -149,6 +149,11 @@ div.controls-wrapper {
                            target="_blank">
                     <md-icon>file_download</md-icon>
                 </md-button>
+                <md-button v-if="isLoggedIn"
+                           class="md-raised"
+                           @click.native="savePosition">
+                    <md-icon>save</md-icon>
+                </md-button>
             </div>
         </md-sidenav>
     
@@ -159,7 +164,7 @@ div.controls-wrapper {
             <md-button class="md-accent"
                        @click.native="$refs.timeSkip.close()">Close</md-button>
         </md-snackbar>
-
+    
         <md-snackbar :md-position="'bottom center'"
                      ref="snackbar"
                      :md-duration="4000">
@@ -171,8 +176,10 @@ div.controls-wrapper {
 </template>
 <script>
 import PodcastService from '../../services/ascoota/PodcastService'
+import UserService from '../../services/ascoota/UserService.js'
 
 const podcastService = new PodcastService();
+const userService = new UserService();
 
 export default {
     name: 'audioPlayer',
@@ -204,6 +211,9 @@ export default {
                 link = `${link}?t=${seconds}`;
             }
             return link;
+        },
+        isLoggedIn() {
+            return this.$auth.loggedIn();
         }
     },
     watch: {
@@ -233,7 +243,6 @@ export default {
             let percent = offset / maxOffset;
             let time = percent * this.audio.state.duration;
             this.$store.commit('seek', time);
-            console.log("skip");
             this.$refs.timeSkip.open();
         },
         skip(sec) {
@@ -270,7 +279,6 @@ export default {
                 this.audio.state.timeFormatRemaining = !this.audio.state.timeFormatRemaining;
             }
         },
-
         shareDialog() {
             this.$refs['shareableLink'].open();
         },
@@ -286,6 +294,20 @@ export default {
             this.$router.push({ name: 'show', params: { slug } });
             this.$refs.rightSidenav.toggle();
         },
+        savePosition() {
+            let position = parseInt(this.audio.state.currentTime);
+            userService.positionSave({
+                podcast_id: this.podcast.id,
+                position
+            }).then(() => {
+                this.snackMessage = "Position saved!";
+                this.$refs.snackbar.open();
+            },
+            error => {
+                this.snackMessage = "Error on saving position...";
+                this.$refs.snackbar.open();
+            })
+        }
     }
 }
 

@@ -17,7 +17,6 @@
                     <router-link :to="{ name: 'auth' }">
                         <md-icon>account_circle</md-icon>
                     </router-link>
-                    <md-tooltip md-direction="bottom">Login</md-tooltip>
                 </md-button>
             </div>
         </md-toolbar>
