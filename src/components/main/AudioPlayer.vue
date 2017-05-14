@@ -149,7 +149,7 @@ div.controls-wrapper {
                            target="_blank">
                     <md-icon>file_download</md-icon>
                 </md-button>
-                <md-button v-if="isLoggedIn"
+                <md-button v-if="isLoggedIn && !podcast.jit_parsed"
                            class="md-raised"
                            @click.native="savePosition">
                     <md-icon>save</md-icon>
