@@ -14,4 +14,12 @@ export default class UserService extends AscootaService {
     return this.put('me/position', podcastInfo);
   }
 
+  addToFavourites(show) {
+    return this.post('me/favourites/shows', show);
+  }
+
+  removeFromFavourites(showId) {
+    return this.delete(`me/favourites/shows/${showId}`);
+  }
+
 };

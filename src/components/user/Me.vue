@@ -47,7 +47,16 @@
                 </md-card-header-text>
             </md-card-header>
             <md-card-content>
-                <span class="md-subheading">No Favourites added yet...</span>
+                <div v-if="me.favourites">
+                    <md-list class="md-double-line">
+                        <show-list-item :show="favourite.show"
+                                        v-for="favourite in me.favourites" />
+                    </md-list>
+                </div>
+                <div v-else>
+                    <span class="md-subheading">No Favourites added yet...</span>
+                </div>
+    
             </md-card-content>
         </md-card>
     
@@ -55,14 +64,14 @@
 </template>
 <script>
 import UserService from '../../services/ascoota/UserService';
-import PodcastListItem from '../podcast/listItems/Podcast';
+import ShowListItem from '../podcast/listItems/Show';
 
 const service = new UserService();
 
 export default {
     name: "me",
     components: {
-        PodcastListItem
+        ShowListItem
     },
     data() {
         return {
