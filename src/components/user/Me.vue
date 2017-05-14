@@ -1,7 +1,7 @@
 <style></style>
 <template>
 <div v-if="me">
-Logged in as {{me.name}}
+{{me.name}}
 </div>
 </template>
 <script>
