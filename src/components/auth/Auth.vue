@@ -60,6 +60,7 @@ export default {
         },
         login(token) {
             this.$auth.setToken(token);
+            this.$store.commit('login');
             this.$router.push("/me");
         }
     }

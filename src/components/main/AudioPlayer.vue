@@ -157,7 +157,7 @@ div.controls-wrapper {
             </div>
         </md-sidenav>
     
-        <md-snackbar :md-position="'top left'"
+        <md-snackbar :md-position="'bottom left'"
                      ref="timeSkip"
                      :md-duration="1500">
             <span>{{audio.state.lastTimeFormat}} / {{audio.state.durationParsed}}</span>
@@ -213,7 +213,7 @@ export default {
             return link;
         },
         isLoggedIn() {
-            return this.$auth.loggedIn();
+            return this.$store.state.isLoggedIn;
         }
     },
     watch: {
@@ -303,10 +303,10 @@ export default {
                 this.snackMessage = "Position saved!";
                 this.$refs.snackbar.open();
             },
-            error => {
-                this.snackMessage = "Error on saving position...";
-                this.$refs.snackbar.open();
-            })
+                error => {
+                    this.snackMessage = "Error on saving position...";
+                    this.$refs.snackbar.open();
+                })
         }
     }
 }

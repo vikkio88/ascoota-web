@@ -34,9 +34,15 @@ const store = new Vuex.Store({
         audio: undefined,
         autoPlay: false,
         startTime: 0,
-        isLoggedIn: !!localStorage.getItem("token")
+        isLoggedIn: false
     },
     mutations: {
+        login(state) {
+            state.isLoggedIn = true;
+        },
+        logout(state) {
+            state.isLoggedIn = false;
+        },
         select(state, audio) {
             if (state.audio != undefined) {
                 state.audio.destroyed();

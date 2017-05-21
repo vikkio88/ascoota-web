@@ -38,6 +38,9 @@ export default {
     Dashboard
   },
   mounted() {
+    if (this.$auth.loggedIn()) {
+      this.$store.commit('login');
+    }
     this.$stats.push('render_home');
   }
 }

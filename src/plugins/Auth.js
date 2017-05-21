@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 const TOKEN_KEY = process.env.TOKEN_LOCAL_KEY;
 const TOKEN_EXPIRATION = 'token_expiration';
 
@@ -8,6 +10,7 @@ const Auth = {
         localStorage.setItem(TOKEN_EXPIRATION, utc_now + 23 * 3600)
     },
     destroyToken() {
+        Vue.store.commit('logout');
         localStorage.removeItem(TOKEN_KEY);
         localStorage.removeItem(TOKEN_EXPIRATION);
     },

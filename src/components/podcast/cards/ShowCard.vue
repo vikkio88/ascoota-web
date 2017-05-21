@@ -15,13 +15,13 @@ div.show-card-wrapper {
             <md-card-header>
                 <div class="md-title">{{show.name}}</div>
             </md-card-header>
-            <md-card-action v-if="$auth.loggedIn()">
+            <md-card-actions v-if="$store.state.isLoggedIn">
                 <md-button @click.native="addToFavourites(show.id)"
                            class="md-icon-button">
                     <md-icon v-if="!inFavourites(show.id)">favorite_border</md-icon>
                     <md-icon v-else>favorite</md-icon>
                 </md-button>
-            </md-card-action>
+            </md-card-actions>
         </md-card>
     </div>
 </template>
