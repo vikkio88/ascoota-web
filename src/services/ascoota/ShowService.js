@@ -1,6 +1,6 @@
 import AscootaService from '../AscootaService';
 
-var showService = class ShowService extends AscootaService {
+class ShowService extends AscootaService {
   constructor() {
     super();
     this.endpoint = `shows`;
@@ -19,4 +19,5 @@ var showService = class ShowService extends AscootaService {
   }
 
 };
-export default showService;
+
+export { ShowService };

@@ -259,7 +259,7 @@ export default {
                 return;
             }
             this.pause();
-            this.$services.podcast().getOne(podcastId).then(
+            this.$services.podcast.getOne(podcastId).then(
                 (data) => {
                     if (data.body.payload !== null) {
                         this.$store.state.selectedAudio = data.body.payload;

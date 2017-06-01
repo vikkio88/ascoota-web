@@ -20,7 +20,7 @@ export default {
     },
     methods: {
         init() {
-            this.$services.podcast().getOne(this.podcastId).then(
+            this.$services.podcast.getOne(this.podcastId).then(
                 (data) => {
                     if (data.body.payload !== null) {
                         let podcast = data.body.payload;

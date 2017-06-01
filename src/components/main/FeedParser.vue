@@ -13,15 +13,18 @@
                 </md-card-header>
                 <md-card-content>
                     <md-input-container>
-                        <md-input v-model="feedUrl" placeholder="http://thewebsite.com/the/feed.xml"></md-input>
+                        <md-input v-model="feedUrl"
+                                  placeholder="http://thewebsite.com/the/feed.xml"></md-input>
                     </md-input-container>
                     <md-button class="md-raised"
                                v-if="readyToSend && !parsing"
                                @click.native="parse"
                                :disable="parsing">
-                            <md-icon>send</md-icon>
+                        <md-icon>send</md-icon>
                     </md-button>
-                    <md-spinner v-if="parsing" md-indeterminate class="md-warn"></md-spinner>
+                    <md-spinner v-if="parsing"
+                                md-indeterminate
+                                class="md-warn"></md-spinner>
                 </md-card-content>
             </div>
             <div v-else>
@@ -29,8 +32,7 @@
                     <show-details :show="show"
                                   :podcasts="podcasts"
                                   downloadable
-                                  sortable
-                                  />
+                                  sortable />
                 </md-card-content>
             </div>
         </md-card>
@@ -45,11 +47,8 @@
     </div>
 </template>
 <script>
-import ShowService from '../../services/ascoota/ShowService.js';
 import isURL from 'validator/lib/isURL';
 import ShowDetails from '../podcast/cards/ShowDetails';
-
-const service = new ShowService();
 
 export default {
     name: "feedParser",
@@ -92,7 +91,7 @@ export default {
         parse() {
             this.$stats.push(`PARSE_REQUEST_${this.feedUrl}`);
             this.parsing = true;
-            service.parse(this.feedUrl).then(
+            this.$services.show.parse(this.feedUrl).then(
                 data => {
                     this.isParsed = true;
                     this.parsing = false;
