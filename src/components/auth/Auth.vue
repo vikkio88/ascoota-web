@@ -6,7 +6,7 @@
     </div>
 </template>
 <script>
-import AuthService from '../../services/ascoota/AuthService'
+import { AuthService } from '../../services/ascoota/AuthService';
 
 const service = new AuthService();
 

@@ -15,8 +15,10 @@ Vue.use(VueClipboard);
 //plugins
 import Stats from './plugins/Stats'
 import Auth from './plugins/Auth'
+import Services from './plugins/Services'
 Vue.use(Stats);
 Vue.use(Auth);
+Vue.use(Services);
 
 import App from './App'
 import Router from './libs/routes'

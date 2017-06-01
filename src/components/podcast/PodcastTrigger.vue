@@ -6,8 +6,6 @@
     </div>
 </template>
 <script>
-import PodcastService from '../../services/ascoota/PodcastService'
-
 export default {
     name: 'podcastTrigger',
     data() {
@@ -22,8 +20,7 @@ export default {
     },
     methods: {
         init() {
-            let service = new PodcastService();
-            service.getOne(this.podcastId).then(
+            this.$services.podcast().getOne(this.podcastId).then(
                 (data) => {
                     if (data.body.payload !== null) {
                         let podcast = data.body.payload;

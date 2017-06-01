@@ -175,10 +175,7 @@ div.controls-wrapper {
     </div>
 </template>
 <script>
-import PodcastService from '../../services/ascoota/PodcastService'
-import UserService from '../../services/ascoota/UserService.js'
-
-const podcastService = new PodcastService();
+import UserService from '../../services/ascoota/UserService';
 const userService = new UserService();
 
 export default {
@@ -262,7 +259,7 @@ export default {
                 return;
             }
             this.pause();
-            podcastService.getOne(podcastId).then(
+            this.$services.podcast().getOne(podcastId).then(
                 (data) => {
                     if (data.body.payload !== null) {
                         this.$store.state.selectedAudio = data.body.payload;

@@ -1,6 +1,6 @@
 import AscootaService from '../AscootaService';
 
-var authService = class AuthService extends AscootaService {
+class AuthService extends AscootaService {
   constructor() {
     super();
     this.endpoint = `auth`;
@@ -11,4 +11,4 @@ var authService = class AuthService extends AscootaService {
   }
 };
 
-export default authService;
+export { AuthService };
