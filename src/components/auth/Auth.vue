@@ -1,8 +1,21 @@
-<style></style>
+<style>
+.login-card {
+    margin: 20px 20px 20px 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+.login-button {
+    width: 300px;
+}
+</style>
 <template>
     <div>
-        <md-button class="md-raised md-primary"
-                   @click.native="loginFb">Login with Facebook</md-button>
+        <md-card class="login-card">
+            <span class="md-headline">Login/Sign Up</span>
+            <p class="md-body-2">Login to save your current listening podcast position and your favourites</p>
+            <md-button class="md-raised md-primary login-button" @click.native="loginFb">Login with Facebook</md-button>
+        </md-card>
     </div>
 </template>
 <script>

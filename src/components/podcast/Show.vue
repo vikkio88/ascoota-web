@@ -51,7 +51,7 @@ export default {
         },
         more() {
             this.page += 1;
-            this.service.getMorePodcasts(this.show.id, this.page).then(
+            this.$services.show.getMorePodcasts(this.show.id, this.page).then(
                 data => {
                     let newPodcasts = data.body.payload;
                     if (newPodcasts.length == 0) {

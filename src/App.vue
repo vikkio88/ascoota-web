@@ -11,13 +11,18 @@ body,
   display: flex;
   flex-flow: column;
 }
+
+.main-card {
+  display: flex;
+  flex: 1;
+}
 </style>
 <template>
   <div id="app"
        class="app-viewport phone-viewport">
     <main-nav />
     <audio-player />
-    <md-card>
+    <md-card class="main-card">
       <div>
         <router-view></router-view>
       </div>

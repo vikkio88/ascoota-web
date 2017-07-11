@@ -1,6 +1,7 @@
 <style scoped>
 .me {
-    margin-top: 20px;
+    margin-top: 10px;
+    padding: 20px;
 }
 
 .md-card {
@@ -9,11 +10,9 @@
 }
 </style>
 <template>
-    <div v-if="me"
-         class="me">
+    <div v-if="me" class="me">
         <span class="md-display-1">{{me.name}}</span>
-        <md-button class="md-icon-button md-raised"
-                   @click.native="logout">
+        <md-button class="md-icon-button md-raised" @click.native="logout">
             <md-icon>exit_to_app</md-icon>
         </md-button>
         <md-card>
@@ -32,8 +31,7 @@
                 </div>
             </md-card-content>
             <md-card-actions>
-                <md-button @click.native="triggerPodcast(me.listening)"
-                           class="md-icon-button md-accent md-raised">
+                <md-button v-if="me.listening" @click.native="triggerPodcast(me.listening)" class="md-icon-button md-accent md-raised">
                     <md-icon>play_arrow</md-icon>
                 </md-button>
             </md-card-actions>
@@ -49,8 +47,7 @@
             <md-card-content>
                 <div v-if="me.favourites && me.favourites.length">
                     <md-list class="md-double-line">
-                        <show-list-item :show="favourite.show"
-                                        v-for="favourite in me.favourites" />
+                        <show-list-item :show="favourite.show" v-for="favourite in me.favourites" />
                     </md-list>
                 </div>
                 <div v-else>
